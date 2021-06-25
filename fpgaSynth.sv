@@ -1,6 +1,6 @@
 module fpgaSynth (
-		// Top Level Inputs/Outputs //
-		
+    // Top Level Inputs/Outputs //
+	
       ///////// Clocks /////////
       input     MAX10_CLK1_50, 
 		input		 MAX10_CLK2_50,
@@ -46,15 +46,16 @@ module fpgaSynth (
 
 logic Reset_h;
 logic Continue_h;
-// Invert active-low reset and continue buttons (personal preference)
+// Invert active-low reset and continue buttons
 assign {Continue_h} =~ (KEY[1]);
-assign {Reset_h}=~ (KEY[0]);	
-logic [9:0] LEDDummy;
+assign {Reset_h} =~ (KEY[0]);	
 
 			
 //=======================================================
 //   I2C Tristate Buffers and Declarations
 //=======================================================
+
+
 	logic I2C_SDA_IN, I2C_SDA_OE, I2C_SCL_IN, I2C_SCL_OE;
 	
 	// active I2C signals pull clock and data lines low
@@ -69,110 +70,223 @@ logic [9:0] LEDDummy;
 //   Instantiate onChip-Memory Wavetables
 //=======================================================
 	
-
 	
 	logic readEn;
-	reg   [15:0] sawOutputs[8];
-	reg   [15:0] sqrOutputs[8];
+	reg   [15:0] sawOutputsInterp[8];
+	reg	[15:0] sawOutputsAntiInterp[8];
+	reg   [15:0] sqrOutputsInterp[8];
+	reg	[15:0] sqrOutputsAntiInterp[8];
 	reg   [12:0] sampAddrA;
 	reg   [12:0] sampAddrB;
-	reg   [15:0] waveSamps[3];
+	reg   [15:0] waveSampsInterp[3];
+	reg	[15:0] waveSampsAntiInterp[3];
 	
 	// Sinewave ROM: 4192 Samples of a sinewave which can be read through
 	// at varying rates to produce corresponding frequencies
-	sineRom	sineRom_inst (
-							.address(sampAddrA),
-							.clock(MAX10_CLK2_50),
-							.rden(readEn),
-							.q(waveSamps[0])
-	);
+	sineRom4096	sineRom4096_inst (
+											.address_a(sampAddrA),
+											.address_b(sampAddrB),
+											.clock(MAX10_CLK2_50),
+											.rden_a(readEn),
+											.rden_b(readEn),
+											.q_a(waveSampsInterp[0]),
+											.q_b (waveSampsAntiInterp[0])
+											);
+
 
 //=======================================================							 
 	// Sawtooth-wave ROM: 8 banks (corresponding to 8 playable octaves) with
 	// 4192 samples each. 0th bank (corresponding to the highest playable octave) is
-	// simply a sinewave, while the 1st bank contains 2 sinewaves whose amplitudes
+	// simply a sinewave, while the 1st bank contains a sum of 2 sinewaves whose amplitudes
 	// correspond to the fourier series decomposition of the sawtooth wave; 2nd bank
-	// contains 4 sinewaves, 3rd bank 8...
-	sawRom0	sawRom0_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sawOutputs[0]),
-							.q_b(sawOutputs[1])
-								 );
+	// contains a sum of 4 sinewaves, 3rd bank 8...
+	sawRom4096_0	sawRom4096_0inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[0]),
+												.q_b (sawOutputsAntiInterp[0])
+												);
 								 
-	sawRom1	sawRom1_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sawOutputs[2]),
-							.q_b(sawOutputs[3])
-								 );
+	sawRom4096_1	sawRom4096_1inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[1]),
+												.q_b (sawOutputsAntiInterp[1])
+												);
+												
+	sawRom4096_2	sawRom4096_2inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[2]),
+												.q_b (sawOutputsAntiInterp[2])
+												);
+												
+	sawRom4096_3	sawRom4096_3inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[3]),
+												.q_b (sawOutputsAntiInterp[3])
+												);
+												
+	sawRom4096_4	sawRom4096_4inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[4]),
+												.q_b (sawOutputsAntiInterp[4])
+												);
 								 
-	sawRom2	sawRom2_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sawOutputs[4]),
-							.q_b(sawOutputs[5])
-								 );
+	sawRom4096_5	sawRom4096_5inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[5]),
+												.q_b (sawOutputsAntiInterp[5])
+												);
+												
+	sawRom4096_6	sawRom4096_6inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[6]),
+												.q_b (sawOutputsAntiInterp[6])
+												);
+												
+	sawRom4096_7	sawRom4096_7inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sawOutputsInterp[7]),
+												.q_b (sawOutputsAntiInterp[7])
+												);
 								 
-	sawRom3	sawRom3_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sawOutputs[6]),
-							.q_b(sawOutputs[7])
-								 );
-								 
-	mux_oneHot sawMux (
-							.oneHot(octave),
-							.dataIn(sawOutputs),
-							.dataOut(waveSamps[1])
-							);
+	mux_oneHot sawMuxInterp (
+									.oneHot(octave),
+									.dataIn(sawOutputsInterp),
+									.dataOut(waveSampsInterp[1])
+									);
+									
+	mux_oneHot sawMuxAntiInterp (
+										 .oneHot(octave),
+										 .dataIn(sawOutputsAntiInterp),
+										 .dataOut(waveSampsAntiInterp[1])
+										 );
 							
 	
 //=======================================================
 // Square-wave ROM: identical in structure to sawtooth-wave ROM
 	
-	sqrRom0	sqrRom0_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sqrOutputs[0]),
-							.q_b(sqrOutputs[1])
-								 );
+	sqrRom4096_0	sqrRom4096_0inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[0]),
+												.q_b (sqrOutputsAntiInterp[0])
+												);
 								 
-	sqrRom1	sqrRom1_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sqrOutputs[2]),
-							.q_b(sqrOutputs[3])
-								 );
+	sqrRom4096_1	sqrRom4096_1inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[1]),
+												.q_b (sqrOutputsAntiInterp[1])
+												);
+												
+	sqrRom4096_2	sqrRom4096_2inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[2]),
+												.q_b (sqrOutputsAntiInterp[2])
+												);
+												
+	sqrRom4096_3	sqrRom4096_3inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[3]),
+												.q_b (sqrOutputsAntiInterp[3])
+												);
+												
+	sqrRom4096_4	sqrRom4096_4inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[4]),
+												.q_b (sqrOutputsAntiInterp[4])
+												);
 								 
-	sqrRom2	sqrRom2_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sqrOutputs[4]),
-							.q_b(sqrOutputs[5])
-								 );
+	sqrRom4096_5	sqrRom4096_5inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[5]),
+												.q_b (sqrOutputsAntiInterp[5])
+												);
+												
+	sqrRom4096_6	sqrRom4096_6inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[6]),
+												.q_b (sqrOutputsAntiInterp[6])
+												);
+												
+	sqrRom4096_7	sqrRom4096_7inst (
+												.address_a(sampAddrA),
+												.address_b(sampAddrB),
+												.clock(MAX10_CLK2_50),
+												.rden_a(readEn),
+												.rden_b(readEn),
+												.q_a(sqrOutputsInterp[7]),
+												.q_b (sqrOutputsAntiInterp[7])
+												);
 								 
-	sqrRom3	sqrRom3_inst (
-							.address_a(sampAddrA),
-							.address_b(sampAddrB),
-							.clock(MAX10_CLK2_50),
-							.q_a(sqrOutputs[6]),
-							.q_b(sqrOutputs[7])
-								 );
-	
-	
-	mux_oneHot sqrMux (
-							.oneHot(octave),
-							.dataIn(sqrOutputs),
-							.dataOut(waveSamps[2])
-							);
+	mux_oneHot sqrMuxInterp (
+									.oneHot(octave),
+									.dataIn(sqrOutputsInterp),
+									.dataOut(waveSampsInterp[2])
+									);
+									
+	mux_oneHot sqrMuxAntiInterp (
+										 .oneHot(octave),
+										 .dataIn(sqrOutputsAntiInterp),
+										 .dataOut(waveSampsAntiInterp[2])
+										 );
 	
 
 //=======================================================
@@ -310,24 +424,716 @@ logic [9:0] LEDDummy;
 //  Handle sample generation
 //=======================================================	
 	
-
+	logic [31:0] freq32bit[31] = '{32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0,32'b0,
+											 32'b0,32'b0,32'b0};
+	logic [1:0]  waveforms[4] = '{2'b00, 2'b00, 2'b00, 2'b00};
+	
 	logic [7:0] keycodes_new[4] = '{8'hFF, 8'hFF, 8'hFF, 8'hFF};
 	logic [7:0] keycodes_old[4] = '{8'hFF, 8'hFF, 8'hFF, 8'hFF};
 	
-	//logic [7:0]	keycode_new = 8'h00;
-	
 	logic [31:0] phIncrs[4] = '{32'b0, 32'b0, 32'b0, 32'b0};
-	logic [12:0] tblAddrs[4] = '{13'b0,13'b0,13'b0,13'b0};
-	logic [31:0] sigs[4] = '{32'b0,32'b0,32'b0,32'b0};
-
-	logic [31:0] fmInputs[0:3] = '{32'b0,32'b0,32'b0,32'b0};
-	logic [31:0] freq32bit[18] = '{32'b0,32'b0,32'b0,32'b0, //32bit kbd frequency
-											 32'b0,32'b0,32'b0,32'b0,
-											 32'b0,32'b0,32'b0,32'b0,
-											 32'b0,32'b0,32'b0,32'b0,
-											 32'b0,32'b0};
+	logic [11:0] tblAddrs[4] = '{12'b0,12'b0,12'b0,12'b0};
+	
 	logic [15:0] amplitude = 16'hFFFF;
+	logic [7:0]  octaveBase = 8'h80;
+	logic [7:0]  octave;
+	int			 octaveOffset = 0;
+	//assign octave = octaveBase >> octaveOffset;
+	
 	logic [15:0] interpSamples[4];
+	logic [15:0] antiInterpSamples[4];
+	logic [15:0] interp[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
+	logic [15:0] antiInterp[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
+	logic [32:0] interpedOutputs[4] = '{33'h0, 33'h0, 33'h0, 33'h0};
+	logic [15:0] interpedSigs[4] = '{16'h0,16'h0,16'h0,16'h0};
+	logic [31:0] sigs[4] = '{32'b0,32'b0,32'b0,32'b0};			 
+	logic [33:0] finalOutput = 34'b0;
+	assign interpedSigs = '{interpedOutputs[0][32:17],
+									interpedOutputs[1][32:17],
+									interpedOutputs[2][32:17],
+									interpedOutputs[3][32:17]};		
+	assign antiInterp = '{~interp[0],~interp[1],~interp[2],~interp[3]};
+	
+	
+	// generate samples when there are no samples in the FIFO input or when the FIFO input is half
+	// full or when the FIFO output is empty or when the FIFO output is half empty
+	reg   [1:0] voiceIdx;
+	logic En, voiceCycleEn;
+	assign En = (sampHalfFull|sampEmpty|i2sEmpty|i2sHalfEmpty)&(~i2sFull)&(sampReq);
+	assign voiceCycleEn = En & newNote;
+
+	// Cycles through the voices: voiceIdx <-currentVoice
+	cntr_modulus voiceCntr(
+								.Clk(MAX10_CLK2_50),
+								.Reset(Reset_h),
+								.Enable(voiceCycleEn),
+								.sClear(),
+								.q(voiceIdx)
+								  );
+	
+	// Update phase registers, produces 12-bit addresses tblAddrs[0:3] -> sampAddrA
+	phasor phaseRegs[0:3]  (
+									.Clk(MAX10_CLK2_50),
+									.Reset(Reset_h),
+									.Enable(En),
+									.phaseIncrement(phIncrs),
+									.fmInput(fmInputs),
+									.interp(interp),
+									.wavetableAddr(tblAddrs)
+									);
+									
+	mult16Add2_ip	sampleInterp[0:3] (
+												 .dataa_0(interpSamples),
+												 .datab_0(interp),
+												 .dataa_1(antiInterpSamples),
+												 .datab_1(antiInterp),
+												 .clock0(MAX10_CLK2_50),
+												 .ena0(voiceCycleEn),
+												 .result(interpedOutputs)
+												);
+
+	// multiply samples by overall volume envelope
+	mult16_ip	amps[0:3]	(
+									.clock(MAX10_CLK2_50),
+									.dataa(interpedSigs),
+									.datab(amplitude),
+									.result(sigs)
+									 );
+									 
+	parallelAdder	parallelOutputAdd (
+									.data0x(sigs[0]),
+									.data1x(sigs[1]),
+									.data2x(sigs[2]),
+									.data3x(sigs[3]),
+									.result(finalOutput)
+												 );
+												 
+	logic newNote = 1'b1;
+	
+	// send sample from appropriate table of selected waveform to interpolation multiply-adder
+	always_ff @ (negedge MAX10_CLK2_50)
+	begin
+		interpSamples[voiceIdx] <= waveSampsInterp[waveforms[voiceIdx]];
+		antiInterpSamples[voiceIdx] <= waveSampsAntiInterp[waveforms[voiceIdx]];
+		
+		fifoDin <= {finalOutput[33:18],16'b0};
+	end
+	
+	// determine appropriate sample on positive clock edge
+	always_ff @ (posedge MAX10_CLK2_50)
+	begin
+		if (Reset_h) 
+		begin
+			sampReq <= 1'b0;
+		end
+
+		else
+		begin
+			if ((sampHalfFull | sampEmpty | i2sEmpty | i2sHalfEmpty) & (~i2sFull)) 
+			begin
+				if (sampReq == 1'b1)
+				begin
+					sampReq <= 1'b0;
+					readEn <= 1'b0;
+					if (newNote == 1'b1) begin
+						keycodes_old[voiceIdx] <= keycodes_new[voiceIdx];
+					end
+				end
+				else
+				begin
+					sampReq <= 1'b1;
+						case (keycodes_new[voiceIdx])
+						/*
+								8'h1D :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[0][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h1B :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[1][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h06 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[2][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h19 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[3][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h05 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[4][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h11 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[5][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h10 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[6][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h36 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[7][31:0];
+									newNote <= 1'b1;	
+									octave <= octaveBase;
+									end
+								8'h37 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[8][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h38 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[9][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h04 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[10][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h16 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[11][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h07 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[12][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h09 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[13][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0A :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[14][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0B :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[15][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0D :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[16][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0E :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[17][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0F :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[18][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h33 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[19][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h34 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[20][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h1A :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[21][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h08 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[22][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h15 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[23][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h17 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[24][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h1C :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[25][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h18 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[26][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h0C :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[27][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h12 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[28][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h13 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[29][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h2F :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[30][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+						*/
+								8'h1D :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h1B :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[2];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h06 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[4];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h19 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[6];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h05 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[8];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h11 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[10];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h10 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[12];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h36 : 
+									begin
+									phIncrs[voiceIdx] <= freq32bit[14];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h37 : // correct octave
+									begin
+									phIncrs[voiceIdx] <= freq32bit[16];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								/*
+								8'h38 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[9][31:0];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								*/
+								8'h04 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[5];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h16 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[7];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h07 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[9];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h09 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[11];
+									newNote <= 1'b1;
+									octave <= octaveBase;
+									end
+								8'h0A :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[13];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0B :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[15];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0D :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[17];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0E :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[19];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0F :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[21];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h33 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[23];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								/*
+								8'h34 :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[20][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								*/
+								8'h1A :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[12];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h08 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[14];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h15 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[16];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h17 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[18];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h1C :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[20];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h18 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[22];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h01)
+										octave <= octaveBase >> 1;
+									else
+										octave <= 8'h01;
+									end
+								8'h0C :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[24];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h12 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[26];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								8'h13 :
+									begin
+									phIncrs[voiceIdx] <= freq32bit[28];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								/*
+								8'h2F :
+									begin
+									phIncrs[voiceIdx][31:0] <= freq32bit[30][31:0];
+									newNote <= 1'b1;
+									if (octaveBase > 8'h02)
+										octave <= octaveBase >> 2;
+									else
+										octave <= 8'h01;
+									end
+								*/
+								8'h35 :
+									begin
+										amplitude <= 16'h0000;
+										newNote <= 1'b0;
+									end
+								8'h1E :
+									begin
+										amplitude <= 16'h2000;
+										newNote <= 1'b0;
+									end
+								8'h1F :
+									begin
+										amplitude <= 16'h4000;
+										newNote <= 1'b0;
+									end
+								8'h20 :
+									begin
+										amplitude <= 16'h6000;
+										newNote <= 1'b0;
+									end
+								8'h21 :
+									begin
+										amplitude <= 16'h8000;
+										newNote <= 1'b0;
+									end
+								8'h22 :
+									begin
+										amplitude <= 16'hA000;
+										newNote <= 1'b0;
+									end
+								8'h23 :
+									begin
+										amplitude <= 16'hC000;
+										newNote <= 1'b0;
+									end
+								8'h24 :
+									begin
+										amplitude <= 16'hE000;
+										newNote <= 1'b0;
+									end
+								8'h25 :
+									begin
+										amplitude <= 16'hFFFF;
+										newNote <= 1'b0;
+									end
+								8'h00 :
+									begin
+										phIncrs[voiceIdx] <= phIncrs[voiceIdx];
+										newNote <= 1'b1;
+									end
+								default : 
+									begin
+										newNote <= 1'b1;
+										phIncrs[voiceIdx] <= phIncrs[voiceIdx];
+									end
+							endcase
+						readEn <= 1'b1;
+						
+						sampAddrA <= tblAddrs[voiceIdx];
+						sampAddrB <= tblAddrs[voiceIdx]+12'h001;
+				end
+			end
+		
+			else if (sampFull) 
+			begin
+				sampReq <= 1'b0;
+				readEn <= 1'b0;
+			end
+		end
+	end
+	
+	
+	
+	logic [31:0] sampleInR, sampleInL;
+	always @ (posedge LRCLK)
+	begin
+		if (i2sEmpty == 1'b0) 
+		begin
+			if (i2sReq == 1'b0) 
+			begin
+				i2sReq <= 1'b1;
+				sampleInR <= fifoDout;
+				sampleInL <= fifoDout;
+			end
+			else
+				i2sReq <= 1'b0;
+		end
+	end
 	
 	// ADSR signals; still in progress
 	/*
@@ -351,63 +1157,16 @@ logic [9:0] LEDDummy;
 									9'b111111100,
 									9'b111111100};
 	*/
-	logic [33:0] finalOutput = 34'b0;
-	logic [15:0] interp[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
-	logic [15:0] antiInterp[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
-	
-	logic [7:0]  octave = 8'h80;
-	logic [1:0]  waveforms[4] = '{2'b00, 2'b00, 2'b00, 2'b00};
-	
-	reg   [1:0] voiceIdx;
+		
+//=======================================================
+//  Handle FM processing
+//=======================================================	
+	logic [31:0] fmInputs[0:3] = '{32'b0,32'b0,32'b0,32'b0};
 	logic [31:0] mult0Out[4] = '{32'b0,32'b0,32'b0,32'b0};
 	logic [31:0] mult1Out[4] = '{32'b0,32'b0,32'b0,32'b0};
 	logic [31:0] mult2Out[4] = '{32'b0,32'b0,32'b0,32'b0};
 	logic [31:0] mult3Out[4] = '{32'b0,32'b0,32'b0,32'b0};
-	
-	logic [33:0] fmAddOut[4] = '{34'b0, 34'b0, 34'b0, 34'b0};
-	
-	logic En, voiceCycleEn;
-	
-	// generate samples when there are no samples in the FIFO input or when the FIFO input is half
-	// full or when the FIFO output is empty or when the FIFO output is half empty
-	assign En = (sampHalfFull|sampEmpty|i2sEmpty|i2sHalfEmpty)&(~i2sFull)&(sampReq)&phasorRun;
-	assign voiceCycleEn = En & newNote;
-
-	// Cycles through the voices: voiceIdx <-currentVoice
-	cntr_modulus voiceCntr(
-								.Clk(MAX10_CLK2_50),
-								.Reset(Reset_h),
-								.Enable(voiceCycleEn),
-								.sClear(),
-								.q(voiceIdx)
-								  );
-	
-	// Update phase registers, produces 12-bit addresses tblAddrs[0:3] -> sampAddrA
-	phasor phaseRegs[0:3]  (
-									.Clk(MAX10_CLK2_50),
-									.Reset(Reset_h),
-									.Enable(En),
-									.phaseIncrement(phIncrs),
-									.fmInput(fmInputs),
-									.interp(interp),
-									.wavetableAddr(tblAddrs)
-									);
-
-	// multiply samples by overall volume envelope
-	mult16_ip	amps[0:3]	(
-									.clock(MAX10_CLK2_50),
-									.dataa(interpSamples),
-									.datab(amplitude),
-									.result(sigs)
-									 );
-									 
-	parallelAdder	parallelOutputAdd (
-									.data0x(sigs[0]),
-									.data1x(sigs[1]),
-									.data2x(sigs[2]),
-									.data3x(sigs[3]),
-									.result(finalOutput)
-												 );	
+	logic [33:0] fmAddOut[4] = '{34'b0, 34'b0, 34'b0, 34'b0};	
 	
 	// calculate FM inputs for all voices
 	mult8x16_ip	fmMult0[0:3] (
@@ -447,7 +1206,7 @@ logic [9:0] LEDDummy;
 									.result(mult3Out)
 									 );
 									 
-	// add voice signals to produce final output								 
+	// add FM signals to produce final FM signal								 
 	parallelAdder fmAdd[0:3] (
 									.data0x(mult0Out),
 									.data1x(mult1Out),
@@ -455,8 +1214,6 @@ logic [9:0] LEDDummy;
 									.data3x(mult3Out),
 									.result(fmAddOut)
 									 );
-
-		
 							  
 	/*
 	logic [7:0] noteKeycodes[0:17] = '{8'h04, 8'h1A, 8h16,
@@ -469,217 +1226,6 @@ logic [9:0] LEDDummy;
 	*/
 	
 								
-	logic newNote = 1'b1;
-	
-	// send sample from appropriate table of selected waveform to FIFO input on the negative clock-edge
-	always_ff @ (negedge MAX10_CLK2_50)
-	begin
-		interpSamples[voiceIdx] <= waveSamps[waveforms[voiceIdx]];
-		fifoDin <= {2'b0,finalOutput[33:20],16'b0};
-	end
-	
-	// determine appropriate sample on positive clock edge
-	always_ff @ (posedge MAX10_CLK2_50)
-	begin
-		if (Reset_h) 
-		begin
-			sampReq <= 1'b0;
-		end
-
-		else
-		begin
-			if ((sampHalfFull | sampEmpty | i2sEmpty | i2sHalfEmpty) & (~i2sFull)) 
-			begin
-				if (sampReq == 1'b1)
-				begin
-					sampReq <= 1'b0;
-					readEn <= 1'b0;
-					if (newNote == 1'b1) begin
-						keycodes_old[voiceIdx] <= keycodes_new[voiceIdx];
-					end
-				end
-				else
-				begin
-					sampReq <= 1'b1;
-						case (keycodes_new[voiceIdx])
-								8'h04 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[0][31:0];
-									newNote <= 1'b1;
-									end
-								8'h1A :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[1][31:0];
-									newNote <= 1'b1;
-									end
-								8'h16 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[2][31:0];
-									newNote <= 1'b1;
-									end
-								8'h08 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[3][31:0];
-									newNote <= 1'b1;
-									end
-								8'h07 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[4][31:0];
-									newNote <= 1'b1;
-									end
-								8'h09 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[5][31:0];
-									newNote <= 1'b1;
-									end
-								8'h17 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[6][31:0];
-									newNote <= 1'b1;
-									end
-								8'h0A :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[7][31:0];
-									newNote <= 1'b1;	
-									end
-								8'h1C :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[8][31:0];
-									newNote <= 1'b1;
-									end
-								8'h0B :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[9][31:0];
-									newNote <= 1'b1;
-									end
-								8'h18 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[10][31:0];
-									newNote <= 1'b1;
-									end
-								8'h0D :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[11][31:0];
-									newNote <= 1'b1;
-									end
-								8'h0E :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[12][31:0];
-									newNote <= 1'b1;
-									end
-								8'h12 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[13][31:0];
-									newNote <= 1'b1;
-									end
-								8'h0F :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[14][31:0];
-									newNote <= 1'b1;	
-									end
-								8'h13 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[15][31:0];
-									newNote <= 1'b1;
-									end
-								8'h33 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[16][31:0];
-									newNote <= 1'b1;
-									end
-								8'h34 :
-									begin
-									phIncrs[voiceIdx][31:0] <= freq32bit[17][31:0];
-									newNote <= 1'b1;
-									end
-								8'h1D :
-									begin
-										amplitude <= 16'h0000;
-										newNote <= 1'b0;
-									end
-								8'h1B :
-									begin
-										amplitude <= 16'h2000;
-										newNote <= 1'b0;
-									end
-								8'h06 :
-									begin
-										amplitude <= 16'h4000;
-										newNote <= 1'b0;
-									end
-								8'h19 :
-									begin
-										amplitude <= 16'h6000;
-										newNote <= 1'b0;
-									end
-								8'h05 :
-									begin
-										amplitude <= 16'h8000;
-										newNote <= 1'b0;
-									end
-								8'h11 :
-									begin
-										amplitude <= 16'hA000;
-										newNote <= 1'b0;
-									end
-								8'h10 :
-									begin
-										amplitude <= 16'hC000;
-										newNote <= 1'b0;
-									end
-								8'h36 :
-									begin
-										amplitude <= 16'hE000;
-										newNote <= 1'b0;
-									end
-								8'h38 :
-									begin
-										amplitude <= 16'hFFFF;
-										newNote <= 1'b0;
-									end
-								8'h00 :
-									begin
-										phIncrs[voiceIdx] <= phIncrs[voiceIdx];
-										newNote <= 1'b1;
-									end
-								default : 
-									begin
-										newNote <= 1'b0;
-										phIncrs[voiceIdx] <= phIncrs[voiceIdx];
-									end
-							endcase
-						readEn <= 1'b1;
-						
-						sampAddrA <= tblAddrs[voiceIdx];
-						sampAddrB <= {1'b1,sampAddrA[11:0]};
-				end
-			end
-		
-			else if (sampFull) 
-			begin
-				sampReq <= 1'b0;
-				readEn <= 1'b0;
-			end
-		end
-	end
-	
-	
-	
-	logic [31:0] sampleInR, sampleInL;
-	always @ (posedge LRCLK)
-	begin
-		if (i2sEmpty == 1'b0) 
-		begin
-			if (i2sReq == 1'b0) 
-			begin
-				i2sReq <= 1'b1;
-				sampleInR <= fifoDout;
-				sampleInL <= fifoDout;
-			end
-			else
-				i2sReq <= 1'b0;
-		end
-	end
 	
 	
 //=======================================================
@@ -714,7 +1260,6 @@ logic [9:0] LEDDummy;
 	assign ARDUINO_IO[2] = LRCLK? shiftOutR : shiftOutL;
 	
 	// Shift registers to shift out individual bits of each sample at the rate of SCLK = 32*LRCLK
-	
 	shiftreg_N  shiftregL	 	 (.Clk(SCLK),
 										  .Reset(Reset_h),
 										  .Enable(~i2sEmpty),
@@ -723,7 +1268,8 @@ logic [9:0] LEDDummy;
 										  .Shift_En(shiftLChannel),
 										  .D(sampleInL),
 										  .Shift_Out(shiftOutL),
-										  .Data_Out());
+										  .Data_Out()
+										 );
 													  
 	shiftreg_N  shiftregR	 	 (.Clk(SCLK),
 										  .Reset(Reset_h),
@@ -733,7 +1279,8 @@ logic [9:0] LEDDummy;
 										  .Shift_En(shiftRChannel),
 										  .D(sampleInR),
 										  .Shift_Out(shiftOutR),
-										  .Data_Out());
+										  .Data_Out()
+										 );
 													  
 
 	// State machine to determine shift-register behavior
@@ -790,6 +1337,7 @@ logic [9:0] LEDDummy;
 //=======================================================
 	logic SPI0_CS_N, SPI0_SCLK, SPI0_MISO, SPI0_MOSI, USB_GPX, USB_IRQ, USB_RST;
 	logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
+	logic [9:0] LEDDummy;
 	logic [1:0] signs;
 	logic [1:0] hundreds;
 	
@@ -823,7 +1371,6 @@ logic [9:0] LEDDummy;
 	
 	HexDriver hex_driver0 (hex_num_0, HEX0[6:0]);
 	assign HEX0[7] = 1'b1;
-	//Assign one button to reset
 	
 	
 	
@@ -883,6 +1430,19 @@ logic [9:0] LEDDummy;
 		.phase_incr15_external_connection_export(freq32bit[15][31:0]),
 		.phase_incr16_external_connection_export(freq32bit[16][31:0]),
 		.phase_incr17_external_connection_export(freq32bit[17][31:0]),
+		.phase_incr18_external_connection_export(freq32bit[18][31:0]),
+		.phase_incr19_external_connection_export(freq32bit[19][31:0]),
+		.phase_incr20_external_connection_export(freq32bit[20][31:0]),
+		.phase_incr21_external_connection_export(freq32bit[21][31:0]),
+		.phase_incr22_external_connection_export(freq32bit[22][31:0]),
+		.phase_incr23_external_connection_export(freq32bit[23][31:0]),
+		.phase_incr24_external_connection_export(freq32bit[24][31:0]),
+		.phase_incr25_external_connection_export(freq32bit[25][31:0]),
+		.phase_incr26_external_connection_export(freq32bit[26][31:0]),
+		.phase_incr27_external_connection_export(freq32bit[27][31:0]),
+		.phase_incr28_external_connection_export(freq32bit[28][31:0]),
+		.phase_incr29_external_connection_export(freq32bit[29][31:0]),
+		.phase_incr30_external_connection_export(freq32bit[30][31:0]),
 		
 		//KEYCODES
 		//.keycode_export(keycode_new),
@@ -899,7 +1459,7 @@ logic [9:0] LEDDummy;
 		//.amp_export(amplitude),
 		
 		//OCTAVE
-		.oct_external_connection_export(octave),
+		.oct_external_connection_export(octaveBase),
 		
 		//SWITCHES
 		//.switches_external_connection_export(SW)

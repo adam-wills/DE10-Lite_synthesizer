@@ -47,6 +47,19 @@
 		.spi0_SS_n                               (<connected-to-spi0_SS_n>),                               //                                 .SS_n
 		.usb_gpx_export                          (<connected-to-usb_gpx_export>),                          //                          usb_gpx.export
 		.usb_irq_export                          (<connected-to-usb_irq_export>),                          //                          usb_irq.export
-		.usb_rst_export                          (<connected-to-usb_rst_export>)                           //                          usb_rst.export
+		.usb_rst_export                          (<connected-to-usb_rst_export>),                          //                          usb_rst.export
+		.phase_incr18_external_connection_export (<connected-to-phase_incr18_external_connection_export>), // phase_incr18_external_connection.export
+		.phase_incr19_external_connection_export (<connected-to-phase_incr19_external_connection_export>), // phase_incr19_external_connection.export
+		.phase_incr20_external_connection_export (<connected-to-phase_incr20_external_connection_export>), // phase_incr20_external_connection.export
+		.phase_incr21_external_connection_export (<connected-to-phase_incr21_external_connection_export>), // phase_incr21_external_connection.export
+		.phase_incr22_external_connection_export (<connected-to-phase_incr22_external_connection_export>), // phase_incr22_external_connection.export
+		.phase_incr23_external_connection_export (<connected-to-phase_incr23_external_connection_export>), // phase_incr23_external_connection.export
+		.phase_incr24_external_connection_export (<connected-to-phase_incr24_external_connection_export>), // phase_incr24_external_connection.export
+		.phase_incr25_external_connection_export (<connected-to-phase_incr25_external_connection_export>), // phase_incr25_external_connection.export
+		.phase_incr26_external_connection_export (<connected-to-phase_incr26_external_connection_export>), // phase_incr26_external_connection.export
+		.phase_incr27_external_connection_export (<connected-to-phase_incr27_external_connection_export>), // phase_incr27_external_connection.export
+		.phase_incr28_external_connection_export (<connected-to-phase_incr28_external_connection_export>), // phase_incr28_external_connection.export
+		.phase_incr29_external_connection_export (<connected-to-phase_incr29_external_connection_export>), // phase_incr29_external_connection.export
+		.phase_incr30_external_connection_export (<connected-to-phase_incr30_external_connection_export>)  // phase_incr30_external_connection.export
 	);
 

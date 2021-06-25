@@ -22,8 +22,21 @@
 			phase_incr15_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr16_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr17_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr18_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr19_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr1_external_connection_export  : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr20_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr21_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr22_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr23_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr24_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr25_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr26_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr27_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr28_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr29_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr2_external_connection_export  : out   std_logic_vector(31 downto 0);                    -- export
+			phase_incr30_external_connection_export : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr3_external_connection_export  : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr4_external_connection_export  : out   std_logic_vector(31 downto 0);                    -- export
 			phase_incr5_external_connection_export  : out   std_logic_vector(31 downto 0);                    -- export

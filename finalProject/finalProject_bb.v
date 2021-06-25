@@ -48,7 +48,20 @@ module finalProject (
 	spi0_SS_n,
 	usb_gpx_export,
 	usb_irq_export,
-	usb_rst_export);	
+	usb_rst_export,
+	phase_incr18_external_connection_export,
+	phase_incr19_external_connection_export,
+	phase_incr20_external_connection_export,
+	phase_incr21_external_connection_export,
+	phase_incr22_external_connection_export,
+	phase_incr23_external_connection_export,
+	phase_incr24_external_connection_export,
+	phase_incr25_external_connection_export,
+	phase_incr26_external_connection_export,
+	phase_incr27_external_connection_export,
+	phase_incr28_external_connection_export,
+	phase_incr29_external_connection_export,
+	phase_incr30_external_connection_export);	
 
 	input		clk_clk;
 	output	[15:0]	hex_digits_export;
@@ -99,4 +112,17 @@ module finalProject (
 	input		usb_gpx_export;
 	input		usb_irq_export;
 	output		usb_rst_export;
+	output	[31:0]	phase_incr18_external_connection_export;
+	output	[31:0]	phase_incr19_external_connection_export;
+	output	[31:0]	phase_incr20_external_connection_export;
+	output	[31:0]	phase_incr21_external_connection_export;
+	output	[31:0]	phase_incr22_external_connection_export;
+	output	[31:0]	phase_incr23_external_connection_export;
+	output	[31:0]	phase_incr24_external_connection_export;
+	output	[31:0]	phase_incr25_external_connection_export;
+	output	[31:0]	phase_incr26_external_connection_export;
+	output	[31:0]	phase_incr27_external_connection_export;
+	output	[31:0]	phase_incr28_external_connection_export;
+	output	[31:0]	phase_incr29_external_connection_export;
+	output	[31:0]	phase_incr30_external_connection_export;
 endmodule

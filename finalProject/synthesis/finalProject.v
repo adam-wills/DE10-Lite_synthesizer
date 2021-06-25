@@ -26,8 +26,21 @@ module finalProject (
 		output wire [31:0] phase_incr15_external_connection_export, // phase_incr15_external_connection.export
 		output wire [31:0] phase_incr16_external_connection_export, // phase_incr16_external_connection.export
 		output wire [31:0] phase_incr17_external_connection_export, // phase_incr17_external_connection.export
+		output wire [31:0] phase_incr18_external_connection_export, // phase_incr18_external_connection.export
+		output wire [31:0] phase_incr19_external_connection_export, // phase_incr19_external_connection.export
 		output wire [31:0] phase_incr1_external_connection_export,  //  phase_incr1_external_connection.export
+		output wire [31:0] phase_incr20_external_connection_export, // phase_incr20_external_connection.export
+		output wire [31:0] phase_incr21_external_connection_export, // phase_incr21_external_connection.export
+		output wire [31:0] phase_incr22_external_connection_export, // phase_incr22_external_connection.export
+		output wire [31:0] phase_incr23_external_connection_export, // phase_incr23_external_connection.export
+		output wire [31:0] phase_incr24_external_connection_export, // phase_incr24_external_connection.export
+		output wire [31:0] phase_incr25_external_connection_export, // phase_incr25_external_connection.export
+		output wire [31:0] phase_incr26_external_connection_export, // phase_incr26_external_connection.export
+		output wire [31:0] phase_incr27_external_connection_export, // phase_incr27_external_connection.export
+		output wire [31:0] phase_incr28_external_connection_export, // phase_incr28_external_connection.export
+		output wire [31:0] phase_incr29_external_connection_export, // phase_incr29_external_connection.export
 		output wire [31:0] phase_incr2_external_connection_export,  //  phase_incr2_external_connection.export
+		output wire [31:0] phase_incr30_external_connection_export, // phase_incr30_external_connection.export
 		output wire [31:0] phase_incr3_external_connection_export,  //  phase_incr3_external_connection.export
 		output wire [31:0] phase_incr4_external_connection_export,  //  phase_incr4_external_connection.export
 		output wire [31:0] phase_incr5_external_connection_export,  //  phase_incr5_external_connection.export
@@ -252,6 +265,71 @@ module finalProject (
 	wire   [1:0] mm_interconnect_0_oct_s1_address;                           // mm_interconnect_0:oct_s1_address -> oct:address
 	wire         mm_interconnect_0_oct_s1_write;                             // mm_interconnect_0:oct_s1_write -> oct:write_n
 	wire  [31:0] mm_interconnect_0_oct_s1_writedata;                         // mm_interconnect_0:oct_s1_writedata -> oct:writedata
+	wire         mm_interconnect_0_phase_incr18_s1_chipselect;               // mm_interconnect_0:phase_incr18_s1_chipselect -> phase_incr18:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr18_s1_readdata;                 // phase_incr18:readdata -> mm_interconnect_0:phase_incr18_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr18_s1_address;                  // mm_interconnect_0:phase_incr18_s1_address -> phase_incr18:address
+	wire         mm_interconnect_0_phase_incr18_s1_write;                    // mm_interconnect_0:phase_incr18_s1_write -> phase_incr18:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr18_s1_writedata;                // mm_interconnect_0:phase_incr18_s1_writedata -> phase_incr18:writedata
+	wire         mm_interconnect_0_phase_incr19_s1_chipselect;               // mm_interconnect_0:phase_incr19_s1_chipselect -> phase_incr19:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr19_s1_readdata;                 // phase_incr19:readdata -> mm_interconnect_0:phase_incr19_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr19_s1_address;                  // mm_interconnect_0:phase_incr19_s1_address -> phase_incr19:address
+	wire         mm_interconnect_0_phase_incr19_s1_write;                    // mm_interconnect_0:phase_incr19_s1_write -> phase_incr19:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr19_s1_writedata;                // mm_interconnect_0:phase_incr19_s1_writedata -> phase_incr19:writedata
+	wire         mm_interconnect_0_phase_incr20_s1_chipselect;               // mm_interconnect_0:phase_incr20_s1_chipselect -> phase_incr20:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr20_s1_readdata;                 // phase_incr20:readdata -> mm_interconnect_0:phase_incr20_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr20_s1_address;                  // mm_interconnect_0:phase_incr20_s1_address -> phase_incr20:address
+	wire         mm_interconnect_0_phase_incr20_s1_write;                    // mm_interconnect_0:phase_incr20_s1_write -> phase_incr20:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr20_s1_writedata;                // mm_interconnect_0:phase_incr20_s1_writedata -> phase_incr20:writedata
+	wire         mm_interconnect_0_phase_incr21_s1_chipselect;               // mm_interconnect_0:phase_incr21_s1_chipselect -> phase_incr21:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr21_s1_readdata;                 // phase_incr21:readdata -> mm_interconnect_0:phase_incr21_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr21_s1_address;                  // mm_interconnect_0:phase_incr21_s1_address -> phase_incr21:address
+	wire         mm_interconnect_0_phase_incr21_s1_write;                    // mm_interconnect_0:phase_incr21_s1_write -> phase_incr21:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr21_s1_writedata;                // mm_interconnect_0:phase_incr21_s1_writedata -> phase_incr21:writedata
+	wire         mm_interconnect_0_phase_incr22_s1_chipselect;               // mm_interconnect_0:phase_incr22_s1_chipselect -> phase_incr22:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr22_s1_readdata;                 // phase_incr22:readdata -> mm_interconnect_0:phase_incr22_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr22_s1_address;                  // mm_interconnect_0:phase_incr22_s1_address -> phase_incr22:address
+	wire         mm_interconnect_0_phase_incr22_s1_write;                    // mm_interconnect_0:phase_incr22_s1_write -> phase_incr22:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr22_s1_writedata;                // mm_interconnect_0:phase_incr22_s1_writedata -> phase_incr22:writedata
+	wire         mm_interconnect_0_phase_incr23_s1_chipselect;               // mm_interconnect_0:phase_incr23_s1_chipselect -> phase_incr23:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr23_s1_readdata;                 // phase_incr23:readdata -> mm_interconnect_0:phase_incr23_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr23_s1_address;                  // mm_interconnect_0:phase_incr23_s1_address -> phase_incr23:address
+	wire         mm_interconnect_0_phase_incr23_s1_write;                    // mm_interconnect_0:phase_incr23_s1_write -> phase_incr23:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr23_s1_writedata;                // mm_interconnect_0:phase_incr23_s1_writedata -> phase_incr23:writedata
+	wire         mm_interconnect_0_phase_incr24_s1_chipselect;               // mm_interconnect_0:phase_incr24_s1_chipselect -> phase_incr24:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr24_s1_readdata;                 // phase_incr24:readdata -> mm_interconnect_0:phase_incr24_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr24_s1_address;                  // mm_interconnect_0:phase_incr24_s1_address -> phase_incr24:address
+	wire         mm_interconnect_0_phase_incr24_s1_write;                    // mm_interconnect_0:phase_incr24_s1_write -> phase_incr24:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr24_s1_writedata;                // mm_interconnect_0:phase_incr24_s1_writedata -> phase_incr24:writedata
+	wire         mm_interconnect_0_phase_incr25_s1_chipselect;               // mm_interconnect_0:phase_incr25_s1_chipselect -> phase_incr25:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr25_s1_readdata;                 // phase_incr25:readdata -> mm_interconnect_0:phase_incr25_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr25_s1_address;                  // mm_interconnect_0:phase_incr25_s1_address -> phase_incr25:address
+	wire         mm_interconnect_0_phase_incr25_s1_write;                    // mm_interconnect_0:phase_incr25_s1_write -> phase_incr25:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr25_s1_writedata;                // mm_interconnect_0:phase_incr25_s1_writedata -> phase_incr25:writedata
+	wire         mm_interconnect_0_phase_incr26_s1_chipselect;               // mm_interconnect_0:phase_incr26_s1_chipselect -> phase_incr26:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr26_s1_readdata;                 // phase_incr26:readdata -> mm_interconnect_0:phase_incr26_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr26_s1_address;                  // mm_interconnect_0:phase_incr26_s1_address -> phase_incr26:address
+	wire         mm_interconnect_0_phase_incr26_s1_write;                    // mm_interconnect_0:phase_incr26_s1_write -> phase_incr26:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr26_s1_writedata;                // mm_interconnect_0:phase_incr26_s1_writedata -> phase_incr26:writedata
+	wire         mm_interconnect_0_phase_incr27_s1_chipselect;               // mm_interconnect_0:phase_incr27_s1_chipselect -> phase_incr27:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr27_s1_readdata;                 // phase_incr27:readdata -> mm_interconnect_0:phase_incr27_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr27_s1_address;                  // mm_interconnect_0:phase_incr27_s1_address -> phase_incr27:address
+	wire         mm_interconnect_0_phase_incr27_s1_write;                    // mm_interconnect_0:phase_incr27_s1_write -> phase_incr27:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr27_s1_writedata;                // mm_interconnect_0:phase_incr27_s1_writedata -> phase_incr27:writedata
+	wire         mm_interconnect_0_phase_incr28_s1_chipselect;               // mm_interconnect_0:phase_incr28_s1_chipselect -> phase_incr28:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr28_s1_readdata;                 // phase_incr28:readdata -> mm_interconnect_0:phase_incr28_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr28_s1_address;                  // mm_interconnect_0:phase_incr28_s1_address -> phase_incr28:address
+	wire         mm_interconnect_0_phase_incr28_s1_write;                    // mm_interconnect_0:phase_incr28_s1_write -> phase_incr28:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr28_s1_writedata;                // mm_interconnect_0:phase_incr28_s1_writedata -> phase_incr28:writedata
+	wire         mm_interconnect_0_phase_incr29_s1_chipselect;               // mm_interconnect_0:phase_incr29_s1_chipselect -> phase_incr29:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr29_s1_readdata;                 // phase_incr29:readdata -> mm_interconnect_0:phase_incr29_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr29_s1_address;                  // mm_interconnect_0:phase_incr29_s1_address -> phase_incr29:address
+	wire         mm_interconnect_0_phase_incr29_s1_write;                    // mm_interconnect_0:phase_incr29_s1_write -> phase_incr29:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr29_s1_writedata;                // mm_interconnect_0:phase_incr29_s1_writedata -> phase_incr29:writedata
+	wire         mm_interconnect_0_phase_incr30_s1_chipselect;               // mm_interconnect_0:phase_incr30_s1_chipselect -> phase_incr30:chipselect
+	wire  [31:0] mm_interconnect_0_phase_incr30_s1_readdata;                 // phase_incr30:readdata -> mm_interconnect_0:phase_incr30_s1_readdata
+	wire   [1:0] mm_interconnect_0_phase_incr30_s1_address;                  // mm_interconnect_0:phase_incr30_s1_address -> phase_incr30:address
+	wire         mm_interconnect_0_phase_incr30_s1_write;                    // mm_interconnect_0:phase_incr30_s1_write -> phase_incr30:write_n
+	wire  [31:0] mm_interconnect_0_phase_incr30_s1_writedata;                // mm_interconnect_0:phase_incr30_s1_writedata -> phase_incr30:writedata
 	wire         mm_interconnect_0_spi_0_spi_control_port_chipselect;        // mm_interconnect_0:spi_0_spi_control_port_chipselect -> spi_0:spi_select
 	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_readdata;          // spi_0:data_to_cpu -> mm_interconnect_0:spi_0_spi_control_port_readdata
 	wire   [2:0] mm_interconnect_0_spi_0_spi_control_port_address;           // mm_interconnect_0:spi_0_spi_control_port_address -> spi_0:mem_addr
@@ -263,7 +341,7 @@ module finalProject (
 	wire         irq_mapper_receiver2_irq;                                   // spi_0:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                   // timer:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                       // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [hex_digits_pio:reset_n, i2c_0:rst_n, irq_mapper:reset, jtag_uart:rst_n, key:reset_n, keycode1:reset_n, keycode2:reset_n, keycode3:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, oct:reset_n, onchip_memory2_0:reset, phase_incr0:reset_n, phase_incr10:reset_n, phase_incr11:reset_n, phase_incr12:reset_n, phase_incr13:reset_n, phase_incr14:reset_n, phase_incr15:reset_n, phase_incr16:reset_n, phase_incr17:reset_n, phase_incr1:reset_n, phase_incr2:reset_n, phase_incr3:reset_n, phase_incr4:reset_n, phase_incr5:reset_n, phase_incr6:reset_n, phase_incr7:reset_n, phase_incr8:reset_n, phase_incr9:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
+	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [hex_digits_pio:reset_n, i2c_0:rst_n, irq_mapper:reset, jtag_uart:rst_n, key:reset_n, keycode1:reset_n, keycode2:reset_n, keycode3:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, oct:reset_n, onchip_memory2_0:reset, phase_incr0:reset_n, phase_incr10:reset_n, phase_incr11:reset_n, phase_incr12:reset_n, phase_incr13:reset_n, phase_incr14:reset_n, phase_incr15:reset_n, phase_incr16:reset_n, phase_incr17:reset_n, phase_incr18:reset_n, phase_incr19:reset_n, phase_incr1:reset_n, phase_incr20:reset_n, phase_incr21:reset_n, phase_incr22:reset_n, phase_incr23:reset_n, phase_incr24:reset_n, phase_incr25:reset_n, phase_incr26:reset_n, phase_incr27:reset_n, phase_incr28:reset_n, phase_incr29:reset_n, phase_incr2:reset_n, phase_incr30:reset_n, phase_incr3:reset_n, phase_incr4:reset_n, phase_incr5:reset_n, phase_incr6:reset_n, phase_incr7:reset_n, phase_incr8:reset_n, phase_incr9:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
 	wire         rst_controller_reset_out_reset_req;                         // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         rst_controller_001_reset_out_reset;                         // rst_controller_001:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
 
@@ -543,6 +621,28 @@ module finalProject (
 		.out_port   (phase_incr17_external_connection_export)       // external_connection.export
 	);
 
+	finalProject_phase_incr0 phase_incr18 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr18_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr18_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr18_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr18_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr18_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr18_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr19 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr19_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr19_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr19_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr19_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr19_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr19_external_connection_export)       // external_connection.export
+	);
+
 	finalProject_phase_incr0 phase_incr2 (
 		.clk        (clk_clk),                                     //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
@@ -554,6 +654,116 @@ module finalProject (
 		.out_port   (phase_incr2_external_connection_export)       // external_connection.export
 	);
 
+	finalProject_phase_incr0 phase_incr20 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr20_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr20_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr20_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr20_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr20_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr20_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr21 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr21_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr21_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr21_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr21_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr21_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr21_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr22 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr22_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr22_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr22_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr22_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr22_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr22_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr23 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr23_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr23_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr23_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr23_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr23_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr23_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr24 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr24_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr24_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr24_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr24_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr24_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr24_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr25 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr25_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr25_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr25_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr25_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr25_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr25_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr26 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr26_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr26_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr26_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr26_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr26_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr26_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr27 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr27_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr27_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr27_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr27_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr27_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr27_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr28 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr28_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr28_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr28_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr28_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr28_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr28_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr29 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr29_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr29_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr29_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr29_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr29_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr29_external_connection_export)       // external_connection.export
+	);
+
 	finalProject_phase_incr0 phase_incr3 (
 		.clk        (clk_clk),                                     //                 clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),             //               reset.reset_n
@@ -563,6 +773,17 @@ module finalProject (
 		.chipselect (mm_interconnect_0_phase_incr3_s1_chipselect), //                    .chipselect
 		.readdata   (mm_interconnect_0_phase_incr3_s1_readdata),   //                    .readdata
 		.out_port   (phase_incr3_external_connection_export)       // external_connection.export
+	);
+
+	finalProject_phase_incr0 phase_incr30 (
+		.clk        (clk_clk),                                      //                 clk.clk
+		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
+		.address    (mm_interconnect_0_phase_incr30_s1_address),    //                  s1.address
+		.write_n    (~mm_interconnect_0_phase_incr30_s1_write),     //                    .write_n
+		.writedata  (mm_interconnect_0_phase_incr30_s1_writedata),  //                    .writedata
+		.chipselect (mm_interconnect_0_phase_incr30_s1_chipselect), //                    .chipselect
+		.readdata   (mm_interconnect_0_phase_incr30_s1_readdata),   //                    .readdata
+		.out_port   (phase_incr30_external_connection_export)       // external_connection.export
 	);
 
 	finalProject_phase_incr0 phase_incr4 (
@@ -873,16 +1094,81 @@ module finalProject (
 		.phase_incr17_s1_readdata                       (mm_interconnect_0_phase_incr17_s1_readdata),                 //                                         .readdata
 		.phase_incr17_s1_writedata                      (mm_interconnect_0_phase_incr17_s1_writedata),                //                                         .writedata
 		.phase_incr17_s1_chipselect                     (mm_interconnect_0_phase_incr17_s1_chipselect),               //                                         .chipselect
+		.phase_incr18_s1_address                        (mm_interconnect_0_phase_incr18_s1_address),                  //                          phase_incr18_s1.address
+		.phase_incr18_s1_write                          (mm_interconnect_0_phase_incr18_s1_write),                    //                                         .write
+		.phase_incr18_s1_readdata                       (mm_interconnect_0_phase_incr18_s1_readdata),                 //                                         .readdata
+		.phase_incr18_s1_writedata                      (mm_interconnect_0_phase_incr18_s1_writedata),                //                                         .writedata
+		.phase_incr18_s1_chipselect                     (mm_interconnect_0_phase_incr18_s1_chipselect),               //                                         .chipselect
+		.phase_incr19_s1_address                        (mm_interconnect_0_phase_incr19_s1_address),                  //                          phase_incr19_s1.address
+		.phase_incr19_s1_write                          (mm_interconnect_0_phase_incr19_s1_write),                    //                                         .write
+		.phase_incr19_s1_readdata                       (mm_interconnect_0_phase_incr19_s1_readdata),                 //                                         .readdata
+		.phase_incr19_s1_writedata                      (mm_interconnect_0_phase_incr19_s1_writedata),                //                                         .writedata
+		.phase_incr19_s1_chipselect                     (mm_interconnect_0_phase_incr19_s1_chipselect),               //                                         .chipselect
 		.phase_incr2_s1_address                         (mm_interconnect_0_phase_incr2_s1_address),                   //                           phase_incr2_s1.address
 		.phase_incr2_s1_write                           (mm_interconnect_0_phase_incr2_s1_write),                     //                                         .write
 		.phase_incr2_s1_readdata                        (mm_interconnect_0_phase_incr2_s1_readdata),                  //                                         .readdata
 		.phase_incr2_s1_writedata                       (mm_interconnect_0_phase_incr2_s1_writedata),                 //                                         .writedata
 		.phase_incr2_s1_chipselect                      (mm_interconnect_0_phase_incr2_s1_chipselect),                //                                         .chipselect
+		.phase_incr20_s1_address                        (mm_interconnect_0_phase_incr20_s1_address),                  //                          phase_incr20_s1.address
+		.phase_incr20_s1_write                          (mm_interconnect_0_phase_incr20_s1_write),                    //                                         .write
+		.phase_incr20_s1_readdata                       (mm_interconnect_0_phase_incr20_s1_readdata),                 //                                         .readdata
+		.phase_incr20_s1_writedata                      (mm_interconnect_0_phase_incr20_s1_writedata),                //                                         .writedata
+		.phase_incr20_s1_chipselect                     (mm_interconnect_0_phase_incr20_s1_chipselect),               //                                         .chipselect
+		.phase_incr21_s1_address                        (mm_interconnect_0_phase_incr21_s1_address),                  //                          phase_incr21_s1.address
+		.phase_incr21_s1_write                          (mm_interconnect_0_phase_incr21_s1_write),                    //                                         .write
+		.phase_incr21_s1_readdata                       (mm_interconnect_0_phase_incr21_s1_readdata),                 //                                         .readdata
+		.phase_incr21_s1_writedata                      (mm_interconnect_0_phase_incr21_s1_writedata),                //                                         .writedata
+		.phase_incr21_s1_chipselect                     (mm_interconnect_0_phase_incr21_s1_chipselect),               //                                         .chipselect
+		.phase_incr22_s1_address                        (mm_interconnect_0_phase_incr22_s1_address),                  //                          phase_incr22_s1.address
+		.phase_incr22_s1_write                          (mm_interconnect_0_phase_incr22_s1_write),                    //                                         .write
+		.phase_incr22_s1_readdata                       (mm_interconnect_0_phase_incr22_s1_readdata),                 //                                         .readdata
+		.phase_incr22_s1_writedata                      (mm_interconnect_0_phase_incr22_s1_writedata),                //                                         .writedata
+		.phase_incr22_s1_chipselect                     (mm_interconnect_0_phase_incr22_s1_chipselect),               //                                         .chipselect
+		.phase_incr23_s1_address                        (mm_interconnect_0_phase_incr23_s1_address),                  //                          phase_incr23_s1.address
+		.phase_incr23_s1_write                          (mm_interconnect_0_phase_incr23_s1_write),                    //                                         .write
+		.phase_incr23_s1_readdata                       (mm_interconnect_0_phase_incr23_s1_readdata),                 //                                         .readdata
+		.phase_incr23_s1_writedata                      (mm_interconnect_0_phase_incr23_s1_writedata),                //                                         .writedata
+		.phase_incr23_s1_chipselect                     (mm_interconnect_0_phase_incr23_s1_chipselect),               //                                         .chipselect
+		.phase_incr24_s1_address                        (mm_interconnect_0_phase_incr24_s1_address),                  //                          phase_incr24_s1.address
+		.phase_incr24_s1_write                          (mm_interconnect_0_phase_incr24_s1_write),                    //                                         .write
+		.phase_incr24_s1_readdata                       (mm_interconnect_0_phase_incr24_s1_readdata),                 //                                         .readdata
+		.phase_incr24_s1_writedata                      (mm_interconnect_0_phase_incr24_s1_writedata),                //                                         .writedata
+		.phase_incr24_s1_chipselect                     (mm_interconnect_0_phase_incr24_s1_chipselect),               //                                         .chipselect
+		.phase_incr25_s1_address                        (mm_interconnect_0_phase_incr25_s1_address),                  //                          phase_incr25_s1.address
+		.phase_incr25_s1_write                          (mm_interconnect_0_phase_incr25_s1_write),                    //                                         .write
+		.phase_incr25_s1_readdata                       (mm_interconnect_0_phase_incr25_s1_readdata),                 //                                         .readdata
+		.phase_incr25_s1_writedata                      (mm_interconnect_0_phase_incr25_s1_writedata),                //                                         .writedata
+		.phase_incr25_s1_chipselect                     (mm_interconnect_0_phase_incr25_s1_chipselect),               //                                         .chipselect
+		.phase_incr26_s1_address                        (mm_interconnect_0_phase_incr26_s1_address),                  //                          phase_incr26_s1.address
+		.phase_incr26_s1_write                          (mm_interconnect_0_phase_incr26_s1_write),                    //                                         .write
+		.phase_incr26_s1_readdata                       (mm_interconnect_0_phase_incr26_s1_readdata),                 //                                         .readdata
+		.phase_incr26_s1_writedata                      (mm_interconnect_0_phase_incr26_s1_writedata),                //                                         .writedata
+		.phase_incr26_s1_chipselect                     (mm_interconnect_0_phase_incr26_s1_chipselect),               //                                         .chipselect
+		.phase_incr27_s1_address                        (mm_interconnect_0_phase_incr27_s1_address),                  //                          phase_incr27_s1.address
+		.phase_incr27_s1_write                          (mm_interconnect_0_phase_incr27_s1_write),                    //                                         .write
+		.phase_incr27_s1_readdata                       (mm_interconnect_0_phase_incr27_s1_readdata),                 //                                         .readdata
+		.phase_incr27_s1_writedata                      (mm_interconnect_0_phase_incr27_s1_writedata),                //                                         .writedata
+		.phase_incr27_s1_chipselect                     (mm_interconnect_0_phase_incr27_s1_chipselect),               //                                         .chipselect
+		.phase_incr28_s1_address                        (mm_interconnect_0_phase_incr28_s1_address),                  //                          phase_incr28_s1.address
+		.phase_incr28_s1_write                          (mm_interconnect_0_phase_incr28_s1_write),                    //                                         .write
+		.phase_incr28_s1_readdata                       (mm_interconnect_0_phase_incr28_s1_readdata),                 //                                         .readdata
+		.phase_incr28_s1_writedata                      (mm_interconnect_0_phase_incr28_s1_writedata),                //                                         .writedata
+		.phase_incr28_s1_chipselect                     (mm_interconnect_0_phase_incr28_s1_chipselect),               //                                         .chipselect
+		.phase_incr29_s1_address                        (mm_interconnect_0_phase_incr29_s1_address),                  //                          phase_incr29_s1.address
+		.phase_incr29_s1_write                          (mm_interconnect_0_phase_incr29_s1_write),                    //                                         .write
+		.phase_incr29_s1_readdata                       (mm_interconnect_0_phase_incr29_s1_readdata),                 //                                         .readdata
+		.phase_incr29_s1_writedata                      (mm_interconnect_0_phase_incr29_s1_writedata),                //                                         .writedata
+		.phase_incr29_s1_chipselect                     (mm_interconnect_0_phase_incr29_s1_chipselect),               //                                         .chipselect
 		.phase_incr3_s1_address                         (mm_interconnect_0_phase_incr3_s1_address),                   //                           phase_incr3_s1.address
 		.phase_incr3_s1_write                           (mm_interconnect_0_phase_incr3_s1_write),                     //                                         .write
 		.phase_incr3_s1_readdata                        (mm_interconnect_0_phase_incr3_s1_readdata),                  //                                         .readdata
 		.phase_incr3_s1_writedata                       (mm_interconnect_0_phase_incr3_s1_writedata),                 //                                         .writedata
 		.phase_incr3_s1_chipselect                      (mm_interconnect_0_phase_incr3_s1_chipselect),                //                                         .chipselect
+		.phase_incr30_s1_address                        (mm_interconnect_0_phase_incr30_s1_address),                  //                          phase_incr30_s1.address
+		.phase_incr30_s1_write                          (mm_interconnect_0_phase_incr30_s1_write),                    //                                         .write
+		.phase_incr30_s1_readdata                       (mm_interconnect_0_phase_incr30_s1_readdata),                 //                                         .readdata
+		.phase_incr30_s1_writedata                      (mm_interconnect_0_phase_incr30_s1_writedata),                //                                         .writedata
+		.phase_incr30_s1_chipselect                     (mm_interconnect_0_phase_incr30_s1_chipselect),               //                                         .chipselect
 		.phase_incr4_s1_address                         (mm_interconnect_0_phase_incr4_s1_address),                   //                           phase_incr4_s1.address
 		.phase_incr4_s1_write                           (mm_interconnect_0_phase_incr4_s1_write),                     //                                         .write
 		.phase_incr4_s1_readdata                        (mm_interconnect_0_phase_incr4_s1_readdata),                  //                                         .readdata

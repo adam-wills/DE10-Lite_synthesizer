@@ -35,7 +35,7 @@ static BYTE addr = 1; 				//hard-wired USB address
 const char* const devclasses[] = { " Uninitialized", " HID Keyboard", " HID Mouse", " Mass storage" };
 
 static const WORD octUpDnKeys[] = {45,46};
-DWORD phaseIncs[18];
+DWORD phaseIncs[31];
 
 static const double sampleRate = 44100.0;
 static const int32_t phasePrecision = 32;
@@ -45,9 +45,9 @@ BYTE OCTQ = 0x80;
 
 
 void initPhaseIncrements(){
-	for (int i = 0; i < 18; i++){
-		int noteNum = (currentOctave)*12 + i;
-		double f = (440.0/sampleRate)*(double)pow(2,((noteNum-69)/12.0))*(double)(pow(2.,phasePrecision-8));
+	for (int i = 0; i < 31; i++){
+		int noteNum = (currentOctave)*12 + i-6;
+		double f = (440.00000000/sampleRate)*(double)pow(2,((noteNum-69)/12.0))*(double)(pow(2.,phasePrecision-8));
 		uint64_t phaseIncr = (uint64_t)f;
 		DWORD PHASEQ= 0x00000000;
 		DWORD MASK = 0x00000001;
@@ -56,9 +56,7 @@ void initPhaseIncrements(){
 			PHASEQ += phaseIncr & MASK;
 			MASK <<= 1;
 		}
-
 		phaseIncs[i] = PHASEQ;
-
 	}
 	BYTE OCTQ = 0x80;
 	OCTQ = OCTQ >> currentOctave;
@@ -81,6 +79,37 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR15_BASE, phaseIncs[15]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR16_BASE, phaseIncs[16]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR17_BASE, phaseIncs[17]);
+	// glitch: BASE ADDRESSES OF NEWLY ADDED PERIPHERALS REQUIRE HARD-CODING
+	/*
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR18_BASE, phaseIncs[18]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR19_BASE, phaseIncs[19]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR20_BASE, phaseIncs[20]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR21_BASE, phaseIncs[21]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR22_BASE, phaseIncs[22]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR23_BASE, phaseIncs[23]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR24_BASE, phaseIncs[24]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR25_BASE, phaseIncs[25]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR26_BASE, phaseIncs[26]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR27_BASE, phaseIncs[27]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR28_BASE, phaseIncs[28]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR29_BASE, phaseIncs[29]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR30_BASE, phaseIncs[30]);
+	*/
+
+	IOWR_ALTERA_AVALON_PIO_DATA(0X180, phaseIncs[18]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0X170, phaseIncs[19]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x160, phaseIncs[20]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x150, phaseIncs[21]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x140, phaseIncs[22]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x130, phaseIncs[23]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x120, phaseIncs[24]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x110, phaseIncs[25]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x100, phaseIncs[26]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0xf0, phaseIncs[27]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0xe0, phaseIncs[28]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0xd0, phaseIncs[29]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0xc0, phaseIncs[30]);
+
 	IOWR_ALTERA_AVALON_PIO_DATA(OCT_BASE, OCTQ);
 
 	return;
@@ -116,7 +145,7 @@ int searchForOct(WORD keycode) {
 void setOctUpDn(WORD keycode) {
 	switch(keycode) {
 		case 45 :
-			currentOctave = (currentOctave == 0)? 0 : currentOctave-1;
+			currentOctave = (currentOctave == 1)? 1 : currentOctave-1;
 			break;
 		case 46 :
 			currentOctave = (currentOctave == 7)? 7 : currentOctave+1;

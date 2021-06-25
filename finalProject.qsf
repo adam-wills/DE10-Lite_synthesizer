@@ -409,19 +409,9 @@ set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name SDC_FILE fpgaSynthSDC.sdc
-set_global_assignment -name MIF_FILE sqrMIFOct3.mif
-set_global_assignment -name MIF_FILE sqrMIFOct2.mif
-set_global_assignment -name MIF_FILE sqrMIFOct1.mif
-set_global_assignment -name MIF_FILE sqrMIFOct0.mif
-set_global_assignment -name MIF_FILE sineMifGen.mif
-set_global_assignment -name MIF_FILE sawMIFOct3.mif
-set_global_assignment -name MIF_FILE sawMIFOct2.mif
-set_global_assignment -name MIF_FILE sawMIFOct1.mif
-set_global_assignment -name MIF_FILE sawMIFOct0.mif
-set_global_assignment -name SYSTEMVERILOG_FILE fpgaSynth.sv
-set_global_assignment -name QIP_FILE sawRom0.qip
 set_global_assignment -name QIP_FILE finalProject/synthesis/finalProject.qip
+set_global_assignment -name SYSTEMVERILOG_FILE fpgaSynth.sv
+set_global_assignment -name SDC_FILE fpgaSynthSDC.sdc
 set_global_assignment -name QIP_FILE mult16_ip.qip
 set_global_assignment -name QIP_FILE mult8x16_ip.qip
 set_global_assignment -name SYSTEMVERILOG_FILE mux_oneHot.sv
@@ -433,12 +423,22 @@ set_global_assignment -name SYSTEMVERILOG_FILE FMSM.sv
 set_global_assignment -name SYSTEMVERILOG_FILE cntr_modulus.sv
 set_global_assignment -name QIP_FILE parallelAdder.qip
 set_global_assignment -name QIP_FILE onChipFIFO.qip
-set_global_assignment -name QIP_FILE sawRom1.qip
-set_global_assignment -name QIP_FILE sawRom2.qip
-set_global_assignment -name QIP_FILE sawRom3.qip
-set_global_assignment -name QIP_FILE sqrRom0.qip
-set_global_assignment -name QIP_FILE sqrRom1.qip
-set_global_assignment -name QIP_FILE sqrRom2.qip
-set_global_assignment -name QIP_FILE sqrRom3.qip
-set_global_assignment -name QIP_FILE sineRom.qip
+set_global_assignment -name QIP_FILE sineRom4096.qip
+set_global_assignment -name QIP_FILE sawRom4096_0.qip
+set_global_assignment -name QIP_FILE sawRom4096_1.qip
+set_global_assignment -name QIP_FILE sawRom4096_2.qip
+set_global_assignment -name QIP_FILE sawRom4096_3.qip
+set_global_assignment -name QIP_FILE sawRom4096_4.qip
+set_global_assignment -name QIP_FILE sawRom4096_5.qip
+set_global_assignment -name QIP_FILE sawRom4096_6.qip
+set_global_assignment -name QIP_FILE sawRom4096_7.qip
+set_global_assignment -name QIP_FILE sqrRom4096_0.qip
+set_global_assignment -name QIP_FILE sqrRom4096_1.qip
+set_global_assignment -name QIP_FILE sqrRom4096_2.qip
+set_global_assignment -name QIP_FILE sqrRom4096_3.qip
+set_global_assignment -name QIP_FILE sqrRom4096_4.qip
+set_global_assignment -name QIP_FILE sqrRom4096_5.qip
+set_global_assignment -name QIP_FILE sqrRom4096_6.qip
+set_global_assignment -name QIP_FILE sqrRom4096_7.qip
+set_global_assignment -name QIP_FILE mult16Add2_ip.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
