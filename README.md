@@ -18,6 +18,8 @@ in the process of being implemented. However, existing features include:
       <li> The ability to frequency modulate any of the 4 active voices with a linear combination\n
            of any of the active voices (including the original voice itself) </li>
       <li> Configurable weights where the strengths of the FM signals can be set </li>
+    </ul>
+</ul>
   
 The project also uses an Arduino Shield featuring a USB port, headphone and line-in jacks and an
 SGTL5000 audio codec, and as such the project cannot (in all likelihood) be reproduced by the
