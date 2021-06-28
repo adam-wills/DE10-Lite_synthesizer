@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Jun 25, 2021 2:47:56 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1624657676575</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Jun 26, 2021 6:37:11 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1624757831350</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\augh\Documents\ECE385\finalProject_multiWaveform\software\finalProj_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>C:\Users\augh\Documents\ECE385\finalProject_multiWaveform\finalProject.sopcinfo</SopcDesignFile>

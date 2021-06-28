@@ -409,6 +409,7 @@ set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE keycodeParser.sv
 set_global_assignment -name QIP_FILE finalProject/synthesis/finalProject.qip
 set_global_assignment -name SYSTEMVERILOG_FILE fpgaSynth.sv
 set_global_assignment -name SDC_FILE fpgaSynthSDC.sdc

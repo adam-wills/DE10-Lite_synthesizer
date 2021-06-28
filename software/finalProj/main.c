@@ -384,8 +384,12 @@ int main() {
 				}
 				printf("keycodes: ");
 				for (int i = 0; i < 4; i++) {
-					printf("%x ", kbdbuf.keycode[i]);
-					setKeycodeVoice(kbdbuf.keycode[i],i);
+					keycode = kbdbuf.keycode[i];
+					printf("%x ", keycode);
+					if (keycode != 0x00) {
+						setKeycodeVoice(keycode,voiceIdx);
+						voiceIdx = (voiceIdx+1)%4;
+					}
 				}
 				if (searchForOct(kbdbuf.keycode[0])) {
 					setOctUpDn(kbdbuf.keycode[0]);
