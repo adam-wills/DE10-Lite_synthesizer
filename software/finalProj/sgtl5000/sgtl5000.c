@@ -2,6 +2,7 @@
 //Written by Zuofu Cheng for ECE 385
 
 #include "sgtl5000.h"
+#include <stdio.h>
 #include "altera_avalon_i2c.h"
 #include "altera_avalon_i2c_regs.h"
 

@@ -1,7 +1,7 @@
 module phasor(input  logic 		 Clk, Reset, Enable,
 				  input  logic [31:0] phaseIncrement,
 				  input  logic [31:0] fmInput,
-				  output logic [15:0] interp,
+				  output logic [19:0] interp,
 				  output logic [11:0] wavetableAddr);
 				  
 	
@@ -13,7 +13,7 @@ module phasor(input  logic 		 Clk, Reset, Enable,
 		begin
 			phase <= 32'h0;
 			wavetableAddr <= 12'h0;
-			interp <= 16'b0;
+			interp <= 20'b0;
 		end
 		else
 		begin
@@ -21,7 +21,7 @@ module phasor(input  logic 		 Clk, Reset, Enable,
 			begin
 				phase <= phase + phaseIncrement + fmInput;
 				wavetableAddr <= phase[31:20];
-				interp <= phase[19:4];
+				interp <= phase[19:0];
 			end
 			else
 			begin

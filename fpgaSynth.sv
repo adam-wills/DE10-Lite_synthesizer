@@ -38,7 +38,7 @@ module fpgaSynth (
 
       ///////// ARDUINO /////////
       inout    [15: 0]   ARDUINO_IO,
-      inout              ARDUINO_RESET_N 
+      inout              ARDUINO_RESET_N
 
 );
 
@@ -80,46 +80,20 @@ reg   [15:0] sawOutputsInterp0[8];
 reg	[15:0] sawOutputsAntiInterp0[8];
 reg   [15:0] sqrOutputsInterp0[8];
 reg	[15:0] sqrOutputsAntiInterp0[8];
+
 reg   [15:0] waveSampsInterp0[3];
 reg	[15:0] waveSampsAntiInterp0[3];
-
-//reg   [15:0] sawOutputsInterp1[8];
-//reg	[15:0] sawOutputsAntiInterp1[8];
-//reg   [15:0] sqrOutputsInterp1[8];
-//reg	[15:0] sqrOutputsAntiInterp1[8];
 reg   [15:0] waveSampsInterp1[3];
 reg	[15:0] waveSampsAntiInterp1[3];
-
-/*
-assign sawOutputsInterp1 = '{sawOutputsInterp0[0], sawOutputsInterp0[0],
-                             sawOutputsInterp0[1], sawOutputsInterp0[2],
-                             sawOutputsInterp0[3], sawOutputsInterp0[4],
-                             sawOutputsInterp0[5], sawOutputsInterp0[6]};
-									 
-assign sawOutputsAntiInterp1 = '{sawOutputsAntiInterp0[0], sawOutputsAntiInterp0[0],
-                                 sawOutputsAntiInterp0[1], sawOutputsAntiInterp0[2],
-                                 sawOutputsAntiInterp0[3], sawOutputsAntiInterp0[4],
-                                 sawOutputsAntiInterp0[5], sawOutputsAntiInterp0[6]};
-											
-assign sqrOutputsInterp1 = '{sqrOutputsInterp0[0], sqrOutputsInterp0[0],
-                             sqrOutputsInterp0[1], sqrOutputsInterp0[2],
-                             sqrOutputsInterp0[3], sqrOutputsInterp0[4],
-                             sqrOutputsInterp0[5], sqrOutputsInterp0[6]};
-									 
-assign sqrOutputsAntiInterp1 = '{sqrOutputsAntiInterp0[0], sqrOutputsAntiInterp0[0],
-                                 sqrOutputsAntiInterp0[1], sqrOutputsAntiInterp0[2],
-                                 sqrOutputsAntiInterp0[3], sqrOutputsAntiInterp0[4],
-                                 sqrOutputsAntiInterp0[5], sqrOutputsAntiInterp0[6]};
-*/
 											
 assign waveSampsInterp1[0] = waveSampsInterp0[0];
 assign waveSampsAntiInterp1[0] = waveSampsAntiInterp0[0];
 
 
-logic [15:0] tableInterpCoefs[29] = '{16'h7AFF, 16'h65AA, 16'h5054, 16'h3AFF, 16'h25AA, 16'h1055, 16'hFAFE,
-                                      16'hE5A9, 16'hD054, 16'hBAFF, 16'hA5A9, 16'h9054, 16'h7AFF, 16'h65AA,
-                                      16'h5054, 16'h3AFF, 16'h25AA, 16'h1055, 16'hFAFE, 16'hE5A9, 16'hD054,
-                                      16'hBAFF, 16'hA5A9, 16'h9054, 16'h7AFF, 16'h65AA, 16'h5054, 16'h3AFF, 16'h25AA};
+logic [31:0] tableInterpCoefs[29] = '{32'hE5AA65F6, 32'hD05510A1, 32'hBAFFBB4B, 32'hA5AA65F6, 32'h905510A1, 32'h7AFFBB4C, 32'h65AA65F6,
+                                      32'h505510A1, 32'h3AFFBB4C, 32'h25AA65F7, 32'h105510A1, 32'hFAFFBB4B, 32'hE5AA65F6, 32'hD05510A1,
+                                      32'hBAFFBB4B, 32'hA5AA65F6, 32'h905510A1, 32'h7AFFBB4C, 32'h65AA65F6, 32'h505510A1, 32'h3AFFBB4C,
+												  32'h25AA65F7, 32'h105510A1, 32'hFAFFBB4B, 32'hE5AA65F6, 32'hD05510A1, 32'hBAFFBB4B, 32'hA5AA65F6, 32'h905510A1};
 
 
 // Sinewave ROM: 4192 Samples of a sinewave which can be read through
@@ -403,10 +377,10 @@ always_ff @(posedge MAX10_CLK2_50)
 begin
 	if (phasorRun == 1'b1)
 	begin
-		sigs16bit[0] <= sigs[0][31:16];
-		sigs16bit[1] <= sigs[1][31:16];
-		sigs16bit[2] <= sigs[2][31:16];
-		sigs16bit[3] <= sigs[3][31:16];
+		sigs16bit[0] <= tableInterpedSigs[0][63:48];
+		sigs16bit[1] <= tableInterpedSigs[1][63:48];
+		sigs16bit[2] <= tableInterpedSigs[2][63:48];
+		sigs16bit[3] <= tableInterpedSigs[3][63:48];
 		
 		fmInputs[0][15:0] <= fmAddOut[0][33:18];
 		fmInputs[1][15:0] <= fmAddOut[1][33:18];
@@ -463,7 +437,7 @@ end
 //  Handle sample generation
 //=======================================================	
 	
-logic [31:0] freq32bit[31] = '{32'b0,32'b0,32'b0,32'b0,
+reg   [31:0] freq32bit[31] = '{32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0,32'b0,
@@ -471,65 +445,25 @@ logic [31:0] freq32bit[31] = '{32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0};
-logic [1:0]  waveforms[4] = '{2'b00, 2'b00, 2'b00, 2'b00};
+reg   [1:0]  waveforms[4] = '{2'b00, 2'b00, 2'b00, 2'b00};
 
-logic [7:0] keycodes_new[4] = '{8'hFF, 8'hFF, 8'hFF, 8'hFF};
-logic [7:0] keycodes_old[4] = '{8'hFF, 8'hFF, 8'hFF, 8'hFF};
+reg   [7:0] keycodes_new[4] = '{8'hFF, 8'hFF, 8'hFF, 8'hFF};
+reg   [7:0] keycodes_old[4] = '{8'hFF, 8'hFF, 8'hFF, 8'hFF};
 
-logic [31:0] phIncrs[4] = '{32'b0, 32'b0, 32'b0, 32'b0};
-logic [11:0] tblAddrs[4] = '{12'b0,12'b0,12'b0,12'b0};
-
-logic [15:0] amplitude = 16'hFFFF;
-logic [7:0]  octaveBase = 8'h80;
+reg   [15:0] amplitude = 16'h2000;
+reg   [7:0]  octaveBase = 8'h80;
 logic [7:0]  octave;
 int			 octaveOffset = 0;
-//assign octave = octaveBase >> octaveOffset;
 
-logic [15:0] interpSamples0[4];
-logic [15:0] antiInterpSamples0[4];
-logic [15:0] interpSamples1[4];
-logic [15:0] antiInterpSamples1[4];
-logic [15:0] interp[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
-logic [15:0] antiInterp[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
-logic [32:0] interpedOutputs0[4] = '{33'h0, 33'h0, 33'h0, 33'h0};
-logic [15:0] interpedSigs0[4] = '{16'h0,16'h0,16'h0,16'h0};
-logic [32:0] interpedOutputs1[4] = '{33'h0, 33'h0, 33'h0, 33'h0};
-logic [15:0] interpedSigs1[4] = '{16'h0,16'h0,16'h0,16'h0};
-logic [32:0] tableInterpedOutputs[4] = '{33'h0, 33'h0, 33'h0, 33'h0};
-logic [15:0] tableInterpedSigs[4] = '{16'h0, 16'h0, 16'h0, 16'h0};
 logic [31:0] sigs[4] = '{32'b0,32'b0,32'b0,32'b0}; 
-logic [33:0] finalOutput = 34'b0;
-
-assign interpedSigs0 = '{interpedOutputs0[0][32:17],
-                         interpedOutputs0[1][32:17],
-                         interpedOutputs0[2][32:17],
-                         interpedOutputs0[3][32:17]};
-								 
-assign interpedSigs1 = '{interpedOutputs1[0][32:17],
-                         interpedOutputs1[1][32:17],
-                         interpedOutputs1[2][32:17],
-                         interpedOutputs1[3][32:17]};
-								 
-assign tableInterpedSigs = '{tableInterpedOutputs[0][32:17],
-                             tableInterpedOutputs[1][32:17],
-                             tableInterpedOutputs[2][32:17],
-                             tableInterpedOutputs[3][32:17]};
-								 
-assign antiInterp = '{~interp[0],~interp[1],~interp[2],~interp[3]};
 
 logic newNote = 1'b1;
-int   noteIndex = -1;
+int   noteIndex[4] = '{-1,-1,-1,-1};
 
 reg   [1:0] voiceIdx;
-logic [15:0] tableInterpCoef[4];
-logic [15:0] tableAntiInterpCoef[4];
-assign tableAntiInterpCoef = '{~tableInterpCoef[0], ~tableInterpCoef[1],
-                               ~tableInterpCoef[2], ~tableInterpCoef[3]};
-
 logic En, voiceCycleEn;
 assign En = (sampHalfFull|sampEmpty|i2sEmpty|i2sHalfEmpty)&(~i2sFull)&(sampReq);
 assign voiceCycleEn = En;
-
 // Cycles through the voices: voiceIdx <-currentVoice
 cntr_modulus voiceCntr(
 		.Clk(MAX10_CLK2_50),
@@ -538,7 +472,9 @@ cntr_modulus voiceCntr(
 		.sClear(),
 		.q(voiceIdx) );
 
-		
+
+reg   [31:0] phIncrs[4] = '{32'b0, 32'b0, 32'b0, 32'b0};
+reg   [11:0] tblAddrs[4] = '{12'b0,12'b0,12'b0,12'b0};
 // Update phase registers, produces 12-bit addresses tblAddrs[0:3] -> sampAddrA
 phasor phaseRegs[0:3]  (
 		.Clk(MAX10_CLK2_50),
@@ -548,10 +484,17 @@ phasor phaseRegs[0:3]  (
 		.fmInput(fmInputs),
 		.interp(interp),
 		.wavetableAddr(tblAddrs));
-
 		
+		
+		
+logic [19:0] interp[4] = '{20'h0, 20'h0, 20'h0, 20'h0};
+logic [19:0] antiInterp[4];
+assign antiInterp = '{~interp[0],~interp[1],~interp[2],~interp[3]};
+
+logic [15:0] interpSamples0[4];
+logic [15:0] antiInterpSamples0[4];
 // interpolate samples in low-octave wavetable
-mult16Add2_ip	sampleInterp0[0:3] (
+mult16x20Add2_ip	sampleInterp0[0:3] (
 		.dataa_0(interpSamples0),
 		.datab_0(interp),
 		.dataa_1(antiInterpSamples0),
@@ -559,10 +502,11 @@ mult16Add2_ip	sampleInterp0[0:3] (
 		.clock0(MAX10_CLK2_50),
 		.ena0(voiceCycleEn),
 		.result(interpedOutputs0));
-
 		
+logic [15:0] interpSamples1[4];
+logic [15:0] antiInterpSamples1[4];
 // interpolate samples in high-octave wavetable
-mult16Add2_ip sampleInterp1[0:3] (
+mult16x20Add2_ip sampleInterp1[0:3] (
 		.dataa_0(interpSamples1),
 		.datab_0(interp),
 		.dataa_1(antiInterpSamples1),
@@ -570,10 +514,31 @@ mult16Add2_ip sampleInterp1[0:3] (
 		.clock0(MAX10_CLK2_50),
 		.ena0(voiceCycleEn),
 		.result(interpedOutputs1));
-		
 
+logic [36:0] interpedOutputs0[4] = '{37'b0, 37'b0, 37'b0, 37'b0};
+logic [31:0] interpedSigs0[4] = '{32'h0,32'h0,32'h0,32'h0};
+logic [36:0] interpedOutputs1[4] = '{37'b0, 37'b0, 37'b0, 37'b0};
+logic [31:0] interpedSigs1[4] = '{32'h0,32'h0,32'h0,32'h0};
+
+assign interpedSigs0 = '{interpedOutputs0[0][36:5],
+                         interpedOutputs0[1][36:5],
+                         interpedOutputs0[2][36:5],
+                         interpedOutputs0[3][36:5]};
+assign interpedSigs1 = '{interpedOutputs1[0][36:5],
+                         interpedOutputs1[1][36:5],
+                         interpedOutputs1[2][36:5],
+                         interpedOutputs1[3][36:5]};
+					
+	
+	
+logic [31:0] tableInterpCoef[4];
+logic [31:0] tableAntiInterpCoef[4];
+assign tableAntiInterpCoef = '{~tableInterpCoef[0], ~tableInterpCoef[1],
+                               ~tableInterpCoef[2], ~tableInterpCoef[3]};
+
+logic [64:0] tableInterpedOutputs[4] = '{65'h0, 65'h0, 65'h0, 65'h0};
 // interpolate between high-octave and low-octave (interpolated) samples
-mult16Add2_ip tableInterp[0:3] (
+mult32x32Add2_ip tableInterp[0:3] (
 		.dataa_0(interpedSigs0),
 		.datab_0(tableInterpCoef),
 		.dataa_1(interpedSigs1),
@@ -582,27 +547,34 @@ mult16Add2_ip tableInterp[0:3] (
 		.ena0(voiceCycleEn),
 		.result(tableInterpedOutputs));
 
-		
-// multiply samples by overall volume envelope
-mult16_ip	amps[0:3]	(
-		.clock(MAX10_CLK2_50),
-		.dataa(tableInterpedSigs),
-		.datab(amplitude),
-		.result(sigs));
+logic [63:0] tableInterpedSigs[4] = '{64'h0, 64'h0, 64'h0, 64'h0};
+assign tableInterpedSigs = '{tableInterpedOutputs[0][64:1],
+                             tableInterpedOutputs[1][64:1],
+                             tableInterpedOutputs[2][64:1],
+                             tableInterpedOutputs[3][64:1]};
 
-// add voices to obtain final output		
-parallelAdder	parallelOutputAdd (
-		.data0x(sigs[0]),
-		.data1x(sigs[1]),
-		.data2x(sigs[2]),
-		.data3x(sigs[3]),
+
+logic [81:0] finalOutput = 82'b0;
+mult16x64Add4_ip amplitudes (
+		.dataa_0(tableInterpedSigs[0]),
+		.datab_0(amplitude),
+		.dataa_1(tableInterpedSigs[1]),
+		.datab_1(amplitude),
+		.dataa_2(tableInterpedSigs[2]),
+		.datab_2(amplitude),
+		.dataa_3(tableInterpedSigs[3]),
+		.datab_3(amplitude),
+		.clock0(MAX10_CLK2_50),
+		.ena0(voiceCycleEn),
 		.result(finalOutput));
+		
+
 /*
 // determine the correct note or action for a given keycode
-keycodeParser keycodeParser_inst (
+keycodeParser keycodeParser_inst [0:3](
 		.Clk(MAX10_CLK2_50),
 		.Reset(Reset_h),
-		.keycode(keycodes_new[voiceIdx]),
+		.keycode(keycodes_new),
 		.octaveBase(octaveBase),
 		.noteIndex(noteIndex),
 		.octave(octave),
@@ -617,7 +589,8 @@ always_ff @ (negedge MAX10_CLK2_50) begin
 	interpSamples1[voiceIdx] <= waveSampsInterp1[waveforms[voiceIdx]];
 	antiInterpSamples1[voiceIdx] <= waveSampsAntiInterp1[waveforms[voiceIdx]];
 	
-	fifoDin <= {finalOutput[33:18],16'b0};
+	fifoDin <= {finalOutput[81:66],16'b0};
+	//fifoDin <= finalOutput[81:50];
 end
 
 // determine appropriate sample on positive clock edge
@@ -1275,8 +1248,11 @@ finalProject u0 (
 	.hex_digits_export({hex_num_4, hex_num_3, hex_num_1, hex_num_0}),
 	.leds_export({hundreds, signs, LEDDummy}),
 	
-	//AMPLITUDE
-	//.amp_export(amplitude),
+	//Table Index and interpolation coeficient
+	//.tablecoef0_external_connection_export_export(tableInterpCoef[0]),
+	//.tablecoef1_external_connection_export_export(tableInterpCoef[1]),
+	//.tablecoef2_external_connection_export_export(tableInterpCoef[2]),
+	//.tablecoef3_external_connection_export_export(tableInterpCoef[3]),
 	
 	//OCTAVE
 	.oct_external_connection_export(octaveBase),

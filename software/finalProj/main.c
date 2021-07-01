@@ -36,27 +36,36 @@ const char* const devclasses[] = { " Uninitialized", " HID Keyboard", " HID Mous
 
 static const WORD octUpDnKeys[] = {45,46};
 DWORD phaseIncs[31];
+//WORD tableCoefs[31];
 
 static const double sampleRate = 44100.0;
 static const int32_t phasePrecision = 32;
 int8_t currentOctave = 0;
 int8_t currentVoiceNum = 0;
 BYTE OCTQ = 0x80;
+BYTE MONO_POLY = 0x01;
 
 
 void initPhaseIncrements(){
 	for (int i = 0; i < 31; i++){
 		int noteNum = (currentOctave)*12 + i-6;
-		double f = (440.00000000/sampleRate)*(double)pow(2,((noteNum-69)/12.0))*(double)(pow(2.,phasePrecision-8));
-		uint64_t phaseIncr = (uint64_t)f;
+		double f = (440.00000000/sampleRate)*(double)pow(2,((noteNum-69)/12.0));
+		//double tableIndex;
+		//double tableFract;
+		//tableFract = modf(-log2(f/4),&tableIndex);
+		uint64_t phaseIncr = (uint64_t)(f*(double)(pow(2.,phasePrecision-8)));
+		//uint16_t tableCoef = (uint16_t)(tableFract*(pow(2.,16)-1));
+		//WORD TCOEFQ = 0x0000;
 		DWORD PHASEQ= 0x00000000;
 		DWORD MASK = 0x00000001;
 
 		for (int j = 0; j < 32; j++) {
 			PHASEQ += phaseIncr & MASK;
+			//TCOEFQ += (j < 16) ? tableCoef & MASK : 0.;
 			MASK <<= 1;
 		}
 		phaseIncs[i] = PHASEQ;
+		//tableCoefs[i] = TCOEFQ;
 	}
 	BYTE OCTQ = 0x80;
 	OCTQ = OCTQ >> currentOctave;
@@ -79,8 +88,8 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR15_BASE, phaseIncs[15]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR16_BASE, phaseIncs[16]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR17_BASE, phaseIncs[17]);
-	// glitch: BASE ADDRESSES OF NEWLY ADDED PERIPHERALS REQUIRE HARD-CODING
-	/*
+	// glitch: BASE ADDRESSES OF NEWLY ADDED PERIPHERALS ARENT RECOGNIZED
+	// but they still work for whatever reason
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR18_BASE, phaseIncs[18]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR19_BASE, phaseIncs[19]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR20_BASE, phaseIncs[20]);
@@ -94,8 +103,8 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR28_BASE, phaseIncs[28]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR29_BASE, phaseIncs[29]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR30_BASE, phaseIncs[30]);
-	*/
 
+	/*
 	IOWR_ALTERA_AVALON_PIO_DATA(0X180, phaseIncs[18]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0X170, phaseIncs[19]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x160, phaseIncs[20]);
@@ -109,7 +118,7 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(0xe0, phaseIncs[28]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0xd0, phaseIncs[29]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0xc0, phaseIncs[30]);
-
+	*/
 	IOWR_ALTERA_AVALON_PIO_DATA(OCT_BASE, OCTQ);
 
 	return;
@@ -302,7 +311,8 @@ int main() {
 			SGTL5000_HP_POWERUP|
 			SGTL5000_DAC_POWERUP|
 			SGTL5000_CAPLESS_HP_POWERUP|
-			SGTL5000_ADC_POWERUP);
+			SGTL5000_ADC_POWERUP
+			);
 	printf( "CHIP_ANA_POWER register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_ANA_POWER));
 
 	//select internal ground bias to .9V (1.8V/2)
@@ -313,7 +323,7 @@ int main() {
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_DIG_POWER,\
 			SGTL5000_ADC_EN|
 			SGTL5000_DAC_EN|
-			//SGTL5000_DAP_POWERUP| //disable digital audio processor in CODEC
+			SGTL5000_DAP_POWERUP| //disable digital audio processor in CODEC
 			SGTL5000_I2S_OUT_POWERUP|
 			SGTL5000_I2S_IN_POWERUP);
 	printf( "CHIP_DIG_POWER register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_DIG_POWER));
@@ -336,16 +346,27 @@ int main() {
 
 	//ADC -> I2S out, I2S in -> DAC
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_SSS_CTRL, \
-			SGTL5000_DAC_SEL_I2S_IN << SGTL5000_DAC_SEL_SHIFT |
-			SGTL5000_I2S_OUT_SEL_ADC << SGTL5000_I2S_OUT_SEL_SHIFT);
+			SGTL5000_DAC_SEL_DAP << SGTL5000_DAC_SEL_SHIFT |
+			SGTL5000_I2S_OUT_SEL_ADC << SGTL5000_I2S_OUT_SEL_SHIFT|
+			SGTL5000_DAP_SEL_I2S_IN << SGTL5000_DAP_SEL_SHIFT);
 	printf( "CHIP_SSS_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_SSS_CTRL));
-
 	printf( "CHIP_ANA_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_ANA_CTRL));
 
-	//ADC -> I2S out, I2S in -> DAC
+	//ADC -> I2S out, I2S in -> DAP -> DAC
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ADCDAC_CTRL, 0x0000);
 	printf( "CHIP_ADCDAC_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_ADCDAC_CTRL));
 	printf( "CHIP_PAD_STRENGTH register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_PAD_STRENGTH));
+
+	// some further attempts to configure for better headphone volume
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_DAC_VOL, 0x3c3c);
+	printf( "CHIP_DAC_VOL register: %x\n", SGTL5000_Reg_Rd (i2c_dev,SGTL5000_CHIP_DAC_VOL));
+
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ANA_HP_CTRL, 0x0505);
+	printf( "CHIP_ANA_HP_CTRL register: $x\n", SGTL5000_Reg_Rd (i2c_dev,SGTL5000_CHIP_ANA_HP_CTRL));
+
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_DAP_CTRL, SGTL5000_DAP_EN);
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_DAP_BASS_ENHANCE_CTRL, 0x0511);
+
 	BYTE rcode;
 	BOOT_MOUSE_REPORT buf;		//USB mouse report
 	BOOT_KBD_REPORT kbdbuf;
@@ -384,10 +405,10 @@ int main() {
 				}
 				printf("keycodes: ");
 				for (int i = 0; i < 4; i++) {
-					keycode = kbdbuf.keycode[i];
+					keycode = (MONO_POLY == 0x01)? kbdbuf.keycode[i]:kbdbuf.keycode[0];
 					printf("%x ", keycode);
+					setKeycodeVoice(keycode,voiceIdx);
 					if (keycode != 0x00) {
-						setKeycodeVoice(keycode,voiceIdx);
 						voiceIdx = (voiceIdx+1)%4;
 					}
 				}

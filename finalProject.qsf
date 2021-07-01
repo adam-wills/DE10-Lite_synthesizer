@@ -409,8 +409,10 @@ set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name SYSTEMVERILOG_FILE keycodeParser.sv
+set_global_assignment -name VERILOG_FILE parallelAdder.v
+set_global_assignment -name QIP_FILE parallelAdder.qip
 set_global_assignment -name QIP_FILE finalProject/synthesis/finalProject.qip
+set_global_assignment -name SYSTEMVERILOG_FILE keycodeParser.sv
 set_global_assignment -name SYSTEMVERILOG_FILE fpgaSynth.sv
 set_global_assignment -name SDC_FILE fpgaSynthSDC.sdc
 set_global_assignment -name QIP_FILE mult16_ip.qip
@@ -422,7 +424,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE phasor.sv
 set_global_assignment -name SYSTEMVERILOG_FILE HexDriver.sv
 set_global_assignment -name SYSTEMVERILOG_FILE FMSM.sv
 set_global_assignment -name SYSTEMVERILOG_FILE cntr_modulus.sv
-set_global_assignment -name QIP_FILE parallelAdder.qip
 set_global_assignment -name QIP_FILE onChipFIFO.qip
 set_global_assignment -name QIP_FILE sineRom4096.qip
 set_global_assignment -name QIP_FILE sawRom4096_0.qip
@@ -442,4 +443,11 @@ set_global_assignment -name QIP_FILE sqrRom4096_5.qip
 set_global_assignment -name QIP_FILE sqrRom4096_6.qip
 set_global_assignment -name QIP_FILE sqrRom4096_7.qip
 set_global_assignment -name QIP_FILE mult16Add2_ip.qip
+set_global_assignment -name QIP_FILE mult16x32Add2.qip
+set_global_assignment -name QIP_FILE mult16x20Add2_ip.qip
+set_global_assignment -name QIP_FILE mult32x32Add2_ip.qip
+set_global_assignment -name QIP_FILE mult16x64Add4.qip
+set_global_assignment -name QIP_FILE parllelAdd64x4.qip
+set_global_assignment -name QIP_FILE mult16x64.qip
+set_global_assignment -name QIP_FILE mult16x64Add4_ip.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
