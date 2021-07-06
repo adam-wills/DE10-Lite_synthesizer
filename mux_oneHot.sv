@@ -43,11 +43,12 @@ endmodule
 	
 	
 	
-module mux3 (
-				  input  logic [1:0] sel,
-				  input  logic [15:0] dataIn[3],
-				  output logic [15:0] dataOut
-				 );
+module mux4 
+(
+		input  logic [1:0]  sel,
+		input  logic [15:0] dataIn[4],
+		output logic [15:0] dataOut
+);
 				 
 	always_comb
 	begin
@@ -58,8 +59,11 @@ module mux3 (
 				dataOut = dataIn[1];
 			2'b10 :
 				dataOut = dataIn[2];
+			2'b11 :
+				dataOut = dataIn[3];
 			default :
 				dataOut = dataIn[0];
 		endcase
 	end
 endmodule
+

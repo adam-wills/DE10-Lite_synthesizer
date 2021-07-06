@@ -38,7 +38,7 @@ static const WORD octUpDnKeys[] = {45,46};
 DWORD phaseIncs[31];
 //WORD tableCoefs[31];
 
-static const double sampleRate = 44100.0;
+static const double sampleRate = 48000.0;
 static const int32_t phasePrecision = 32;
 int8_t currentOctave = 0;
 int8_t currentVoiceNum = 0;
@@ -331,7 +331,7 @@ int main() {
 
 	//MCLK is 12.5 MHz, configure clocks to use PLL
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_CLK_CTRL, \
-			SGTL5000_SYS_FS_44_1k << SGTL5000_SYS_FS_SHIFT |
+			SGTL5000_SYS_FS_48k << SGTL5000_SYS_FS_SHIFT |
 			SGTL5000_MCLK_FREQ_PLL << SGTL5000_MCLK_FREQ_SHIFT);
 	printf( "CHIP_CLK_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_CLK_CTRL));
 

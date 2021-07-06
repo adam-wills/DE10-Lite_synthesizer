@@ -1136,8 +1136,8 @@ void initPhaseIncrements(){
  80002b0:	e0bff815 	stw	r2,-32(fp)
 		double f = (440.00000000/sampleRate)*(double)pow(2,((noteNum-69)/12.0));
  80002b4:	0005883a 	mov	r2,zero
- 80002b8:	00d039b4 	movhi	r3,16614
- 80002bc:	18e22004 	addi	r3,r3,-30592
+ 80002b8:	00d039f4 	movhi	r3,16615
+ 80002bc:	18dc0004 	addi	r3,r3,28672
  80002c0:	100d883a 	mov	r6,r2
  80002c4:	180f883a 	mov	r7,r3
  80002c8:	0009883a 	mov	r4,zero
@@ -2173,11 +2173,11 @@ int main() {
 
 	//MCLK is 12.5 MHz, configure clocks to use PLL
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_CLK_CTRL, \
- 8000e68:	018001c4 	movi	r6,7
+ 8000e68:	018002c4 	movi	r6,11
  8000e6c:	01400104 	movi	r5,4
  8000e70:	e13ffc17 	ldw	r4,-16(fp)
  8000e74:	80014cc0 	call	80014cc <SGTL5000_Reg_Wr>
-			SGTL5000_SYS_FS_44_1k << SGTL5000_SYS_FS_SHIFT |
+			SGTL5000_SYS_FS_48k << SGTL5000_SYS_FS_SHIFT |
 			SGTL5000_MCLK_FREQ_PLL << SGTL5000_MCLK_FREQ_SHIFT);
 	printf( "CHIP_CLK_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_CLK_CTRL));
  8000e78:	01400104 	movi	r5,4

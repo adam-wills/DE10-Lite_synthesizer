@@ -1,0 +1,81 @@
+module noteParser(
+		input  logic        Clk, Reset,
+		input  logic [7:0]  keycode,
+		output int          noteIdx
+);
+
+	
+	always_ff @ (posedge Clk) begin
+		if (Reset)
+			noteIdx <= -1;
+		else begin
+			case (keycode)
+				8'h1D :
+					noteIdx <= 0;
+				8'h1B :
+					noteIdx <= 2;
+				8'h06 :
+					noteIdx <= 4;
+				8'h19 :
+					noteIdx <= 6;
+				8'h05 :
+					noteIdx <= 8;
+				8'h11 :
+					noteIdx <= 10;
+				8'h10 :
+					noteIdx <= 12;
+				8'h36 : 
+					noteIdx <= 14;
+				8'h37 :
+					noteIdx <= 16;
+				8'h38 :
+					noteIdx <= 18;
+				8'h04 :
+					noteIdx <= 5;
+				8'h16 :
+					noteIdx <= 7;
+				8'h07 :
+					noteIdx <= 9;
+				8'h09 :
+					noteIdx <= 11
+				8'h0A :
+					noteIdx <= 13;
+				8'h0B :
+					noteIdx <= 15;
+				8'h0D :
+					noteIdx <= 17;
+				8'h0E :
+					noteIdx <= 19;
+				8'h0F :
+					noteIdx <= 21;
+				8'h33 :
+					noteIdx <= 23;
+				8'h34 :
+					noteIdx <= 25;
+				8'h14 :
+					noteIdx <= 10;
+				8'h1A :
+					noteIdx <= 12;
+				8'h08 :
+					noteIdx <= 14;
+				8'h15 :
+					noteIdx <= 16;
+				8'h17 :
+					noteIdx <= 18;
+				8'h1C :
+					noteIdx <= 20;
+				8'h18 :
+					noteIdx <= 22;
+				8'h0C :
+					noteIdx <= 24;
+				8'h12 :
+					noteIdx <= 26;
+				8'h13 :
+					noteIdx <= 28;
+				default :
+					noteIdx <= noteIdx;
+			endcase
+		end
+	end
+endmodule
+					

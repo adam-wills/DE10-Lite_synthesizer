@@ -1,169 +1,168 @@
-module ADSREnv(input  logic			Clk, Reset, trig, noteOff,
-					input  logic [15:0]  A_inv, D_inv, R_inv,
-					input  logic [8:0]	A,D,R,
-					input  logic [15:0]  S,
-					output logic [15:0]  env);
-					
-					    enum logic [2:0] {attack, decay, sustain, rel, off}   curr_state, next_state; 
-						 
-	logic [17:0] count;
-	logic [15:0] aVal;
-	logic [15:0] dVal_intermed;
-	logic [15:0] dVal;
-	logic [15:0] rVal;
-	logic [15:0] rSub;
-	logic [31:0] calc_intermed;
+module ADSRenv
+(
+	input  logic        Clk, Reset, Trig, noteOff,
+	input  logic [31:0] aStep, dStep, sLevel, sTime, rStep,
+	output logic [15:0] env,
+	output logic        ADSRIdle
+);
+	// consts
+	localparam MAX = 32'h8000_0000;
+	localparam BYPASS = 32'hffff_ffff;
+	localparam ZERO = 32'h0000_0000;
 	
-	unsigned_mult16 m0(.Clk(Clk),
-						 .Reset(Reset),
-						 .A(count[15:0]),
-						 .B(A_inv),
-						 .OUT(aVal));
-						 
-	unsigned_mult16 m1(.Clk(Clk),
-						 .Reset(Reset),
-						 .A(S),
-						 .B(D_inv),
-						 .OUT(dVal_intermed));
-						 
-	unsigned_mult16 m2(.Clk(Clk),
-							 .Reset(Reset),
-							 .A(dval_intermed),
-							 .B(count[15:0]),
-							 .OUT(dVal));
-	/*
-	unsigned_mult16(.Clk(Clk),
-						 .Reset(Reset),
-						 .A(count[15:0]),
-						 .B(inv_mults[A]),
-						 .OUT(aVal));
-	*/
-						 
-	unsigned_mult16 m3(.Clk(Clk),
-							 .Reset(Reset),
-							 .A(R_inv),
-							 .B(count[15:0]),
-							 .OUT(rSub));
-
-	//updates flip flop, current state is the only one
-    always_ff @ (posedge Clk)  
-    begin
-        if (Reset)
-		  begin
-            curr_state <= off;
-				//count <= 0;
-				count <= 18'b0;
-		  end
-		  else
-		  begin
-				case (curr_state) 
-				attack :
-				begin
-					if (count > (A << 6))
-					begin
-						next_state <= decay;
-						count <= 18'b0;
-					end
-					else
-					begin
-						next_state <= attack;
-						count <= count+1'b1;
-					end
-				end
-				
-				decay :
-				begin
-					if (count > (D << 6))
-					begin
-						next_state <= sustain;
-						count <= 18'b0;
-						
-					end
-					else
-					begin
-						next_state <= decay;
-						count <= count+1'b1;
-					end
-				end
-				
-				sustain :
-				begin
-					if ((count > 44100) | (noteOff == 1'b1))
-					begin
-						next_state <= rel;
-						count <= 18'b0;
-						rVal <= env;
-					end
-					else
-					begin
-						next_state <= sustain;
-						count <= count+1'b1;
-					end
-				end
-				
-				rel :
-				begin
-					if ((count > (R << 6)) | (env < 16'h0005))
-					begin
-						next_state <= off;
-						count <= 18'b0;
-					end
-					else
-					begin
-						next_state <= rel;
-						count <= count+1'b1;
-					end
-				end
-				
-				off :
-				begin
-					if (trig)
-					begin
-						next_state <= attack;
-						count <= count+1'b1;
-					end
-					else
-					begin
-						next_state <= off;
-						count <= 18'b0;
-					end
-				end
-				
-				default : ;
-        endcase
+	// define state type
+	typedef enum {idle, start, attack, decay, sustain, rel} state_type;
+	
+	// internal variables
+	state_type stateReg, stateNext;
+	logic [31:0] aReg, tReg, aNext, tNext, nTmp, env_i;
+	logic        fsmIdle;
+	
+	// state transition
+	always_ff @(posedge Clk)
+		if (Reset) begin
+			stateReg <= idle;
+			aReg <= 32'h0;
+			tReg <= 32'h0;
+			nTmp <= 32'h0;
 		end
-    end
-
-    // Assign outputs based on state
-	always_comb
-    begin
-        
-		  //next_state  = curr_state;	//required because I haven't enumerated all possibilities below
-        
-   
-		  // Assign outputs based on ‘state’
-        case (curr_state) 
-	   	   attack : 
-	         begin
-                env = aVal;
-		      end
-	   	   decay : 
-		      begin
-					 calc_intermed = 32'h0000FFFF - {16'h0000,dVal_intermed};
-					 env = calc_intermed[15:0];
-		      end
-	   	   sustain :
-		      begin 
-                env = S;
-		      end
-				rel :
+		else begin
+			stateReg <= stateNext;
+			aReg <= aNext;
+			tReg <= tNext;
+		end
+	
+	// next-state and datapath logic
+	always_comb begin
+		stateNext = stateReg;
+		aNext = aReg;
+		tNext = tReg;
+		unique case (stateReg)
+			idle : 
+			begin
+				nTmp = ZERO;
+				aNext = ZERO;
+				tNext = ZERO;
+				//fsmIdle = 1'b1;
+				if (Trig)
+					stateNext = start;
 					
-				begin
-					calc_intermed = {16'h0000,rVal} - {16'h0000,rSub};
-					env = calc_intermed[15:0];
+				else
+					stateNext = idle;
+			end
+			
+			start :
+			begin
+				nTmp = ZERO;
+				stateNext = attack;
+				aNext = ZERO;
+				tNext = ZERO;
+			end
+			
+			attack :
+			begin
+			tNext = ZERO;
+				if (Trig) begin
+					stateNext = start;
+					aNext = ZERO;
+					nTmp = ZERO;
 				end
-				default : 
-					env = 16'h0000;
-        endcase
-    end
+				else begin
+					nTmp = aReg + aStep;
+					if (nTmp < MAX) begin
+						aNext = nTmp;
+						stateNext = attack;
+					end
+					else begin
+						stateNext = decay;
+						aNext = MAX;
+						nTmp = MAX;
+					end
+				end
+			end
+			
+			decay :
+			begin
+				if (Trig) begin
+					stateNext = start;
+					aNext = ZERO;
+					tNext = ZERO;
+					nTmp = ZERO;
+				end
+				else begin
+					nTmp = aReg - dStep;
+					if (nTmp > sLevel) begin
+						stateNext = decay;
+						aNext = nTmp;
+						tNext = ZERO;
+					end
+					else begin
+						stateNext = sustain;
+						aNext = sLevel;
+						tNext = 32'h0;
+						nTmp = sLevel;
+					end
+				end
+			end
+			
+			sustain :
+			begin
+				if (Trig) begin
+					stateNext = start;
+					aNext = ZERO;
+					tNext = ZERO;
+					nTmp = ZERO;
+				end
+				else begin
+					if (noteOff) begin
+						stateNext = rel;
+						aNext = sLevel;
+						tNext = 32'h0;
+						
+						nTmp = ZERO;
+					end
+					else begin
+						aNext = sLevel;
+						if (tReg < sTime) begin
+							stateNext = sustain;
+							tNext = tNext + 1;
+							nTmp = sLevel;
+						end
+						else begin
+							stateNext = rel;
+							tNext = ZERO;
+							nTmp = sLevel;
+						end
+					end
+				end
+			end
+			
+			default :
+			begin
+			tNext = ZERO;
+			nTmp = ZERO;
+				if (Trig) begin
+					stateNext = start;
+					aNext = ZERO;/// nah
+					nTmp = ZERO;
+					
+				end
+				else begin
+					if (aReg > rStep)
+						aNext = aReg - rStep;
+					else begin
+						stateNext = idle;
+						aNext = ZERO;
+					end
+				end
+			end
+		endcase
+	end
+	
+	assign ADSRIdle = fsmIdle;
+	assign env_i = (aStep == BYPASS) ? MAX :
+	               (aStep == ZERO) ? 32'h0 : aReg;
+						
+	assign env = env_i[30:15];
 endmodule
+		
