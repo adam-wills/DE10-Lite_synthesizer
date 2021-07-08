@@ -4,72 +4,73 @@
 
 `timescale 1 ps / 1 ps
 module finalProject (
-		input  wire        clk_clk,                                      //                                   clk.clk
-		output wire [15:0] hex_digits_export,                            //                            hex_digits.export
-		input  wire        i2c_serial_sda_in,                            //                            i2c_serial.sda_in
-		input  wire        i2c_serial_scl_in,                            //                                      .scl_in
-		output wire        i2c_serial_sda_oe,                            //                                      .sda_oe
-		output wire        i2c_serial_scl_oe,                            //                                      .scl_oe
-		input  wire [1:0]  key_external_connection_export,               //               key_external_connection.export
-		output wire [7:0]  keycode_export,                               //                               keycode.export
-		output wire [7:0]  keycode1_export,                              //                              keycode1.export
-		output wire [7:0]  keycode2_export,                              //                              keycode2.export
-		output wire [7:0]  keycode3_export,                              //                              keycode3.export
-		output wire [13:0] leds_export,                                  //                                  leds.export
-		output wire [7:0]  oct_external_connection_export,               //               oct_external_connection.export
-		output wire [31:0] phase_incr0_external_connection_export,       //       phase_incr0_external_connection.export
-		output wire [31:0] phase_incr10_external_connection_export,      //      phase_incr10_external_connection.export
-		output wire [31:0] phase_incr11_external_connection_export,      //      phase_incr11_external_connection.export
-		output wire [31:0] phase_incr12_external_connection_export,      //      phase_incr12_external_connection.export
-		output wire [31:0] phase_incr13_external_connection_export,      //      phase_incr13_external_connection.export
-		output wire [31:0] phase_incr14_external_connection_export,      //      phase_incr14_external_connection.export
-		output wire [31:0] phase_incr15_external_connection_export,      //      phase_incr15_external_connection.export
-		output wire [31:0] phase_incr16_external_connection_export,      //      phase_incr16_external_connection.export
-		output wire [31:0] phase_incr17_external_connection_export,      //      phase_incr17_external_connection.export
-		output wire [31:0] phase_incr18_external_connection_export,      //      phase_incr18_external_connection.export
-		output wire [31:0] phase_incr19_external_connection_export,      //      phase_incr19_external_connection.export
-		output wire [31:0] phase_incr1_external_connection_export,       //       phase_incr1_external_connection.export
-		output wire [31:0] phase_incr20_external_connection_export,      //      phase_incr20_external_connection.export
-		output wire [31:0] phase_incr21_external_connection_export,      //      phase_incr21_external_connection.export
-		output wire [31:0] phase_incr22_external_connection_export,      //      phase_incr22_external_connection.export
-		output wire [31:0] phase_incr23_external_connection_export,      //      phase_incr23_external_connection.export
-		output wire [31:0] phase_incr24_external_connection_export,      //      phase_incr24_external_connection.export
-		output wire [31:0] phase_incr25_external_connection_export,      //      phase_incr25_external_connection.export
-		output wire [31:0] phase_incr26_external_connection_export,      //      phase_incr26_external_connection.export
-		output wire [31:0] phase_incr27_external_connection_export,      //      phase_incr27_external_connection.export
-		output wire [31:0] phase_incr28_external_connection_export,      //      phase_incr28_external_connection.export
-		output wire [31:0] phase_incr29_external_connection_export,      //      phase_incr29_external_connection.export
-		output wire [31:0] phase_incr2_external_connection_export,       //       phase_incr2_external_connection.export
-		output wire [31:0] phase_incr30_external_connection_export,      //      phase_incr30_external_connection.export
-		output wire [31:0] phase_incr3_external_connection_export,       //       phase_incr3_external_connection.export
-		output wire [31:0] phase_incr4_external_connection_export,       //       phase_incr4_external_connection.export
-		output wire [31:0] phase_incr5_external_connection_export,       //       phase_incr5_external_connection.export
-		output wire [31:0] phase_incr6_external_connection_export,       //       phase_incr6_external_connection.export
-		output wire [31:0] phase_incr7_external_connection_export,       //       phase_incr7_external_connection.export
-		output wire [31:0] phase_incr8_external_connection_export,       //       phase_incr8_external_connection.export
-		output wire [31:0] phase_incr9_external_connection_export,       //       phase_incr9_external_connection.export
-		input  wire        reset_reset_n,                                //                                 reset.reset_n
-		output wire        sdram_clk_clk,                                //                             sdram_clk.clk
-		output wire [12:0] sdram_wire_addr,                              //                            sdram_wire.addr
-		output wire [1:0]  sdram_wire_ba,                                //                                      .ba
-		output wire        sdram_wire_cas_n,                             //                                      .cas_n
-		output wire        sdram_wire_cke,                               //                                      .cke
-		output wire        sdram_wire_cs_n,                              //                                      .cs_n
-		inout  wire [15:0] sdram_wire_dq,                                //                                      .dq
-		output wire [1:0]  sdram_wire_dqm,                               //                                      .dqm
-		output wire        sdram_wire_ras_n,                             //                                      .ras_n
-		output wire        sdram_wire_we_n,                              //                                      .we_n
-		input  wire        spi0_MISO,                                    //                                  spi0.MISO
-		output wire        spi0_MOSI,                                    //                                      .MOSI
-		output wire        spi0_SCLK,                                    //                                      .SCLK
-		output wire        spi0_SS_n,                                    //                                      .SS_n
-		output wire [15:0] tablecoef0_external_connection_export_export, // tablecoef0_external_connection_export.export
-		output wire [15:0] tablecoef1_external_connection_export_export, // tablecoef1_external_connection_export.export
-		output wire [15:0] tablecoef2_external_connection_export_export, // tablecoef2_external_connection_export.export
-		output wire [15:0] tablecoef3_external_connection_export_export, // tablecoef3_external_connection_export.export
-		input  wire        usb_gpx_export,                               //                               usb_gpx.export
-		input  wire        usb_irq_export,                               //                               usb_irq.export
-		output wire        usb_rst_export                                //                               usb_rst.export
+		input  wire        clk_clk,                                 //                              clk.clk
+		output wire [15:0] hex_digits_export,                       //                       hex_digits.export
+		input  wire        i2c_serial_sda_in,                       //                       i2c_serial.sda_in
+		input  wire        i2c_serial_scl_in,                       //                                 .scl_in
+		output wire        i2c_serial_sda_oe,                       //                                 .sda_oe
+		output wire        i2c_serial_scl_oe,                       //                                 .scl_oe
+		input  wire [1:0]  key_external_connection_export,          //          key_external_connection.export
+		output wire [7:0]  keycode_export,                          //                          keycode.export
+		output wire [7:0]  keycode1_export,                         //                         keycode1.export
+		output wire [7:0]  keycode2_export,                         //                         keycode2.export
+		output wire [7:0]  keycode3_export,                         //                         keycode3.export
+		output wire [13:0] leds_export,                             //                             leds.export
+		input  wire [31:0] noteidx0_export,                         //                         noteidx0.export
+		input  wire [31:0] noteidx1_export,                         //                         noteidx1.export
+		input  wire [31:0] noteidx2_export,                         //                         noteidx2.export
+		input  wire [31:0] noteidx3_export,                         //                         noteidx3.export
+		output wire [7:0]  oct_external_connection_export,          //          oct_external_connection.export
+		output wire [31:0] phase_incr0_external_connection_export,  //  phase_incr0_external_connection.export
+		output wire [31:0] phase_incr10_external_connection_export, // phase_incr10_external_connection.export
+		output wire [31:0] phase_incr11_external_connection_export, // phase_incr11_external_connection.export
+		output wire [31:0] phase_incr12_external_connection_export, // phase_incr12_external_connection.export
+		output wire [31:0] phase_incr13_external_connection_export, // phase_incr13_external_connection.export
+		output wire [31:0] phase_incr14_external_connection_export, // phase_incr14_external_connection.export
+		output wire [31:0] phase_incr15_external_connection_export, // phase_incr15_external_connection.export
+		output wire [31:0] phase_incr16_external_connection_export, // phase_incr16_external_connection.export
+		output wire [31:0] phase_incr17_external_connection_export, // phase_incr17_external_connection.export
+		output wire [31:0] phase_incr18_external_connection_export, // phase_incr18_external_connection.export
+		output wire [31:0] phase_incr19_external_connection_export, // phase_incr19_external_connection.export
+		output wire [31:0] phase_incr1_external_connection_export,  //  phase_incr1_external_connection.export
+		output wire [31:0] phase_incr20_external_connection_export, // phase_incr20_external_connection.export
+		output wire [31:0] phase_incr21_external_connection_export, // phase_incr21_external_connection.export
+		output wire [31:0] phase_incr22_external_connection_export, // phase_incr22_external_connection.export
+		output wire [31:0] phase_incr23_external_connection_export, // phase_incr23_external_connection.export
+		output wire [31:0] phase_incr24_external_connection_export, // phase_incr24_external_connection.export
+		output wire [31:0] phase_incr25_external_connection_export, // phase_incr25_external_connection.export
+		output wire [31:0] phase_incr26_external_connection_export, // phase_incr26_external_connection.export
+		output wire [31:0] phase_incr27_external_connection_export, // phase_incr27_external_connection.export
+		output wire [31:0] phase_incr28_external_connection_export, // phase_incr28_external_connection.export
+		output wire [31:0] phase_incr29_external_connection_export, // phase_incr29_external_connection.export
+		output wire [31:0] phase_incr2_external_connection_export,  //  phase_incr2_external_connection.export
+		output wire [31:0] phase_incr30_external_connection_export, // phase_incr30_external_connection.export
+		output wire [31:0] phase_incr3_external_connection_export,  //  phase_incr3_external_connection.export
+		output wire [31:0] phase_incr4_external_connection_export,  //  phase_incr4_external_connection.export
+		output wire [31:0] phase_incr5_external_connection_export,  //  phase_incr5_external_connection.export
+		output wire [31:0] phase_incr6_external_connection_export,  //  phase_incr6_external_connection.export
+		output wire [31:0] phase_incr7_external_connection_export,  //  phase_incr7_external_connection.export
+		output wire [31:0] phase_incr8_external_connection_export,  //  phase_incr8_external_connection.export
+		output wire [31:0] phase_incr9_external_connection_export,  //  phase_incr9_external_connection.export
+		input  wire        reset_reset_n,                           //                            reset.reset_n
+		output wire        sdram_clk_clk,                           //                        sdram_clk.clk
+		output wire [12:0] sdram_wire_addr,                         //                       sdram_wire.addr
+		output wire [1:0]  sdram_wire_ba,                           //                                 .ba
+		output wire        sdram_wire_cas_n,                        //                                 .cas_n
+		output wire        sdram_wire_cke,                          //                                 .cke
+		output wire        sdram_wire_cs_n,                         //                                 .cs_n
+		inout  wire [15:0] sdram_wire_dq,                           //                                 .dq
+		output wire [1:0]  sdram_wire_dqm,                          //                                 .dqm
+		output wire        sdram_wire_ras_n,                        //                                 .ras_n
+		output wire        sdram_wire_we_n,                         //                                 .we_n
+		input  wire        spi0_MISO,                               //                             spi0.MISO
+		output wire        spi0_MOSI,                               //                                 .MOSI
+		output wire        spi0_SCLK,                               //                                 .SCLK
+		output wire        spi0_SS_n,                               //                                 .SS_n
+		input  wire        usb_gpx_export,                          //                          usb_gpx.export
+		input  wire        usb_irq_export,                          //                          usb_irq.export
+		output wire        usb_rst_export,                          //                          usb_rst.export
+		input  wire [7:0]  voiceidx_export                          //                         voiceidx.export
 	);
 
 	wire         sdram_pll_c0_clk;                                           // sdram_pll:c0 -> [mm_interconnect_0:sdram_pll_c0_clk, rst_controller_001:clk, sdram:clk]
@@ -334,26 +335,16 @@ module finalProject (
 	wire   [1:0] mm_interconnect_0_phase_incr30_s1_address;                  // mm_interconnect_0:phase_incr30_s1_address -> phase_incr30:address
 	wire         mm_interconnect_0_phase_incr30_s1_write;                    // mm_interconnect_0:phase_incr30_s1_write -> phase_incr30:write_n
 	wire  [31:0] mm_interconnect_0_phase_incr30_s1_writedata;                // mm_interconnect_0:phase_incr30_s1_writedata -> phase_incr30:writedata
-	wire         mm_interconnect_0_tablecoef0_s1_chipselect;                 // mm_interconnect_0:tableCoef0_s1_chipselect -> tableCoef0:chipselect
-	wire  [31:0] mm_interconnect_0_tablecoef0_s1_readdata;                   // tableCoef0:readdata -> mm_interconnect_0:tableCoef0_s1_readdata
-	wire   [1:0] mm_interconnect_0_tablecoef0_s1_address;                    // mm_interconnect_0:tableCoef0_s1_address -> tableCoef0:address
-	wire         mm_interconnect_0_tablecoef0_s1_write;                      // mm_interconnect_0:tableCoef0_s1_write -> tableCoef0:write_n
-	wire  [31:0] mm_interconnect_0_tablecoef0_s1_writedata;                  // mm_interconnect_0:tableCoef0_s1_writedata -> tableCoef0:writedata
-	wire         mm_interconnect_0_tablecoef1_s1_chipselect;                 // mm_interconnect_0:tableCoef1_s1_chipselect -> tableCoef1:chipselect
-	wire  [31:0] mm_interconnect_0_tablecoef1_s1_readdata;                   // tableCoef1:readdata -> mm_interconnect_0:tableCoef1_s1_readdata
-	wire   [1:0] mm_interconnect_0_tablecoef1_s1_address;                    // mm_interconnect_0:tableCoef1_s1_address -> tableCoef1:address
-	wire         mm_interconnect_0_tablecoef1_s1_write;                      // mm_interconnect_0:tableCoef1_s1_write -> tableCoef1:write_n
-	wire  [31:0] mm_interconnect_0_tablecoef1_s1_writedata;                  // mm_interconnect_0:tableCoef1_s1_writedata -> tableCoef1:writedata
-	wire         mm_interconnect_0_tablecoef2_s1_chipselect;                 // mm_interconnect_0:tableCoef2_s1_chipselect -> tableCoef2:chipselect
-	wire  [31:0] mm_interconnect_0_tablecoef2_s1_readdata;                   // tableCoef2:readdata -> mm_interconnect_0:tableCoef2_s1_readdata
-	wire   [1:0] mm_interconnect_0_tablecoef2_s1_address;                    // mm_interconnect_0:tableCoef2_s1_address -> tableCoef2:address
-	wire         mm_interconnect_0_tablecoef2_s1_write;                      // mm_interconnect_0:tableCoef2_s1_write -> tableCoef2:write_n
-	wire  [31:0] mm_interconnect_0_tablecoef2_s1_writedata;                  // mm_interconnect_0:tableCoef2_s1_writedata -> tableCoef2:writedata
-	wire         mm_interconnect_0_tablecoef3_s1_chipselect;                 // mm_interconnect_0:tableCoef3_s1_chipselect -> tableCoef3:chipselect
-	wire  [31:0] mm_interconnect_0_tablecoef3_s1_readdata;                   // tableCoef3:readdata -> mm_interconnect_0:tableCoef3_s1_readdata
-	wire   [1:0] mm_interconnect_0_tablecoef3_s1_address;                    // mm_interconnect_0:tableCoef3_s1_address -> tableCoef3:address
-	wire         mm_interconnect_0_tablecoef3_s1_write;                      // mm_interconnect_0:tableCoef3_s1_write -> tableCoef3:write_n
-	wire  [31:0] mm_interconnect_0_tablecoef3_s1_writedata;                  // mm_interconnect_0:tableCoef3_s1_writedata -> tableCoef3:writedata
+	wire  [31:0] mm_interconnect_0_noteidx0_s1_readdata;                     // noteIdx0:readdata -> mm_interconnect_0:noteIdx0_s1_readdata
+	wire   [1:0] mm_interconnect_0_noteidx0_s1_address;                      // mm_interconnect_0:noteIdx0_s1_address -> noteIdx0:address
+	wire  [31:0] mm_interconnect_0_noteidx1_s1_readdata;                     // noteIdx1:readdata -> mm_interconnect_0:noteIdx1_s1_readdata
+	wire   [1:0] mm_interconnect_0_noteidx1_s1_address;                      // mm_interconnect_0:noteIdx1_s1_address -> noteIdx1:address
+	wire  [31:0] mm_interconnect_0_noteidx2_s1_readdata;                     // noteIdx2:readdata -> mm_interconnect_0:noteIdx2_s1_readdata
+	wire   [1:0] mm_interconnect_0_noteidx2_s1_address;                      // mm_interconnect_0:noteIdx2_s1_address -> noteIdx2:address
+	wire  [31:0] mm_interconnect_0_noteidx3_s1_readdata;                     // noteIdx3:readdata -> mm_interconnect_0:noteIdx3_s1_readdata
+	wire   [1:0] mm_interconnect_0_noteidx3_s1_address;                      // mm_interconnect_0:noteIdx3_s1_address -> noteIdx3:address
+	wire  [31:0] mm_interconnect_0_voiceidx_s1_readdata;                     // voiceIdx:readdata -> mm_interconnect_0:voiceIdx_s1_readdata
+	wire   [1:0] mm_interconnect_0_voiceidx_s1_address;                      // mm_interconnect_0:voiceIdx_s1_address -> voiceIdx:address
 	wire         mm_interconnect_0_spi_0_spi_control_port_chipselect;        // mm_interconnect_0:spi_0_spi_control_port_chipselect -> spi_0:spi_select
 	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_readdata;          // spi_0:data_to_cpu -> mm_interconnect_0:spi_0_spi_control_port_readdata
 	wire   [2:0] mm_interconnect_0_spi_0_spi_control_port_address;           // mm_interconnect_0:spi_0_spi_control_port_address -> spi_0:mem_addr
@@ -365,7 +356,7 @@ module finalProject (
 	wire         irq_mapper_receiver2_irq;                                   // spi_0:irq -> irq_mapper:receiver2_irq
 	wire         irq_mapper_receiver3_irq;                                   // timer:irq -> irq_mapper:receiver3_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                       // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [hex_digits_pio:reset_n, i2c_0:rst_n, irq_mapper:reset, jtag_uart:rst_n, key:reset_n, keycode1:reset_n, keycode2:reset_n, keycode3:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, oct:reset_n, onchip_memory2_0:reset, phase_incr0:reset_n, phase_incr10:reset_n, phase_incr11:reset_n, phase_incr12:reset_n, phase_incr13:reset_n, phase_incr14:reset_n, phase_incr15:reset_n, phase_incr16:reset_n, phase_incr17:reset_n, phase_incr18:reset_n, phase_incr19:reset_n, phase_incr1:reset_n, phase_incr20:reset_n, phase_incr21:reset_n, phase_incr22:reset_n, phase_incr23:reset_n, phase_incr24:reset_n, phase_incr25:reset_n, phase_incr26:reset_n, phase_incr27:reset_n, phase_incr28:reset_n, phase_incr29:reset_n, phase_incr2:reset_n, phase_incr30:reset_n, phase_incr3:reset_n, phase_incr4:reset_n, phase_incr5:reset_n, phase_incr6:reset_n, phase_incr7:reset_n, phase_incr8:reset_n, phase_incr9:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, tableCoef0:reset_n, tableCoef1:reset_n, tableCoef2:reset_n, tableCoef3:reset_n, timer:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
+	wire         rst_controller_reset_out_reset;                             // rst_controller:reset_out -> [hex_digits_pio:reset_n, i2c_0:rst_n, irq_mapper:reset, jtag_uart:rst_n, key:reset_n, keycode1:reset_n, keycode2:reset_n, keycode3:reset_n, keycode:reset_n, leds_pio:reset_n, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n, noteIdx0:reset_n, noteIdx1:reset_n, noteIdx2:reset_n, noteIdx3:reset_n, oct:reset_n, onchip_memory2_0:reset, phase_incr0:reset_n, phase_incr10:reset_n, phase_incr11:reset_n, phase_incr12:reset_n, phase_incr13:reset_n, phase_incr14:reset_n, phase_incr15:reset_n, phase_incr16:reset_n, phase_incr17:reset_n, phase_incr18:reset_n, phase_incr19:reset_n, phase_incr1:reset_n, phase_incr20:reset_n, phase_incr21:reset_n, phase_incr22:reset_n, phase_incr23:reset_n, phase_incr24:reset_n, phase_incr25:reset_n, phase_incr26:reset_n, phase_incr27:reset_n, phase_incr28:reset_n, phase_incr29:reset_n, phase_incr2:reset_n, phase_incr30:reset_n, phase_incr3:reset_n, phase_incr4:reset_n, phase_incr5:reset_n, phase_incr6:reset_n, phase_incr7:reset_n, phase_incr8:reset_n, phase_incr9:reset_n, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sysid_qsys_0:reset_n, timer:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n, voiceIdx:reset_n]
 	wire         rst_controller_reset_out_reset_req;                         // rst_controller:reset_req -> [nios2_gen2_0:reset_req, onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         rst_controller_001_reset_out_reset;                         // rst_controller_001:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
 
@@ -508,6 +499,38 @@ module finalProject (
 		.debug_mem_slave_write               (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_write),       //                          .write
 		.debug_mem_slave_writedata           (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_writedata),   //                          .writedata
 		.dummy_ci_port                       ()                                                            // custom_instruction_master.readra
+	);
+
+	finalProject_noteIdx0 noteidx0 (
+		.clk      (clk_clk),                                //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
+		.address  (mm_interconnect_0_noteidx0_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_noteidx0_s1_readdata), //                    .readdata
+		.in_port  (noteidx0_export)                         // external_connection.export
+	);
+
+	finalProject_noteIdx0 noteidx1 (
+		.clk      (clk_clk),                                //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
+		.address  (mm_interconnect_0_noteidx1_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_noteidx1_s1_readdata), //                    .readdata
+		.in_port  (noteidx1_export)                         // external_connection.export
+	);
+
+	finalProject_noteIdx0 noteidx2 (
+		.clk      (clk_clk),                                //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
+		.address  (mm_interconnect_0_noteidx2_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_noteidx2_s1_readdata), //                    .readdata
+		.in_port  (noteidx2_export)                         // external_connection.export
+	);
+
+	finalProject_noteIdx0 noteidx3 (
+		.clk      (clk_clk),                                //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
+		.address  (mm_interconnect_0_noteidx3_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_noteidx3_s1_readdata), //                    .readdata
+		.in_port  (noteidx3_export)                         // external_connection.export
 	);
 
 	finalProject_keycode oct (
@@ -949,50 +972,6 @@ module finalProject (
 		.address  (mm_interconnect_0_sysid_qsys_0_control_slave_address)   //              .address
 	);
 
-	finalProject_hex_digits_pio tablecoef0 (
-		.clk        (clk_clk),                                      //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
-		.address    (mm_interconnect_0_tablecoef0_s1_address),      //                  s1.address
-		.write_n    (~mm_interconnect_0_tablecoef0_s1_write),       //                    .write_n
-		.writedata  (mm_interconnect_0_tablecoef0_s1_writedata),    //                    .writedata
-		.chipselect (mm_interconnect_0_tablecoef0_s1_chipselect),   //                    .chipselect
-		.readdata   (mm_interconnect_0_tablecoef0_s1_readdata),     //                    .readdata
-		.out_port   (tablecoef0_external_connection_export_export)  // external_connection.export
-	);
-
-	finalProject_hex_digits_pio tablecoef1 (
-		.clk        (clk_clk),                                      //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
-		.address    (mm_interconnect_0_tablecoef1_s1_address),      //                  s1.address
-		.write_n    (~mm_interconnect_0_tablecoef1_s1_write),       //                    .write_n
-		.writedata  (mm_interconnect_0_tablecoef1_s1_writedata),    //                    .writedata
-		.chipselect (mm_interconnect_0_tablecoef1_s1_chipselect),   //                    .chipselect
-		.readdata   (mm_interconnect_0_tablecoef1_s1_readdata),     //                    .readdata
-		.out_port   (tablecoef1_external_connection_export_export)  // external_connection.export
-	);
-
-	finalProject_hex_digits_pio tablecoef2 (
-		.clk        (clk_clk),                                      //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
-		.address    (mm_interconnect_0_tablecoef2_s1_address),      //                  s1.address
-		.write_n    (~mm_interconnect_0_tablecoef2_s1_write),       //                    .write_n
-		.writedata  (mm_interconnect_0_tablecoef2_s1_writedata),    //                    .writedata
-		.chipselect (mm_interconnect_0_tablecoef2_s1_chipselect),   //                    .chipselect
-		.readdata   (mm_interconnect_0_tablecoef2_s1_readdata),     //                    .readdata
-		.out_port   (tablecoef2_external_connection_export_export)  // external_connection.export
-	);
-
-	finalProject_hex_digits_pio tablecoef3 (
-		.clk        (clk_clk),                                      //                 clk.clk
-		.reset_n    (~rst_controller_reset_out_reset),              //               reset.reset_n
-		.address    (mm_interconnect_0_tablecoef3_s1_address),      //                  s1.address
-		.write_n    (~mm_interconnect_0_tablecoef3_s1_write),       //                    .write_n
-		.writedata  (mm_interconnect_0_tablecoef3_s1_writedata),    //                    .writedata
-		.chipselect (mm_interconnect_0_tablecoef3_s1_chipselect),   //                    .chipselect
-		.readdata   (mm_interconnect_0_tablecoef3_s1_readdata),     //                    .readdata
-		.out_port   (tablecoef3_external_connection_export_export)  // external_connection.export
-	);
-
 	finalProject_timer timer (
 		.clk        (clk_clk),                               //   clk.clk
 		.reset_n    (~rst_controller_reset_out_reset),       // reset.reset_n
@@ -1029,6 +1008,14 @@ module finalProject (
 		.chipselect (mm_interconnect_0_usb_rst_s1_chipselect), //                    .chipselect
 		.readdata   (mm_interconnect_0_usb_rst_s1_readdata),   //                    .readdata
 		.out_port   (usb_rst_export)                           // external_connection.export
+	);
+
+	finalProject_voiceIdx voiceidx (
+		.clk      (clk_clk),                                //                 clk.clk
+		.reset_n  (~rst_controller_reset_out_reset),        //               reset.reset_n
+		.address  (mm_interconnect_0_voiceidx_s1_address),  //                  s1.address
+		.readdata (mm_interconnect_0_voiceidx_s1_readdata), //                    .readdata
+		.in_port  (voiceidx_export)                         // external_connection.export
 	);
 
 	finalProject_mm_interconnect_0 mm_interconnect_0 (
@@ -1100,6 +1087,14 @@ module finalProject (
 		.nios2_gen2_0_debug_mem_slave_byteenable        (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_byteenable),  //                                         .byteenable
 		.nios2_gen2_0_debug_mem_slave_waitrequest       (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_waitrequest), //                                         .waitrequest
 		.nios2_gen2_0_debug_mem_slave_debugaccess       (mm_interconnect_0_nios2_gen2_0_debug_mem_slave_debugaccess), //                                         .debugaccess
+		.noteIdx0_s1_address                            (mm_interconnect_0_noteidx0_s1_address),                      //                              noteIdx0_s1.address
+		.noteIdx0_s1_readdata                           (mm_interconnect_0_noteidx0_s1_readdata),                     //                                         .readdata
+		.noteIdx1_s1_address                            (mm_interconnect_0_noteidx1_s1_address),                      //                              noteIdx1_s1.address
+		.noteIdx1_s1_readdata                           (mm_interconnect_0_noteidx1_s1_readdata),                     //                                         .readdata
+		.noteIdx2_s1_address                            (mm_interconnect_0_noteidx2_s1_address),                      //                              noteIdx2_s1.address
+		.noteIdx2_s1_readdata                           (mm_interconnect_0_noteidx2_s1_readdata),                     //                                         .readdata
+		.noteIdx3_s1_address                            (mm_interconnect_0_noteidx3_s1_address),                      //                              noteIdx3_s1.address
+		.noteIdx3_s1_readdata                           (mm_interconnect_0_noteidx3_s1_readdata),                     //                                         .readdata
 		.oct_s1_address                                 (mm_interconnect_0_oct_s1_address),                           //                                   oct_s1.address
 		.oct_s1_write                                   (mm_interconnect_0_oct_s1_write),                             //                                         .write
 		.oct_s1_readdata                                (mm_interconnect_0_oct_s1_readdata),                          //                                         .readdata
@@ -1289,26 +1284,6 @@ module finalProject (
 		.spi_0_spi_control_port_chipselect              (mm_interconnect_0_spi_0_spi_control_port_chipselect),        //                                         .chipselect
 		.sysid_qsys_0_control_slave_address             (mm_interconnect_0_sysid_qsys_0_control_slave_address),       //               sysid_qsys_0_control_slave.address
 		.sysid_qsys_0_control_slave_readdata            (mm_interconnect_0_sysid_qsys_0_control_slave_readdata),      //                                         .readdata
-		.tableCoef0_s1_address                          (mm_interconnect_0_tablecoef0_s1_address),                    //                            tableCoef0_s1.address
-		.tableCoef0_s1_write                            (mm_interconnect_0_tablecoef0_s1_write),                      //                                         .write
-		.tableCoef0_s1_readdata                         (mm_interconnect_0_tablecoef0_s1_readdata),                   //                                         .readdata
-		.tableCoef0_s1_writedata                        (mm_interconnect_0_tablecoef0_s1_writedata),                  //                                         .writedata
-		.tableCoef0_s1_chipselect                       (mm_interconnect_0_tablecoef0_s1_chipselect),                 //                                         .chipselect
-		.tableCoef1_s1_address                          (mm_interconnect_0_tablecoef1_s1_address),                    //                            tableCoef1_s1.address
-		.tableCoef1_s1_write                            (mm_interconnect_0_tablecoef1_s1_write),                      //                                         .write
-		.tableCoef1_s1_readdata                         (mm_interconnect_0_tablecoef1_s1_readdata),                   //                                         .readdata
-		.tableCoef1_s1_writedata                        (mm_interconnect_0_tablecoef1_s1_writedata),                  //                                         .writedata
-		.tableCoef1_s1_chipselect                       (mm_interconnect_0_tablecoef1_s1_chipselect),                 //                                         .chipselect
-		.tableCoef2_s1_address                          (mm_interconnect_0_tablecoef2_s1_address),                    //                            tableCoef2_s1.address
-		.tableCoef2_s1_write                            (mm_interconnect_0_tablecoef2_s1_write),                      //                                         .write
-		.tableCoef2_s1_readdata                         (mm_interconnect_0_tablecoef2_s1_readdata),                   //                                         .readdata
-		.tableCoef2_s1_writedata                        (mm_interconnect_0_tablecoef2_s1_writedata),                  //                                         .writedata
-		.tableCoef2_s1_chipselect                       (mm_interconnect_0_tablecoef2_s1_chipselect),                 //                                         .chipselect
-		.tableCoef3_s1_address                          (mm_interconnect_0_tablecoef3_s1_address),                    //                            tableCoef3_s1.address
-		.tableCoef3_s1_write                            (mm_interconnect_0_tablecoef3_s1_write),                      //                                         .write
-		.tableCoef3_s1_readdata                         (mm_interconnect_0_tablecoef3_s1_readdata),                   //                                         .readdata
-		.tableCoef3_s1_writedata                        (mm_interconnect_0_tablecoef3_s1_writedata),                  //                                         .writedata
-		.tableCoef3_s1_chipselect                       (mm_interconnect_0_tablecoef3_s1_chipselect),                 //                                         .chipselect
 		.timer_s1_address                               (mm_interconnect_0_timer_s1_address),                         //                                 timer_s1.address
 		.timer_s1_write                                 (mm_interconnect_0_timer_s1_write),                           //                                         .write
 		.timer_s1_readdata                              (mm_interconnect_0_timer_s1_readdata),                        //                                         .readdata
@@ -1322,7 +1297,9 @@ module finalProject (
 		.usb_rst_s1_write                               (mm_interconnect_0_usb_rst_s1_write),                         //                                         .write
 		.usb_rst_s1_readdata                            (mm_interconnect_0_usb_rst_s1_readdata),                      //                                         .readdata
 		.usb_rst_s1_writedata                           (mm_interconnect_0_usb_rst_s1_writedata),                     //                                         .writedata
-		.usb_rst_s1_chipselect                          (mm_interconnect_0_usb_rst_s1_chipselect)                     //                                         .chipselect
+		.usb_rst_s1_chipselect                          (mm_interconnect_0_usb_rst_s1_chipselect),                    //                                         .chipselect
+		.voiceIdx_s1_address                            (mm_interconnect_0_voiceidx_s1_address),                      //                              voiceIdx_s1.address
+		.voiceIdx_s1_readdata                           (mm_interconnect_0_voiceidx_s1_readdata)                      //                                         .readdata
 	);
 
 	finalProject_irq_mapper irq_mapper (

@@ -12,6 +12,10 @@ module finalProject (
 	keycode2_export,
 	keycode3_export,
 	leds_export,
+	noteidx0_export,
+	noteidx1_export,
+	noteidx2_export,
+	noteidx3_export,
 	oct_external_connection_export,
 	phase_incr0_external_connection_export,
 	phase_incr10_external_connection_export,
@@ -59,13 +63,10 @@ module finalProject (
 	spi0_MOSI,
 	spi0_SCLK,
 	spi0_SS_n,
-	tablecoef0_external_connection_export_export,
-	tablecoef1_external_connection_export_export,
-	tablecoef2_external_connection_export_export,
-	tablecoef3_external_connection_export_export,
 	usb_gpx_export,
 	usb_irq_export,
-	usb_rst_export);	
+	usb_rst_export,
+	voiceidx_export);	
 
 	input		clk_clk;
 	output	[15:0]	hex_digits_export;
@@ -79,6 +80,10 @@ module finalProject (
 	output	[7:0]	keycode2_export;
 	output	[7:0]	keycode3_export;
 	output	[13:0]	leds_export;
+	input	[31:0]	noteidx0_export;
+	input	[31:0]	noteidx1_export;
+	input	[31:0]	noteidx2_export;
+	input	[31:0]	noteidx3_export;
 	output	[7:0]	oct_external_connection_export;
 	output	[31:0]	phase_incr0_external_connection_export;
 	output	[31:0]	phase_incr10_external_connection_export;
@@ -126,11 +131,8 @@ module finalProject (
 	output		spi0_MOSI;
 	output		spi0_SCLK;
 	output		spi0_SS_n;
-	output	[15:0]	tablecoef0_external_connection_export_export;
-	output	[15:0]	tablecoef1_external_connection_export_export;
-	output	[15:0]	tablecoef2_external_connection_export_export;
-	output	[15:0]	tablecoef3_external_connection_export_export;
 	input		usb_gpx_export;
 	input		usb_irq_export;
 	output		usb_rst_export;
+	input	[7:0]	voiceidx_export;
 endmodule

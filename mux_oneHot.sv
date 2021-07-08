@@ -2,7 +2,7 @@ module mux_oneHot (
 							//input  logic [W-1:0]	 oneHot,
 							//input  logic [DW-1:0] dataIn[W],
 							//output logic [DW-1:0] dataOut
-							input  logic [7:0]	 oneHot,
+							input  logic [7:0]  oneHot,
 							input  logic [15:0] dataIn[8],
 							output logic [15:0] dataOut
 						 );

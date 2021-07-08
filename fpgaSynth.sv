@@ -70,16 +70,8 @@ assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bZ;	// I2C SCL tristate
 //   Instantiate onChip-Memory Wavetables
 //=======================================================
 	
-	
 logic readEn;
-
 reg   [12:0] sampAddrA;
-reg   [12:0] sampAddrB;
-
-
-
-reg   [15:0] waveSampsInterp[3][2];
-reg	[15:0] waveSampsAntiInterp[3][2];
 
 logic [31:0] tableInterpCoefs[30] = 
 '{32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C, 
@@ -89,305 +81,29 @@ logic [31:0] tableInterpCoefs[30] =
   32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C};
 
 
-// Sinewave ROM: 4192 Samples of a sinewave which can be read through
-// at varying rates to produce corresponding frequencies
-reg   [15:0] sineSamps[2];
-sineRom4096	sineRom4096_inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(waveSampsInterp[0][0]),
-	.q_b (waveSampsAntiInterp[0][0])
-);
-
-assign waveSampsInterp[0][1] = waveSampsInterp[0][0];          // as there is only 1 table for the sinewave (no harmonic components aside from the fundamental), 
-assign waveSampsAntiInterp[0][1] = waveSampsAntiInterp[0][0];  // it interpolates with itself (interpolation left in to allow for waveform mixing)
-/*
-sawTables sawTables_inst
+waveformROMbank ROMbank
 (
 	.Clk(MAX10_CLK2_50),
-	.readEn(readEn),
-	.octave(octave[voiceIdx]),
-	.sampAddrA(sampAddrA),
-	.interpOuts(waveSampsInterp[1][0:1]),
-	.antiInterpOuts(waveSampsAntiInterp[1][0:1])
+	.En(readEn),
+	.wave(waveforms[voiceIdx]),
+	.octave(tableIdx),
+	//.octave(octave),
+	.addr(sampAddrA),
+	.dOutInterp(sampBankInterp),
+	.dOutAnti(sampBankAnti)
 );
+reg   [15:0] sampBankInterp[2];
+reg   [15:0] sampBankAnti[2];
 
-
-squareTables squareTables_inst
+reg   [7:0]  tableIdx;
+reg   [31:0] tableInterp;
+tableIdxROM tableROM
 (
 	.Clk(MAX10_CLK2_50),
-	.readEn(readEn),
-	.octave(octave[voiceIdx]),
-	.sampAddrA(sampAddrA),
-	.interpOuts(waveSampsInterp[2][0:1]),
-	.antiInterpOuts(waveSampsAntiInterp[2][0:1])
+	.noteIdx(noteIdx[voiceIdx][7:0]),
+	.tableIdx(tableIdx),
+	.tableInterp(tableInterp)
 );
-*/
-reg   [15:0] sawOutputsInterp0[8];
-reg   [15:0] sawOutputsAntiInterp0[8];
-// Sawtooth-wave ROM: 8 banks (corresponding to 8 playable octaves) with
-	// 4192 samples each. 0th bank (corresponding to the highest playable octave) is
-	// simply a sinewave, while the 1st bank contains a sum of 2 sinewaves whose amplitudes
-	// correspond to the fourier series decomposition of the sawtooth wave; 2nd bank
-	// contains a sum of 4 sinewaves, 3rd bank 8...
-	
-sawRom4096_0	sawRom4096_0inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[0]),
-	.q_b (sawOutputsAntiInterp0[0])
-);
-							 
-sawRom4096_1	sawRom4096_1inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[1]),
-	.q_b (sawOutputsAntiInterp0[1])
-);
-											
-sawRom4096_2	sawRom4096_2inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[2]),
-	.q_b (sawOutputsAntiInterp0[2])
-);
-											
-sawRom4096_3	sawRom4096_3inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[3]),
-	.q_b (sawOutputsAntiInterp0[3])
-);
-											
-sawRom4096_4	sawRom4096_4inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[4]),
-	.q_b (sawOutputsAntiInterp0[4])
-);
-							 
-sawRom4096_5	sawRom4096_5inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[5]),
-	.q_b (sawOutputsAntiInterp0[5])
-);
-											
-sawRom4096_6	sawRom4096_6inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[6]),
-	.q_b (sawOutputsAntiInterp0[6])
-);
-											
-sawRom4096_7	sawRom4096_7inst 
-(
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(Clk),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sawOutputsInterp0[7]),
-	.q_b (sawOutputsAntiInterp0[7])
-);
-							 
-mux_oneHot sawMuxInterp 
-(
-	.oneHot(octave),
-	.dataIn(sawOutputsInterp0),
-	.dataOut(waveSampsInterp[1][0])
-);
-								
-mux_oneHot sawMuxAntiInterp 
-(
-	.oneHot(octave),
-	.dataIn(sawOutputsAntiInterp0),
-	.dataOut(waveSampsAntiInterp[1][0])
-);
-
-mux_oneHot sawMuxInterp1 
-(
-	.oneHot((octave >> 1)),
-	.dataIn(sawOutputsInterp0),
-	.dataOut(waveSampsInterp[1][1])
-);
-	
-mux_oneHot sawMuxAntiInterp1 
-(
-	.oneHot((octave >> 1)),
-	.dataIn(sawOutputsAntiInterp0),
-	.dataOut(waveSampsAntiInterp[1][1])
-);
-
-//=======================================================
-// Square-wave ROM: identical in structure to sawtooth-wave ROM
-reg   [15:0] sqrOutputsInterp0[8];
-reg   [15:0] sqrOutputsAntiInterp0[8];
-
-sqrRom4096_0	sqrRom4096_0inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[0]),
-	.q_b (sqrOutputsAntiInterp0[0]));
-							 
-sqrRom4096_1	sqrRom4096_1inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[1]),
-	.q_b (sqrOutputsAntiInterp0[1]));
-											
-sqrRom4096_2	sqrRom4096_2inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[2]),
-	.q_b (sqrOutputsAntiInterp0[2]));
-											
-sqrRom4096_3	sqrRom4096_3inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[3]),
-	.q_b (sqrOutputsAntiInterp0[3]));
-											
-sqrRom4096_4	sqrRom4096_4inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[4]),
-	.q_b (sqrOutputsAntiInterp0[4]));
-							 
-sqrRom4096_5	sqrRom4096_5inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[5]),
-	.q_b (sqrOutputsAntiInterp0[5]));
-											
-sqrRom4096_6	sqrRom4096_6inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[6]),
-	.q_b (sqrOutputsAntiInterp0[6]));
-											
-sqrRom4096_7	sqrRom4096_7inst (
-	.address_a(sampAddrA),
-	.address_b(sampAddrB),
-	.clock(MAX10_CLK2_50),
-	.rden_a(readEn),
-	.rden_b(readEn),
-	.q_a(sqrOutputsInterp0[7]),
-	.q_b (sqrOutputsAntiInterp0[7]));
-
-
-mux_oneHot sqrMuxInterp (
-	.oneHot(octave),
-	.dataIn(sqrOutputsInterp0),
-	.dataOut(waveSampsInterp[2][0]));
-								
-mux_oneHot sqrMuxAntiInterp (
-	.oneHot(octave),
-	.dataIn(sqrOutputsAntiInterp0),
-	.dataOut(waveSampsAntiInterp[2][0]));
-
-mux_oneHot sqrMuxInterp1 (
-	.oneHot((octave >> 1)),
-	.dataIn(sqrOutputsInterp0),
-	.dataOut(waveSampsInterp[2][1]));
-	
-mux_oneHot sqrMuxAntiInterp1 (
-	.oneHot((octave >> 1)),
-	.dataIn(sqrOutputsAntiInterp0),
-	.dataOut(waveSampsAntiInterp[2][1]));
-
-
-//=======================================================
-//   Instantiate On-Chip Memory FIFO
-//=======================================================
-
-// On-chip memory FIFO is dual-clocked such that samples can be fed in and fed out at
-// different rates, allowing for samples to be generated using the 50 MHz Clock while they
-// are read out at the sample rate for the audio codec (44.1 kHz)
-
-logic [31:0]	fifoDout = 32'b0; 
-logic [31:0]	fifoDin = 32'b0;
-logic 			i2sReq = 1'b0;
-logic				sampReq = 1'b0;
-logic 			i2sEmpty = 1'b1;
-logic				i2sFull = 1'b0;
-logic				sampEmpty = 1'b1;
-logic				sampFull = 1'b0;
-logic [7:0] 	i2sUsedw = 8'b0;
-logic [7:0]		sampUsedw = 8'b0; // depth of FIFO is 256;
-logic 			i2sHalfEmpty, sampHalfFull;
-
-assign sampHalfFull = ~sampUsedw[7];
-assign i2sHalfEmpty = ~i2sUsedw[7];
-
-
-onChipFIFO onChipFIFO_inst(
-		.aclr(Reset_h),
-		.data(fifoDin),
-		.rdclk(LRCLK),
-		.rdreq(i2sReq),
-		.wrclk(MAX10_CLK2_50),
-		.wrreq(sampReq),
-		.q(fifoDout),
-		.rdempty(i2sEmpty),
-		.rdfull(i2sFull),
-		.rdusedw(i2sUsedw),
-		.wrempty(sampEmpty),
-		.wrfull(sampFull),
-		.wrusedw(sampUsedw) );
 										
 										
 //=======================================================
@@ -541,10 +257,6 @@ reg   [31:0] freq32bit[31] = '{32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0,32'b0,
 										 32'b0,32'b0,32'b0};
 reg   [1:0]  waveforms[4] = '{2'b00, 2'b00, 2'b00, 2'b00};
-reg   [7:0]  octaveBase = 8'h80;
-logic [7:0]  octave;
-int			 octaveOffset = 0;
-
 logic [31:0] sigs[4] = '{32'b0,32'b0,32'b0,32'b0}; 
 reg   newNote[4] = '{1'b1,1'b1,1'b1,1'b1};
 
@@ -569,13 +281,13 @@ cntr_modulus voiceCntr
 
 
 //====================================================
-// Note and Amplitude Parsers
+// Keycode Parsers
 // Determines if a given keycode represents a note being played or
 // an amplitude being changed; changes the corresponding signals on the basis of the
 // keycode
 logic noteOff[4] = '{1'b0,1'b0,1'b0,1'b0};
 logic noteTrig[4] = '{1'b1,1'b0,1'b0,1'b0};
-int   noteIdx[4] = '{-1,-1,-1,-1};
+int   noteIdx[4] = '{0,0,0,0};
 reg   [7:0] keycodes_new[4] = '{8'h00, 8'h00, 8'h00, 8'h00};
 reg   [7:0] keycodes_old[4] = '{8'h00, 8'h00, 8'h00, 8'h00};
 noteParser noteParsers [0:3]
@@ -584,6 +296,8 @@ noteParser noteParsers [0:3]
 		.Reset(Reset_h),
 		.keycode_new(keycodes_new),
 		.keycode_old(keycodes_old),
+		.octaveBase(octaveBase),
+		.octave(noteOctaves),
 		.noteOff(noteOff),
 		.noteTrig(noteTrig),
 		.noteIdx(noteIdx)
@@ -597,6 +311,10 @@ amplitudeParser amplitudeParser_inst
 		.keycode(keycodes_new[voiceIdx]),
 		.amplitude(amplitude)
 );
+
+
+logic [7:0]  noteOctaves[4];
+reg    [7:0] octaveBase = 8'h80;
 //=====================================================
 
 
@@ -648,15 +366,15 @@ bilinearInterpolator interpolators[0:3]
 		.interpSamples(interpSamples),
 		.antiInterpSamples(antiInterpSamples),
 		.sampleInterp(interp),
-		.tableInterp(tableInterpCoef),
+		.tableInterp(tableInterp),
 		.interpedOut(tableInterpedSigs)
 );
 //====================================================
-logic [31:0] aStep[4] = '{32'h020f_ffff,32'h0200_ffff,32'h0200_ffff,32'h0200_ffff};
-logic [31:0] dStep[4] = '{32'h040f_ffff,32'h0400_ffff,32'h0400_ffff,32'h0400_ffff};
+logic [31:0] aStep[4] = '{32'h0000_8000,32'h0000_8000,32'h0000_8000,32'h0000_8000};
+logic [31:0] dStep[4] = '{32'h0000_8000,32'h0000_8000,32'h0000_8000,32'h0000_8000};
 logic [31:0] sLevel[4] = '{32'h7fff_ffff,32'h7fff_ffff,32'h7fff_ffff,32'h7fff_ffff};
-logic [31:0] sTime[4] = '{32'h0400_ffff,32'h0000_ffff,32'h0400_ffff,32'h0000_ffff};
-logic [31:0] rStep[4] = '{32'h0800_0000,32'h0800_ffff,32'h0800_ffff,32'h0800_ffff};
+logic [31:0] sTime[4] = '{32'h0000_8000,32'h0000_8000,32'h0000_8000,32'h0000_8000};
+logic [31:0] rStep[4] = '{32'h0001_0000,32'h0001_0000,32'h0001_0000,32'h0001_0000};
 logic [15:0] envs[4];
 
 ADSRenv ADSRenvelopes [0:3]
@@ -674,6 +392,22 @@ ADSRenv ADSRenvelopes [0:3]
 					
 logic [81:0] finalSig = 82'b0;
 logic [79:0] finalOutput = 80'b0;
+
+mult16x64Add4_ip ADSRMultAdd
+(
+		.dataa_0(tableInterpedSigs[0]),
+		.datab_0(amplitude),
+		.dataa_1(tableInterpedSigs[1]),
+		.datab_1(amplitude),
+		.dataa_2(tableInterpedSigs[2]),
+		.datab_2(amplitude),
+		.dataa_3(tableInterpedSigs[3]),
+		.datab_3(amplitude),
+		.clock0(MAX10_CLK2_50),
+		.ena0(voiceCycleEn),
+		.result(finalSig)
+);
+/*
 mult16x64Add4_ip ADSRMultAdd 
 (
 		.dataa_0(tableInterpedSigs[0]),
@@ -697,18 +431,18 @@ mult16x64 finalAmplitude
 		.datab(finalSig[81:17]),
 		.result(finalOutput)
 );
-		
+*/
 // send sample from appropriate table of selected waveform to interpolator
 always_ff @ (negedge MAX10_CLK2_50) begin
-	interpSamples[voiceIdx][0:1] <= waveSampsInterp[waveforms[voiceIdx]][0:1];
-	antiInterpSamples[voiceIdx][0:1] <= waveSampsAntiInterp[waveforms[voiceIdx]][0:1];
-	
-	fifoDin <= {finalOutput[77:62],16'b0};
+	interpSamples[voiceIdx][0:1] <= sampBankInterp;
+	antiInterpSamples[voiceIdx][0:1] <=sampBankAnti;
+	//fifoDin <= {finalOutput[77:62],16'b0};
+	fifoDin <= {finalSig[81:66],16'b0};
 end
 //======================================================
 
 
-
+logic [31:0] phaseIncrements[4];
 // determine appropriate sample on positive clock edge
 // (Should probably have a module for this)
 always_ff @ (posedge MAX10_CLK2_50) begin
@@ -726,7 +460,9 @@ always_ff @ (posedge MAX10_CLK2_50) begin
 			else begin
 				sampReq <= 1'b1;
 				phIncrs[voiceIdx] <= freq32bit[noteIdx[voiceIdx]];
-				tableInterpCoef[voiceIdx] <= tableInterpCoefs[noteIdx[voiceIdx]];
+				//phIncrs[voiceIdx] <= phaseIncrements[voiceIdx];
+				//tableInterpCoef[voiceIdx] <= tableInterpCoefs[noteIdx[voiceIdx]];
+				/*
 				if (noteIdx[voiceIdx] < 12)
 					octave <= octaveBase;
 				else begin
@@ -737,9 +473,9 @@ always_ff @ (posedge MAX10_CLK2_50) begin
 							octave <= (octaveBase >> 2);
 					end
 				end
+				*/
 				readEn <= 1'b1;
 				sampAddrA <= tblAddrs[voiceIdx];
-				sampAddrB <= tblAddrs[voiceIdx]+12'h001;
 				
 			end
 		end
@@ -767,7 +503,44 @@ end
 
 
 
+//=======================================================
+//   Instantiate On-Chip Memory FIFO
+//=======================================================
 
+// On-chip memory FIFO is dual-clocked such that samples can be fed in and fed out at
+// different rates, allowing for samples to be generated using the 50 MHz Clock while they
+// are read out at the sample rate for the audio codec (44.1 kHz)
+
+logic [31:0]	fifoDout = 32'b0; 
+logic [31:0]	fifoDin = 32'b0;
+logic 			i2sReq = 1'b0;
+logic				sampReq = 1'b0;
+logic 			i2sEmpty = 1'b1;
+logic				i2sFull = 1'b0;
+logic				sampEmpty = 1'b1;
+logic				sampFull = 1'b0;
+logic [7:0] 	i2sUsedw = 8'b0;
+logic [7:0]		sampUsedw = 8'b0; // depth of FIFO is 256;
+logic 			i2sHalfEmpty, sampHalfFull;
+
+assign sampHalfFull = ~sampUsedw[7];
+assign i2sHalfEmpty = ~i2sUsedw[7];
+
+
+onChipFIFO onChipFIFO_inst(
+		.aclr(Reset_h),
+		.data(fifoDin),
+		.rdclk(LRCLK),
+		.rdreq(i2sReq),
+		.wrclk(MAX10_CLK2_50),
+		.wrreq(sampReq),
+		.q(fifoDout),
+		.rdempty(i2sEmpty),
+		.rdfull(i2sFull),
+		.rdusedw(i2sUsedw),
+		.wrempty(sampEmpty),
+		.wrfull(sampFull),
+		.wrusedw(sampUsedw) );
 
 //=======================================================
 //   I2S assignments
@@ -953,10 +726,17 @@ finalProject u0 (
 	.usb_gpx_export(USB_GPX),
 	
 	//PHASE INCREMENTS
+	
 	.phase_incr0_external_connection_export(freq32bit[0][31:0]),
 	.phase_incr1_external_connection_export(freq32bit[1][31:0]),
 	.phase_incr2_external_connection_export(freq32bit[2][31:0]),
 	.phase_incr3_external_connection_export(freq32bit[3][31:0]),
+	/*
+	.phase_incr0_external_connection_export(phaseIncrements[0]),
+	.phase_incr1_external_connection_export(phaseIncrements[1]),
+	.phase_incr2_external_connection_export(phaseIncrements[2]),
+	.phase_incr3_external_connection_export(phaseIncrements[3]),
+	*/
 	.phase_incr4_external_connection_export(freq32bit[4][31:0]),
 	.phase_incr5_external_connection_export(freq32bit[5][31:0]),
 	.phase_incr6_external_connection_export(freq32bit[6][31:0]),
@@ -985,6 +765,7 @@ finalProject u0 (
 	.phase_incr29_external_connection_export(freq32bit[29][31:0]),
 	.phase_incr30_external_connection_export(freq32bit[30][31:0]),
 	
+	
 	//KEYCODES
 	//.keycode_export(keycode_new),
 	.keycode_export(keycodes_new[0]),
@@ -996,11 +777,12 @@ finalProject u0 (
 	.hex_digits_export({hex_num_4, hex_num_3, hex_num_1, hex_num_0}),
 	.leds_export({hundreds, signs, LEDDummy}),
 	
-	//Table Index and interpolation coeficient
-	//.tablecoef0_external_connection_export_export(tableInterpCoef[0]),
-	//.tablecoef1_external_connection_export_export(tableInterpCoef[1]),
-	//.tablecoef2_external_connection_export_export(tableInterpCoef[2]),
-	//.tablecoef3_external_connection_export_export(tableInterpCoef[3]),
+	//NOTE/VOICE INDICES
+	.noteidx0_export(noteIdx[0]),
+	.noteidx1_export(noteIdx[1]),
+	.noteidx2_export(noteIdx[2]),
+	.noteidx3_export(noteIdx[3]),
+	//.voiceidx_export({6'b0,voiceIdx}),
 	
 	//OCTAVE
 	.oct_external_connection_export(octaveBase),

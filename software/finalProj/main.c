@@ -45,6 +45,39 @@ int8_t currentVoiceNum = 0;
 BYTE OCTQ = 0x80;
 BYTE MONO_POLY = 0x01;
 
+uint32_t prevIndices[4] = {0,0,0,0};
+
+void getNoteIndices(uint32_t* indexArray) {
+	*(indexArray) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX0_BASE);
+	*(indexArray+1) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX1_BASE);
+	*(indexArray+2) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX2_BASE);
+	*(indexArray+3) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX3_BASE);
+}
+
+void setFrequencyFromIndex(uint32_t* noteIndices) {
+	DWORD PHASEQ[4];
+	DWORD MASK;
+	uint32_t noteNum;
+	uint64_t phaseIncrement;
+	double f;
+
+	for (int i = 0; i < 4; i++){
+		noteNum = (currentOctave)*12 - 6 + noteIndices[i];
+		f = (440.00000000/sampleRate)*(double)pow(2.,((noteNum-69/12.0)));
+		phaseIncrement = (uint64_t)(f*(double)(pow(2.,phasePrecision-8)));
+		PHASEQ[i] = 0x00000000;
+		MASK = 0x00000001;
+		for (int j = 0; j < 32; j++) {
+			PHASEQ[i] += phaseIncrement & MASK;
+			MASK <<= 1;
+		}
+	}
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR0_BASE,PHASEQ[0]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE,PHASEQ[1]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE,PHASEQ[2]);
+	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE,PHASEQ[3]);
+
+}
 
 void initPhaseIncrements(){
 	for (int i = 0; i < 31; i++){
@@ -89,6 +122,7 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR16_BASE, phaseIncs[16]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR17_BASE, phaseIncs[17]);
 	// glitch: BASE ADDRESSES OF NEWLY ADDED PERIPHERALS ARENT RECOGNIZED
+	/*
 	// but they still work for whatever reason
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR18_BASE, phaseIncs[18]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR19_BASE, phaseIncs[19]);
@@ -103,22 +137,22 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR28_BASE, phaseIncs[28]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR29_BASE, phaseIncs[29]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR30_BASE, phaseIncs[30]);
-
-	/*
-	IOWR_ALTERA_AVALON_PIO_DATA(0X180, phaseIncs[18]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0X170, phaseIncs[19]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x160, phaseIncs[20]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x150, phaseIncs[21]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x140, phaseIncs[22]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x130, phaseIncs[23]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x120, phaseIncs[24]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x110, phaseIncs[25]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0x100, phaseIncs[26]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0xf0, phaseIncs[27]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0xe0, phaseIncs[28]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0xd0, phaseIncs[29]);
-	IOWR_ALTERA_AVALON_PIO_DATA(0xc0, phaseIncs[30]);
 	*/
+
+	IOWR_ALTERA_AVALON_PIO_DATA(0x1d0, phaseIncs[18]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x1c0, phaseIncs[19]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x1b0, phaseIncs[20]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x1a0, phaseIncs[21]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x190, phaseIncs[22]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x180, phaseIncs[23]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x170, phaseIncs[24]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x160, phaseIncs[25]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x150, phaseIncs[26]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x140, phaseIncs[27]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x130, phaseIncs[28]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x120, phaseIncs[29]);
+	IOWR_ALTERA_AVALON_PIO_DATA(0x110, phaseIncs[30]);
+
 	IOWR_ALTERA_AVALON_PIO_DATA(OCT_BASE, OCTQ);
 
 	return;
@@ -276,6 +310,8 @@ void printSignedHex1(signed char value) {
 int main() {
 
 	int voiceIdx = 0;
+	uint32_t noteIndices[4] = {0,0,0,0};
+	int newNoteFlag;
 	ALT_AVALON_I2C_DEV_t *i2c_dev; //pointer to instance structure
 	//get a pointer to the Avalon i2c instance
 	i2c_dev = alt_avalon_i2c_open("/dev/i2c_0"); //this has to reflect Platform Designer name
@@ -377,13 +413,14 @@ int main() {
 	WORD keycode;
 
 	initPhaseIncrements();
-	WORD initAmp = 0x38;
+	//WORD initAmp = 0x38;
 	printf("phase increments initialized\n");
 	printf("initializing MAX3421E...\n");
 	MAX3421E_init();
 	printf("initializing USB...\n");
 	USB_init();
 	while (1) {
+		newNoteFlag = 0;
 		printf(".");
 		MAX3421E_Task();
 		USB_Task();
@@ -411,10 +448,25 @@ int main() {
 					if (keycode != 0x00) {
 						voiceIdx = (voiceIdx+1)%4;
 					}
+
 				}
 				if (searchForOct(kbdbuf.keycode[0])) {
 					setOctUpDn(kbdbuf.keycode[0]);
 				}
+				/*
+				getNoteIndices(noteIndices);
+				printf("new note indices: ");
+				for (int i = 0; i < 4; i++) {
+					if (noteIndices[i] != prevIndices[i]) {
+						newNoteFlag = 1;
+						prevIndices[i] = noteIndices[i];
+						printf("%x ",noteIndices[i]);
+					}
+				}
+				if (newNoteFlag) {
+					setFrequencyFromIndex(noteIndices);
+				}
+				*/
 
 				printSignedHex0(kbdbuf.keycode[0]);
 				printSignedHex1(kbdbuf.keycode[1]);
