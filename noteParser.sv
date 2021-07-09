@@ -4,24 +4,14 @@ module noteParser(
 		input  logic        Clk, Reset,
 		input  logic [7:0]  keycode_new, keycode_old, 
 		input  logic [7:0]  octaveBase,
-		output logic [7:0]  octave,
 		output logic        noteOff, noteTrig,
 		output int          noteIdx
 );
-	logic [7:0] octaveVoice;
 	int noteNum, noteBase;
 	assign noteIdx = noteBase + noteNum;
 	
 	
 	always_comb begin
-		if (noteNum < 12)
-			octaveVoice = octaveBase;
-		else begin
-			if (noteNum < 24)
-				octaveVoice = (octaveBase >> 1);
-			else
-				octaveVoice = (octaveBase >> 2);
-		end
 		case (octaveBase)
 			8'h80 :
 				noteBase = 6;
@@ -47,10 +37,10 @@ module noteParser(
 	always_ff @ (posedge Clk) begin
 		if (Reset) begin
 			noteNum <= 0;
-			octave <= octaveVoice;
+			noteOff <= 0;
+			noteTrig <= 0;
 		end
 		else begin
-		//octave <= octaveVoice;
 			case (keycode_new)
 				8'h1D :
 				begin
@@ -162,7 +152,7 @@ module noteParser(
 				end
 				8'h04 :
 				begin
-					noteNum <= 5;
+					noteNum <= 1;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -173,7 +163,7 @@ module noteParser(
 				end
 				8'h16 :
 				begin
-					noteNum <= 7;
+					noteNum <= 3;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -184,7 +174,7 @@ module noteParser(
 				end
 				8'h07 :
 				begin
-					noteNum <= 9;
+					noteNum <= 5;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -195,7 +185,7 @@ module noteParser(
 				end
 				8'h09 :
 				begin
-					noteNum <= 11;
+					noteNum <= 7;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -206,7 +196,7 @@ module noteParser(
 				end
 				8'h0A :
 				begin
-					noteNum <= 13;
+					noteNum <= 9;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -217,7 +207,7 @@ module noteParser(
 				end
 				8'h0B :
 				begin
-					noteNum <= 15;
+					noteNum <= 11;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -228,7 +218,7 @@ module noteParser(
 				end
 				8'h0D :
 				begin
-					noteNum <= 17;
+					noteNum <= 13;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -239,7 +229,7 @@ module noteParser(
 				end
 				8'h0E :
 				begin
-					noteNum <= 19;
+					noteNum <= 15;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -248,7 +238,7 @@ module noteParser(
 				end
 				8'h0F :
 				begin
-					noteNum <= 21;
+					noteNum <= 17;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -259,7 +249,7 @@ module noteParser(
 				end
 				8'h33 :
 				begin
-					noteNum <= 23;
+					noteNum <= 19;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -270,7 +260,7 @@ module noteParser(
 				end
 				8'h34 :
 				begin
-					noteNum <= 25;
+					noteNum <= 21;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;
@@ -379,17 +369,6 @@ module noteParser(
 				8'h13 :
 				begin
 					noteNum <= 28;
-					if (keycode_old != keycode_new)
-					begin
-						noteOff <= 1'b0;
-						noteTrig <= 1'b1;
-					end
-					else
-						noteTrig <= 1'b0;
-				end
-				8'h2F :
-				begin
-					noteNum <= 30;
 					if (keycode_old != keycode_new)
 					begin
 						noteOff <= 1'b0;

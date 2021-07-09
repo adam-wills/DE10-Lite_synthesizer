@@ -1,0 +1,477 @@
+Analysis & Synthesis report for finalProject
+Sun May 09 14:02:06 2021
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis IP Cores Summary
+  6. Analysis & Synthesis Messages
+  7. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Failed - Sun May 09 14:02:06 2021           ;
+; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
+; Revision Name                      ; finalProject                                ;
+; Top-level Entity Name              ; lab62                                       ;
+; Family                             ; MAX 10                                      ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
+; UFM blocks                         ; N/A until Partition Merge                   ;
+; ADC blocks                         ; N/A until Partition Merge                   ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G     ;                    ;
+; Top-level entity name                                            ; lab62              ; finalProject       ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 8           ;
+; Maximum allowed            ; 4           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 1           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
++----------------------------+-------------+
+
+
++---------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                               ;
++--------+--------------+---------+--------------+--------------+-----------------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                   ; IP Include File ;
++--------+--------------+---------+--------------+--------------+-----------------------------------+-----------------+
+; Altera ; FIFO         ; 18.1    ; N/A          ; N/A          ; |lab62|onChipFIFO:onChipFIFO_inst ; onChipFIFO.v    ;
++--------+--------------+---------+--------------+--------------+-----------------------------------+-----------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
+    Info: Processing started: Sun May 09 14:01:21 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off finalProject -c finalProject
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file adsrenv.sv
+    Info (12023): Found entity 1: ADSREnv File: C:/Users/augh/Documents/ECE385/finalProject/ADSREnv.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/finalproject.v
+    Info (12023): Found entity 1: finalProject File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/finalProject.v Line: 6
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_reset_controller.v
+    Info (12023): Found entity 1: altera_reset_controller File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_reset_controller.v Line: 42
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_reset_synchronizer.v
+    Info (12023): Found entity 1: altera_reset_synchronizer File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_reset_synchronizer.v Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_irq_mapper.sv
+    Info (12023): Found entity 1: finalProject_irq_mapper File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_irq_mapper.sv Line: 31
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0.v
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_avalon_st_adapter_006.v
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_avalon_st_adapter_006 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_avalon_st_adapter_006.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_avalon_st_adapter_006_error_adapter_0.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_avalon_st_adapter_006_error_adapter_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_avalon_st_adapter_006_error_adapter_0.sv Line: 66
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_avalon_st_adapter.v
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_avalon_st_adapter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_avalon_st_adapter.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_avalon_st_adapter_error_adapter_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv Line: 66
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v
+    Info (12023): Found entity 1: altera_avalon_st_handshake_clock_crosser File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.v Line: 24
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_st_clock_crosser.v
+    Info (12023): Found entity 1: altera_avalon_st_clock_crosser File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_st_clock_crosser.v Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_st_pipeline_base.v
+    Info (12023): Found entity 1: altera_avalon_st_pipeline_base File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_st_pipeline_base.v Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_std_synchronizer_nocut.v
+    Info (12023): Found entity 1: altera_std_synchronizer_nocut File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_std_synchronizer_nocut.v Line: 44
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_width_adapter.sv
+    Info (12023): Found entity 1: altera_merlin_width_adapter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_width_adapter.sv Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_address_alignment.sv
+    Info (12023): Found entity 1: altera_merlin_address_alignment File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_address_alignment.sv Line: 26
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_burst_uncompressor.sv
+    Info (12023): Found entity 1: altera_merlin_burst_uncompressor File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_uncompressor.sv Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_rsp_mux_001.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_rsp_mux_001 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_rsp_mux_001.sv Line: 51
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/altera_merlin_arbitrator.sv
+    Info (12023): Found entity 1: altera_merlin_arbitrator File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_arbitrator.sv Line: 103
+    Info (12023): Found entity 2: altera_merlin_arb_adder File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_arbitrator.sv Line: 228
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_rsp_mux.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_rsp_mux File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_rsp_mux.sv Line: 51
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_rsp_demux_001.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_rsp_demux_001 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_rsp_demux_001.sv Line: 43
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_rsp_demux.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_rsp_demux File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_rsp_demux.sv Line: 43
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_cmd_mux_001.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_cmd_mux_001 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_cmd_mux_001.sv Line: 51
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_cmd_mux.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_cmd_mux File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_cmd_mux.sv Line: 51
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_cmd_demux_001.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_cmd_demux_001 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_cmd_demux_001.sv Line: 43
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_cmd_demux.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_cmd_demux File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_cmd_demux.sv Line: 43
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_burst_adapter.sv
+    Info (12023): Found entity 1: altera_merlin_burst_adapter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter.sv Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv
+    Info (12023): Found entity 1: altera_merlin_burst_adapter_uncompressed_only File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_uncmpr.sv Line: 39
+Info (12021): Found 5 design units, including 5 entities, in source file finalproject/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv
+    Info (12023): Found entity 1: altera_merlin_burst_adapter_burstwrap_increment File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv Line: 40
+    Info (12023): Found entity 2: altera_merlin_burst_adapter_adder File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv Line: 55
+    Info (12023): Found entity 3: altera_merlin_burst_adapter_subtractor File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv Line: 77
+    Info (12023): Found entity 4: altera_merlin_burst_adapter_min File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv Line: 98
+    Info (12023): Found entity 5: altera_merlin_burst_adapter_13_1 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_13_1.sv Line: 264
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_burst_adapter_new.sv
+    Info (12023): Found entity 1: altera_merlin_burst_adapter_new File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_burst_adapter_new.sv Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_incr_burst_converter.sv
+    Info (12023): Found entity 1: altera_incr_burst_converter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_incr_burst_converter.sv Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_wrap_burst_converter.sv
+    Info (12023): Found entity 1: altera_wrap_burst_converter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_wrap_burst_converter.sv Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_default_burst_converter.sv
+    Info (12023): Found entity 1: altera_default_burst_converter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_default_burst_converter.sv Line: 30
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_st_pipeline_stage.sv
+    Info (12023): Found entity 1: altera_avalon_st_pipeline_stage File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_st_pipeline_stage.sv Line: 22
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_router_008.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_router_008_default_decode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_008.sv Line: 45
+    Info (12023): Found entity 2: finalProject_mm_interconnect_0_router_008 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_008.sv Line: 84
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_router_003.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_router_003_default_decode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_003.sv Line: 45
+    Info (12023): Found entity 2: finalProject_mm_interconnect_0_router_003 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_003.sv Line: 84
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_router_002.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_router_002_default_decode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_002.sv Line: 45
+    Info (12023): Found entity 2: finalProject_mm_interconnect_0_router_002 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_002.sv Line: 84
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_router_001.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_router_001_default_decode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_001.sv Line: 45
+    Info (12023): Found entity 2: finalProject_mm_interconnect_0_router_001 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router_001.sv Line: 84
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/finalproject_mm_interconnect_0_router.sv
+    Info (12023): Found entity 1: finalProject_mm_interconnect_0_router_default_decode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router.sv Line: 45
+    Info (12023): Found entity 2: finalProject_mm_interconnect_0_router File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_mm_interconnect_0_router.sv Line: 84
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_sc_fifo.v
+    Info (12023): Found entity 1: altera_avalon_sc_fifo File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_sc_fifo.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_slave_agent.sv
+    Info (12023): Found entity 1: altera_merlin_slave_agent File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_slave_agent.sv Line: 34
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_master_agent.sv
+    Info (12023): Found entity 1: altera_merlin_master_agent File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_master_agent.sv Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_slave_translator.sv
+    Info (12023): Found entity 1: altera_merlin_slave_translator File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_slave_translator.sv Line: 35
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_merlin_master_translator.sv
+    Info (12023): Found entity 1: altera_merlin_master_translator File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_merlin_master_translator.sv Line: 32
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_usb_rst.v
+    Info (12023): Found entity 1: finalProject_usb_rst File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_usb_rst.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_usb_gpx.v
+    Info (12023): Found entity 1: finalProject_usb_gpx File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_usb_gpx.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_timer.v
+    Info (12023): Found entity 1: finalProject_timer File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_timer.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_sysid_qsys_0.v
+    Info (12023): Found entity 1: finalProject_sysid_qsys_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sysid_qsys_0.v Line: 34
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_spi_0.v
+    Info (12023): Found entity 1: finalProject_spi_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_spi_0.v Line: 41
+Info (12021): Found 4 design units, including 4 entities, in source file finalproject/synthesis/submodules/finalproject_sdram_pll.v
+    Info (12023): Found entity 1: finalProject_sdram_pll_dffpipe_l2c File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram_pll.v Line: 37
+    Info (12023): Found entity 2: finalProject_sdram_pll_stdsync_sv6 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram_pll.v Line: 98
+    Info (12023): Found entity 3: finalProject_sdram_pll_altpll_vg92 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram_pll.v Line: 130
+    Info (12023): Found entity 4: finalProject_sdram_pll File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram_pll.v Line: 217
+Info (12021): Found 2 design units, including 2 entities, in source file finalproject/synthesis/submodules/finalproject_sdram.v
+    Info (12023): Found entity 1: finalProject_sdram_input_efifo_module File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram.v Line: 21
+    Info (12023): Found entity 2: finalProject_sdram File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram.v Line: 159
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_phase_incr0.v
+    Info (12023): Found entity 1: finalProject_phase_incr0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_phase_incr0.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_onchip_memory2_0.v
+    Info (12023): Found entity 1: finalProject_onchip_memory2_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_onchip_memory2_0.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_nios2_gen2_0.v
+    Info (12023): Found entity 1: finalProject_nios2_gen2_0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0.v Line: 9
+Info (12021): Found 21 design units, including 21 entities, in source file finalproject/synthesis/submodules/finalproject_nios2_gen2_0_cpu.v
+    Info (12023): Found entity 1: finalProject_nios2_gen2_0_cpu_register_bank_a_module File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 21
+    Info (12023): Found entity 2: finalProject_nios2_gen2_0_cpu_register_bank_b_module File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 87
+    Info (12023): Found entity 3: finalProject_nios2_gen2_0_cpu_nios2_oci_debug File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 153
+    Info (12023): Found entity 4: finalProject_nios2_gen2_0_cpu_nios2_oci_break File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 295
+    Info (12023): Found entity 5: finalProject_nios2_gen2_0_cpu_nios2_oci_xbrk File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 588
+    Info (12023): Found entity 6: finalProject_nios2_gen2_0_cpu_nios2_oci_dbrk File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 795
+    Info (12023): Found entity 7: finalProject_nios2_gen2_0_cpu_nios2_oci_itrace File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 982
+    Info (12023): Found entity 8: finalProject_nios2_gen2_0_cpu_nios2_oci_td_mode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1115
+    Info (12023): Found entity 9: finalProject_nios2_gen2_0_cpu_nios2_oci_dtrace File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1183
+    Info (12023): Found entity 10: finalProject_nios2_gen2_0_cpu_nios2_oci_compute_input_tm_cnt File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1265
+    Info (12023): Found entity 11: finalProject_nios2_gen2_0_cpu_nios2_oci_fifo_wrptr_inc File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1337
+    Info (12023): Found entity 12: finalProject_nios2_gen2_0_cpu_nios2_oci_fifo_cnt_inc File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1380
+    Info (12023): Found entity 13: finalProject_nios2_gen2_0_cpu_nios2_oci_fifo File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1427
+    Info (12023): Found entity 14: finalProject_nios2_gen2_0_cpu_nios2_oci_pib File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1913
+    Info (12023): Found entity 15: finalProject_nios2_gen2_0_cpu_nios2_oci_im File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 1936
+    Info (12023): Found entity 16: finalProject_nios2_gen2_0_cpu_nios2_performance_monitors File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 2006
+    Info (12023): Found entity 17: finalProject_nios2_gen2_0_cpu_nios2_avalon_reg File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 2023
+    Info (12023): Found entity 18: finalProject_nios2_gen2_0_cpu_ociram_sp_ram_module File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 2116
+    Info (12023): Found entity 19: finalProject_nios2_gen2_0_cpu_nios2_ocimem File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 2181
+    Info (12023): Found entity 20: finalProject_nios2_gen2_0_cpu_nios2_oci File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 2362
+    Info (12023): Found entity 21: finalProject_nios2_gen2_0_cpu File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.v Line: 2834
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_nios2_gen2_0_cpu_debug_slave_sysclk.v
+    Info (12023): Found entity 1: finalProject_nios2_gen2_0_cpu_debug_slave_sysclk File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu_debug_slave_sysclk.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_nios2_gen2_0_cpu_debug_slave_tck.v
+    Info (12023): Found entity 1: finalProject_nios2_gen2_0_cpu_debug_slave_tck File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu_debug_slave_tck.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_nios2_gen2_0_cpu_debug_slave_wrapper.v
+    Info (12023): Found entity 1: finalProject_nios2_gen2_0_cpu_debug_slave_wrapper File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu_debug_slave_wrapper.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_nios2_gen2_0_cpu_test_bench.v
+    Info (12023): Found entity 1: finalProject_nios2_gen2_0_cpu_test_bench File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu_test_bench.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_leds_pio.v
+    Info (12023): Found entity 1: finalProject_leds_pio File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_leds_pio.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_keycode.v
+    Info (12023): Found entity 1: finalProject_keycode File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_keycode.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_key.v
+    Info (12023): Found entity 1: finalProject_key File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_key.v Line: 21
+Info (12021): Found 5 design units, including 5 entities, in source file finalproject/synthesis/submodules/finalproject_jtag_uart.v
+    Info (12023): Found entity 1: finalProject_jtag_uart_sim_scfifo_w File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_jtag_uart.v Line: 21
+    Info (12023): Found entity 2: finalProject_jtag_uart_scfifo_w File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_jtag_uart.v Line: 78
+    Info (12023): Found entity 3: finalProject_jtag_uart_sim_scfifo_r File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_jtag_uart.v Line: 164
+    Info (12023): Found entity 4: finalProject_jtag_uart_scfifo_r File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_jtag_uart.v Line: 243
+    Info (12023): Found entity 5: finalProject_jtag_uart File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_jtag_uart.v Line: 331
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c.v
+    Info (12023): Found entity 1: altera_avalon_i2c File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_csr.v
+    Info (12023): Found entity 1: altera_avalon_i2c_csr File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_csr.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_clk_cnt.v
+    Info (12023): Found entity 1: altera_avalon_i2c_clk_cnt File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_clk_cnt.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_condt_det.v
+    Info (12023): Found entity 1: altera_avalon_i2c_condt_det File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_condt_det.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_condt_gen.v
+    Info (12023): Found entity 1: altera_avalon_i2c_condt_gen File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_condt_gen.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_fifo.v
+    Info (12023): Found entity 1: altera_avalon_i2c_fifo File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_fifo.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_mstfsm.v
+    Info (12023): Found entity 1: altera_avalon_i2c_mstfsm File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_mstfsm.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_rxshifter.v
+    Info (12023): Found entity 1: altera_avalon_i2c_rxshifter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_rxshifter.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_txshifter.v
+    Info (12023): Found entity 1: altera_avalon_i2c_txshifter File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_txshifter.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_spksupp.v
+    Info (12023): Found entity 1: altera_avalon_i2c_spksupp File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_spksupp.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/altera_avalon_i2c_txout.v
+    Info (12023): Found entity 1: altera_avalon_i2c_txout File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/altera_avalon_i2c_txout.v Line: 18
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_amplitude.v
+    Info (12023): Found entity 1: finalProject_amplitude File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_amplitude.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file finalproject/synthesis/submodules/finalproject_a0.v
+    Info (12023): Found entity 1: finalProject_a0 File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_a0.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file shiftreg_n.sv
+    Info (12023): Found entity 1: shiftreg_N File: C:/Users/augh/Documents/ECE385/finalProject/shiftreg_N.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file hexdriver.sv
+    Info (12023): Found entity 1: HexDriver File: C:/Users/augh/Documents/ECE385/finalProject/HexDriver.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file lab62.sv
+    Info (12023): Found entity 1: lab62 File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 10
+Info (12021): Found 1 design units, including 1 entities, in source file onchipfifo.v
+    Info (12023): Found entity 1: onChipFIFO File: C:/Users/augh/Documents/ECE385/finalProject/onChipFIFO.v Line: 39
+Info (12021): Found 1 design units, including 1 entities, in source file phasor.sv
+    Info (12023): Found entity 1: phasor File: C:/Users/augh/Documents/ECE385/finalProject/phasor.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file unsigned_mult.sv
+    Info (12023): Found entity 1: unsigned_mult File: C:/Users/augh/Documents/ECE385/finalProject/unsigned_mult.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file unsigned_mult16.sv
+    Info (12023): Found entity 1: unsigned_mult16 File: C:/Users/augh/Documents/ECE385/finalProject/unsigned_mult16.sv Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at ADSREnv.sv(31): created implicit net for "dval_intermed" File: C:/Users/augh/Documents/ECE385/finalProject/ADSREnv.sv Line: 31
+Warning (10037): Verilog HDL or VHDL warning at finalProject_sdram.v(318): conditional expression evaluates to a constant File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram.v Line: 318
+Warning (10037): Verilog HDL or VHDL warning at finalProject_sdram.v(328): conditional expression evaluates to a constant File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram.v Line: 328
+Warning (10037): Verilog HDL or VHDL warning at finalProject_sdram.v(338): conditional expression evaluates to a constant File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram.v Line: 338
+Warning (10037): Verilog HDL or VHDL warning at finalProject_sdram.v(682): conditional expression evaluates to a constant File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_sdram.v Line: 682
+Warning (10037): Verilog HDL or VHDL warning at finalProject_spi_0.v(402): conditional expression evaluates to a constant File: C:/Users/augh/Documents/ECE385/finalProject/finalProject/synthesis/submodules/finalProject_spi_0.v Line: 402
+Info (12127): Elaborating entity "lab62" for the top level hierarchy
+Warning (10850): Verilog HDL warning at lab62.sv(169): number of words (1023) in memory file does not match the number of elements in the address range [0:1023] File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 169
+Warning (10855): Verilog HDL warning at lab62.sv(168): initial value for variable ADSRTable should be constant File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 168
+Warning (10027): Verilog HDL or VHDL warning at the lab62.sv(252): index expression is not wide enough to address all of the elements in the array File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 252
+Warning (10027): Verilog HDL or VHDL warning at the lab62.sv(253): index expression is not wide enough to address all of the elements in the array File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 253
+Warning (10027): Verilog HDL or VHDL warning at the lab62.sv(254): index expression is not wide enough to address all of the elements in the array File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 254
+Warning (10230): Verilog HDL assignment warning at lab62.sv(542): truncated value with size 32 to match size of target (2) File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 542
+Warning (10034): Output port "HEX4" at lab62.sv(30) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 30
+Warning (10034): Output port "HEX5" at lab62.sv(31) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 31
+Warning (10034): Output port "VGA_R" at lab62.sv(49) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 49
+Warning (10034): Output port "VGA_G" at lab62.sv(50) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 50
+Warning (10034): Output port "VGA_B" at lab62.sv(51) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 51
+Warning (10034): Output port "VGA_HS" at lab62.sv(47) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 47
+Warning (10034): Output port "VGA_VS" at lab62.sv(48) has no driver File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 48
+Info (12128): Elaborating entity "onChipFIFO" for hierarchy "onChipFIFO:onChipFIFO_inst" File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 208
+Info (12128): Elaborating entity "dcfifo" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component" File: C:/Users/augh/Documents/ECE385/finalProject/onChipFIFO.v Line: 104
+Info (12130): Elaborated megafunction instantiation "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component" File: C:/Users/augh/Documents/ECE385/finalProject/onChipFIFO.v Line: 104
+Info (12133): Instantiated megafunction "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component" with the following parameter: File: C:/Users/augh/Documents/ECE385/finalProject/onChipFIFO.v Line: 104
+    Info (12134): Parameter "intended_device_family" = "MAX 10"
+    Info (12134): Parameter "lpm_numwords" = "256"
+    Info (12134): Parameter "lpm_showahead" = "OFF"
+    Info (12134): Parameter "lpm_type" = "dcfifo"
+    Info (12134): Parameter "lpm_width" = "32"
+    Info (12134): Parameter "lpm_widthu" = "8"
+    Info (12134): Parameter "overflow_checking" = "ON"
+    Info (12134): Parameter "rdsync_delaypipe" = "4"
+    Info (12134): Parameter "read_aclr_synch" = "OFF"
+    Info (12134): Parameter "underflow_checking" = "ON"
+    Info (12134): Parameter "use_eab" = "ON"
+    Info (12134): Parameter "write_aclr_synch" = "OFF"
+    Info (12134): Parameter "wrsync_delaypipe" = "4"
+Info (12021): Found 1 design units, including 1 entities, in source file db/dcfifo_jul1.tdf
+    Info (12023): Found entity 1: dcfifo_jul1 File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 40
+Info (12128): Elaborating entity "dcfifo_jul1" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated" File: c:/intelfpga_lite/18.1/quartus/libraries/megafunctions/dcfifo.tdf Line: 190
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_gray2bin_kra.tdf
+    Info (12023): Found entity 1: a_gray2bin_kra File: C:/Users/augh/Documents/ECE385/finalProject/db/a_gray2bin_kra.tdf Line: 22
+Info (12128): Elaborating entity "a_gray2bin_kra" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|a_gray2bin_kra:rdptr_g_gray2bin" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 57
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_graycounter_jg6.tdf
+    Info (12023): Found entity 1: a_graycounter_jg6 File: C:/Users/augh/Documents/ECE385/finalProject/db/a_graycounter_jg6.tdf Line: 24
+Info (12128): Elaborating entity "a_graycounter_jg6" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|a_graycounter_jg6:rdptr_g1p" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 61
+Info (12021): Found 1 design units, including 1 entities, in source file db/a_graycounter_fub.tdf
+    Info (12023): Found entity 1: a_graycounter_fub File: C:/Users/augh/Documents/ECE385/finalProject/db/a_graycounter_fub.tdf Line: 24
+Info (12128): Elaborating entity "a_graycounter_fub" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|a_graycounter_fub:wrptr_g1p" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 62
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_8a61.tdf
+    Info (12023): Found entity 1: altsyncram_8a61 File: C:/Users/augh/Documents/ECE385/finalProject/db/altsyncram_8a61.tdf Line: 27
+Info (12128): Elaborating entity "altsyncram_8a61" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|altsyncram_8a61:fifo_ram" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 63
+Info (12021): Found 1 design units, including 1 entities, in source file db/dffpipe_gd9.tdf
+    Info (12023): Found entity 1: dffpipe_gd9 File: C:/Users/augh/Documents/ECE385/finalProject/db/dffpipe_gd9.tdf Line: 24
+Info (12128): Elaborating entity "dffpipe_gd9" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|dffpipe_gd9:rs_brp" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 70
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_synch_pipe_2ol.tdf
+    Info (12023): Found entity 1: alt_synch_pipe_2ol File: C:/Users/augh/Documents/ECE385/finalProject/db/alt_synch_pipe_2ol.tdf Line: 26
+Info (12128): Elaborating entity "alt_synch_pipe_2ol" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|alt_synch_pipe_2ol:rs_dgwp" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 72
+Info (12021): Found 1 design units, including 1 entities, in source file db/dffpipe_jd9.tdf
+    Info (12023): Found entity 1: dffpipe_jd9 File: C:/Users/augh/Documents/ECE385/finalProject/db/dffpipe_jd9.tdf Line: 24
+Info (12128): Elaborating entity "dffpipe_jd9" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|alt_synch_pipe_2ol:rs_dgwp|dffpipe_jd9:dffpipe6" File: C:/Users/augh/Documents/ECE385/finalProject/db/alt_synch_pipe_2ol.tdf Line: 34
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_synch_pipe_3ol.tdf
+    Info (12023): Found entity 1: alt_synch_pipe_3ol File: C:/Users/augh/Documents/ECE385/finalProject/db/alt_synch_pipe_3ol.tdf Line: 26
+Info (12128): Elaborating entity "alt_synch_pipe_3ol" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|alt_synch_pipe_3ol:ws_dgrp" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 75
+Info (12021): Found 1 design units, including 1 entities, in source file db/dffpipe_kd9.tdf
+    Info (12023): Found entity 1: dffpipe_kd9 File: C:/Users/augh/Documents/ECE385/finalProject/db/dffpipe_kd9.tdf Line: 24
+Info (12128): Elaborating entity "dffpipe_kd9" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|alt_synch_pipe_3ol:ws_dgrp|dffpipe_kd9:dffpipe9" File: C:/Users/augh/Documents/ECE385/finalProject/db/alt_synch_pipe_3ol.tdf Line: 34
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_5h5.tdf
+    Info (12023): Found entity 1: cmpr_5h5 File: C:/Users/augh/Documents/ECE385/finalProject/db/cmpr_5h5.tdf Line: 22
+Info (12128): Elaborating entity "cmpr_5h5" for hierarchy "onChipFIFO:onChipFIFO_inst|dcfifo:dcfifo_component|dcfifo_jul1:auto_generated|cmpr_5h5:rdempty_eq_comp" File: C:/Users/augh/Documents/ECE385/finalProject/db/dcfifo_jul1.tdf Line: 82
+Info (12128): Elaborating entity "phasor" for hierarchy "phasor:phaseRegs[3]" File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 237
+Info (12128): Elaborating entity "unsigned_mult16" for hierarchy "unsigned_mult16:amps[3]" File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 244
+Info (12128): Elaborating entity "unsigned_mult" for hierarchy "unsigned_mult16:amps[3]|unsigned_mult:AhiBhi" File: C:/Users/augh/Documents/ECE385/finalProject/unsigned_mult16.sv Line: 27
+Info (12128): Elaborating entity "ADSREnv" for hierarchy "ADSREnv:envelopes[3]" File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 257
+Warning (10036): Verilog HDL or VHDL warning at ADSREnv.sv(7): object "next_state" assigned a value but never read File: C:/Users/augh/Documents/ECE385/finalProject/ADSREnv.sv Line: 7
+Info (10264): Verilog HDL Case Statement information at ADSREnv.sv(145): all case item expressions in this case statement are onehot File: C:/Users/augh/Documents/ECE385/finalProject/ADSREnv.sv Line: 145
+Warning (10240): Verilog HDL Always Construct warning at ADSREnv.sv(145): inferring latch(es) for variable "calc_intermed", which holds its previous value in one or more paths through the always construct File: C:/Users/augh/Documents/ECE385/finalProject/ADSREnv.sv Line: 145
+Error (10166): SystemVerilog RTL Coding error at ADSREnv.sv(145): always_comb construct does not infer purely combinational logic. File: C:/Users/augh/Documents/ECE385/finalProject/ADSREnv.sv Line: 145
+Error (12152): Can't elaborate user hierarchy "ADSREnv:envelopes[3]" File: C:/Users/augh/Documents/ECE385/finalProject/lab62.sv Line: 257
+Info (144001): Generated suppressed messages file C:/Users/augh/Documents/ECE385/finalProject/output_files/finalProject.map.smsg
+Error: Quartus Prime Analysis & Synthesis was unsuccessful. 2 errors, 22 warnings
+    Error: Peak virtual memory: 4878 megabytes
+    Error: Processing ended: Sun May 09 14:02:08 2021
+    Error: Elapsed time: 00:00:47
+    Error: Total CPU time (on all processors): 00:00:59
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/augh/Documents/ECE385/finalProject/output_files/finalProject.map.smsg.
+
+

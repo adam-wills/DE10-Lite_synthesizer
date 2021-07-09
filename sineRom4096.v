@@ -236,6 +236,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096.bsf FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096_inst.v TRUE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096_inst.v FALSE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sineRom4096_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf

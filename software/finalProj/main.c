@@ -98,6 +98,7 @@ void initPhaseIncrements(){
 			MASK <<= 1;
 		}
 		phaseIncs[i] = PHASEQ;
+		printf('%x \n',phaseIncs[i]);
 		//tableCoefs[i] = TCOEFQ;
 	}
 	BYTE OCTQ = 0x80;

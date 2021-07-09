@@ -1,0 +1,9 @@
+# # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
+# 
+preplace inst sineInitTable.onchip_flash_0 -pg 1 -lvl 1 -y 30
+preplace inst sineInitTable -pg 1 -lvl 1 -y 40 -regy -20
+preplace netloc EXPORT<net_container>sineInitTable</net_container>(SLAVE)onchip_flash_0.clk,(SLAVE)sineInitTable.clk) 1 0 1 NJ
+preplace netloc EXPORT<net_container>sineInitTable</net_container>(SLAVE)onchip_flash_0.nreset,(SLAVE)sineInitTable.nreset) 1 0 1 NJ
+preplace netloc EXPORT<net_container>sineInitTable</net_container>(SLAVE)onchip_flash_0.data,(SLAVE)sineInitTable.data) 1 0 1 NJ
+levelinfo -pg 1 0 50 210
+levelinfo -hier sineInitTable 60 100 200

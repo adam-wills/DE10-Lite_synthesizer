@@ -49,21 +49,6 @@ logic Continue_h;
 // Invert active-low reset and continue buttons
 assign {Continue_h} =~ (KEY[1]);
 assign {Reset_h} =~ (KEY[0]);	
-
-			
-//=======================================================
-//   I2C Tristate Buffers and Declarations
-//=======================================================
-
-
-logic I2C_SDA_IN, I2C_SDA_OE, I2C_SCL_IN, I2C_SCL_OE;
-	
-// active I2C signals pull clock and data lines low
-assign I2C_SDA_IN = ARDUINO_IO[14];
-assign ARDUINO_IO[14] = I2C_SDA_OE ? 1'b0 : 1'bZ;  // I2C SDA tristate
-	
-assign I2C_SCL_IN = ARDUINO_IO[15];
-assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bZ;	// I2C SCL tristate
 	
 	
 //=======================================================
@@ -72,21 +57,21 @@ assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bZ;	// I2C SCL tristate
 	
 logic readEn;
 reg   [12:0] sampAddrA;
-
+/*
 logic [31:0] tableInterpCoefs[30] = 
 '{32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C, 
   32'h84F68D17, 32'h6FA137C1, 32'h5A4BE26C, 32'h44F68D17, 32'h2FA137C2, 32'h1A4BE26C, 
   32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C, 
   32'h84F68D17, 32'h6FA137C1, 32'h5A4BE26C, 32'h44F68D17, 32'h2FA137C2, 32'h1A4BE26C, 
   32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C};
-
+*/
 
 waveformROMbank ROMbank
 (
 	.Clk(MAX10_CLK2_50),
 	.En(readEn),
 	.wave(waveforms[voiceIdx]),
-	.octave(tableIdx),
+	.tableIdx_oneHot(tableIdx),
 	//.octave(octave),
 	.addr(sampAddrA),
 	.dOutInterp(sampBankInterp),
@@ -100,7 +85,7 @@ reg   [31:0] tableInterp;
 tableIdxROM tableROM
 (
 	.Clk(MAX10_CLK2_50),
-	.noteIdx(noteIdx[voiceIdx][7:0]),
+	.noteIdx(noteIdx[voiceIdx][6:0]),
 	.tableIdx(tableIdx),
 	.tableInterp(tableInterp)
 );
@@ -112,6 +97,13 @@ tableIdxROM tableROM
 	
 logic phasorRun, loadWaves, loadWeights, loadEnables;
 
+reg   [7:0] fmWeights[4][4] =
+'{'{8'h0,8'h0,8'h0,8'h0},
+  '{8'h0,8'h0,8'h0,8'h0},
+  '{8'h0,8'h0,8'h0,8'h0},
+  '{8'h0,8'h0,8'h0,8'h0}};
+  
+/* 
 reg   [7:0] fmWeights0[4] = '{8'h0,8'h0,8'h0,8'h0};
 reg   [7:0] fmWeights1[4] = '{8'h0,8'h0,8'h0,8'h0};
 reg   [7:0] fmWeights2[4] = '{8'h0,8'h0,8'h0,8'h0};
@@ -121,47 +113,68 @@ reg   [0:3] fmEnable0 = 4'h0;
 reg   [0:3] fmEnable1 = 4'h0;
 reg   [0:3] fmEnable2 = 4'h0;
 reg   [0:3] fmEnable3 = 4'h0;
-
+*/
+reg   [0:3] fmEnable[4] = '{4'h0, 4'h0, 4'h0, 4'h0};
 logic [31:0] fmInputs[0:3] = '{32'b0,32'b0,32'b0,32'b0};
+/*
 logic [31:0] mult0Out[4] = '{32'b0,32'b0,32'b0,32'b0};
 logic [31:0] mult1Out[4] = '{32'b0,32'b0,32'b0,32'b0};
 logic [31:0] mult2Out[4] = '{32'b0,32'b0,32'b0,32'b0};
 logic [31:0] mult3Out[4] = '{32'b0,32'b0,32'b0,32'b0};
+*/
 logic [33:0] fmAddOut[4] = '{34'b0, 34'b0, 34'b0, 34'b0};	
 
+logic [31:0] multOut[4][4] = 
+'{'{32'b0,32'b0,32'b0,32'b0},
+  '{32'b0,32'b0,32'b0,32'b0},
+  '{32'b0,32'b0,32'b0,32'b0},
+  '{32'b0,32'b0,32'b0,32'b0}};
 // calculate FM inputs for all voices
-mult8x16_ip	fmMult0[0:3] (
+
+mult8x24_ip	fmMult0[0:3] (
 		.aclr(Reset_h),
 		.clken(En),
 		.clock(MAX10_CLK2_50),
-		.dataa(fmWeights0),
-		.datab(sigs16bit[0]),
-		.result(mult0Out));
+		.dataa(fmWeights[0]),
+		.datab(sigs24bit[0]),
+		.result(multOut[0]));
 								 
-mult8x16_ip	fmMult1[0:3] (
+mult8x24_ip	fmMult1[0:3] (
 		.aclr(Reset_h),
 		.clken(En),
 		.clock(MAX10_CLK2_50),
-		.dataa(fmWeights1),
-		.datab(sigs16bit[1]),
-		.result(mult1Out));
+		.dataa(fmWeights[1]),
+		.datab(sigs24bit[1]),
+		.result(multOut[1]));
 								 
-mult8x16_ip	fmMult2[0:3] (
+mult8x24_ip	fmMult2[0:3] (
 		.aclr(Reset_h),
 		.clken(En),
 		.clock(MAX10_CLK2_50),
-		.dataa(fmWeights2),
-		.datab(sigs16bit[2]),
-		.result(mult2Out));
+		.dataa(fmWeights[2]),
+		.datab(sigs24bit[2]),
+		.result(multOut[2]));
 								 
-mult8x16_ip	fmMult3[0:3] (
+mult8x24_ip	fmMult3[0:3] (
 		.aclr(Reset_h),
 		.clken(En),
 		.clock(MAX10_CLK2_50),
-		.dataa(fmWeights3),
-		.datab(sigs16bit[3]),
-		.result(mult3Out));
-								 
+		.dataa(fmWeights[3]),
+		.datab(sigs24bit[3]),
+		.result(multOut[3]));
+
+/*
+mult8x24_ip fmMult [0:3][0:3]
+(
+		.aclear(Reset_h),
+		.clken(En),
+		.clock(MAX10_CLK2_50),
+		.dataa(fmWeights),
+		.datab(sigs24bit),
+		.result(multOut)
+);
+*/
+/*					 
 // add FM signals to produce final FM signal								 
 parallelAdder fmAdd[0:3] (
 		.data0x(mult0Out),
@@ -169,8 +182,14 @@ parallelAdder fmAdd[0:3] (
 		.data2x(mult2Out),
 		.data3x(mult3Out),
 		.result(fmAddOut));
-
-logic [15:0] sigs16bit[4];
+*/
+parallelAdder fmAdd[0:3] (
+		.data0x(multOut[0]),
+		.data1x(multOut[1]),
+		.data2x(multOut[2]),
+		.data3x(multOut[3]),
+		.result(fmAddOut));
+logic [23:0] sigs24bit[4];
 
 // FM state machine handles states associated with frequency modulation
 FMSM	fm_stateMachine  (
@@ -187,15 +206,15 @@ always_ff @(posedge MAX10_CLK2_50)
 begin
 	if (phasorRun == 1'b1)
 	begin
-		sigs16bit[0] <= tableInterpedSigs[0][63:48];
-		sigs16bit[1] <= tableInterpedSigs[1][63:48];
-		sigs16bit[2] <= tableInterpedSigs[2][63:48];
-		sigs16bit[3] <= tableInterpedSigs[3][63:48];
+		sigs24bit[0] <= tableInterpedSigs[0][63:40];
+		sigs24bit[1] <= tableInterpedSigs[1][63:40];
+		sigs24bit[2] <= tableInterpedSigs[2][63:40];
+		sigs24bit[3] <= tableInterpedSigs[3][63:40];
 		
-		fmInputs[0][15:0] <= fmAddOut[0][33:18];
-		fmInputs[1][15:0] <= fmAddOut[1][33:18];
-		fmInputs[2][15:0] <= fmAddOut[2][33:18];
-		fmInputs[3][15:0] <= fmAddOut[3][33:18];
+		fmInputs[0][23:0] <= fmAddOut[0][33:10];
+		fmInputs[1][23:0] <= fmAddOut[1][33:10];
+		fmInputs[2][23:0] <= fmAddOut[2][33:10];
+		fmInputs[3][23:0] <= fmAddOut[3][33:10];
 		if (loadWaves == 1'b1)
 		begin
 			LEDR[9:6] <= SW[9:6];
@@ -216,13 +235,13 @@ begin
 			LEDR[9:2] <= SW[9:2];
 			LEDR[1:0] <= 2'b00;
 			if (SW[9] == 1'b1)
-				fmEnable0 <= SW[5:2];
+				fmEnable[0] <= SW[5:2];
 			if (SW[8] == 1'b1)
-				fmEnable1 <= SW[5:2];
+				fmEnable[1] <= SW[5:2];
 			if (SW[7] == 1'b1)
-				fmEnable2 <= SW[5:2];
+				fmEnable[2] <= SW[5:2];
 			if (SW[6] == 1'b1)
-				fmEnable3 <= SW[5:2];
+				fmEnable[3] <= SW[5:2];
 		end
 		else if (loadWeights == 1'b1)
 		begin
@@ -230,14 +249,14 @@ begin
 			LEDR[9:8] <= 2'b00;
 			for (int i = 0; i < 4; i++)
 			begin
-				if (fmEnable0[i] == 1'b1)
-					fmWeights0[i] <= SW[7:0];
-				if (fmEnable1[i] == 1'b1)
-					fmWeights1[i] <= SW[7:0];
-				if (fmEnable2[i] == 1'b1)
-					fmWeights2[i] <= SW[7:0];
-				if (fmEnable3[i] == 1'b1)
-					fmWeights3[i] <= SW[7:0];
+				if (fmEnable[0][i] == 1'b1)
+					fmWeights[0][i] <= SW[7:0];
+				if (fmEnable[1][i] == 1'b1)
+					fmWeights[1][i] <= SW[7:0];
+				if (fmEnable[2][i] == 1'b1)
+					fmWeights[2][i] <= SW[7:0];
+				if (fmEnable[3][i] == 1'b1)
+					fmWeights[3][i] <= SW[7:0];
 			end
 		end
 	end
@@ -297,7 +316,6 @@ noteParser noteParsers [0:3]
 		.keycode_new(keycodes_new),
 		.keycode_old(keycodes_old),
 		.octaveBase(octaveBase),
-		.octave(noteOctaves),
 		.noteOff(noteOff),
 		.noteTrig(noteTrig),
 		.noteIdx(noteIdx)
@@ -527,7 +545,8 @@ assign sampHalfFull = ~sampUsedw[7];
 assign i2sHalfEmpty = ~i2sUsedw[7];
 
 
-onChipFIFO onChipFIFO_inst(
+onChipFIFO onChipFIFO_inst
+(
 		.aclr(Reset_h),
 		.data(fifoDin),
 		.rdclk(LRCLK),
@@ -540,7 +559,24 @@ onChipFIFO onChipFIFO_inst(
 		.rdusedw(i2sUsedw),
 		.wrempty(sampEmpty),
 		.wrfull(sampFull),
-		.wrusedw(sampUsedw) );
+		.wrusedw(sampUsedw) 
+);
+
+
+
+//=======================================================
+//   I2C Tristate Buffers and Declarations
+//=======================================================
+
+
+logic I2C_SDA_IN, I2C_SDA_OE, I2C_SCL_IN, I2C_SCL_OE;
+	
+// active I2C signals pull clock and data lines low
+assign I2C_SDA_IN = ARDUINO_IO[14];
+assign ARDUINO_IO[14] = I2C_SDA_OE ? 1'b0 : 1'bZ;  // I2C SDA tristate
+	
+assign I2C_SCL_IN = ARDUINO_IO[15];
+assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bZ;	// I2C SCL tristate
 
 //=======================================================
 //   I2S assignments
@@ -564,6 +600,10 @@ logic SCLK, LRCLK;
 assign SCLK = ARDUINO_IO[5];
 assign LRCLK = ARDUINO_IO[4];
 
+
+//=======================================================
+//   Final Bitwise Shiftout
+//=======================================================
 logic prevLRCLK = 1'b0;
 logic shiftLChannel, loadR, loadL, shiftRChannel;
 logic shiftOutL, shiftOutR;

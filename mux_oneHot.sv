@@ -1,22 +1,14 @@
-module mux_oneHot (
-							//input  logic [W-1:0]	 oneHot,
-							//input  logic [DW-1:0] dataIn[W],
-							//output logic [DW-1:0] dataOut
-							input  logic [7:0]  oneHot,
-							input  logic [15:0] dataIn[8],
-							output logic [15:0] dataOut
-						 );
+
+module mux_oneHot 
+(
+		input  logic [7:0]  oneHot,
+		input  logic [15:0] dataIn[8],
+		output logic [15:0] dataOut
+);
 						 
-	//parameter W = 8;
-	//parameter DW = 16;
+	
 	always_comb
 	begin
-		//for (genvar i = 0; i < W; i++)
-		//for (int i = 0; i < 8; i++)
-		//begin
-			//assign dataOut = oneHot[i] ? dataIn[i] : 'z;
-			//dataOut = oneHot[i] ? dataIn[i] : 'z;
-		//end
 		case (oneHot)
 			8'h80 :
 				dataOut = dataIn[7];
@@ -38,9 +30,33 @@ module mux_oneHot (
 				dataOut = dataIn[0];
 		endcase
 	end
-	
 endmodule
+
+/*
+module mux_oneHot
+#(
+		parameter N_DATA = 6,
+		          S_WIDTH = 8,
+		          D_WIDTH = 16
+)
+(
+		input  logic [S_WIDTH-1:0] oneHot,
+		input  logic [D_WIDTH-1:0] dataIn[N_DATA],
+		output logic [D_WIDTH-1:0] dataOut
+);
+	logic [D_WIDTH-1:0] dataReg;
 	
+	generate
+		genvar i;
+		for (i = 0; i < N_DATA; i = i+1)
+			assign dataReg = (oneHot[i] == 1'b1) ? dataIn[i] : 'z;
+	endgenerate
+	
+	assign dataOut = dataReg;
+		
+endmodule
+*/	
+
 	
 	
 module mux4 

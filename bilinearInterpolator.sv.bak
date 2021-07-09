@@ -1,0 +1,18 @@
+module bilinearInterpolator
+(
+		input  logic        Clk, Reset, En,
+		input  logic [15:0] sampsTbl0[2],
+		input  logic [15:0] sampsTbl1[2],
+		input  logic [19:0] sampInterp,
+		input  logic [31:0] tblInterp,
+		output logic [63:0] interpedOut
+);
+	// storage for intermediate variables
+	reg   [36:0] interpedSamps[2];
+	reg   [64:0] res;
+	
+	reg   [19:0] sampAntiInterp;
+	reg   [31:0] tblAntiInterp;
+	
+	assign sampAntiInterp = ~sampInterp;
+	assign tblAntiInterp = ~tblInterp;

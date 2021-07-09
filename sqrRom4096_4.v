@@ -105,7 +105,7 @@ module sqrRom4096_4 (
 		altsyncram_component.clock_enable_output_a = "BYPASS",
 		altsyncram_component.clock_enable_output_b = "BYPASS",
 		altsyncram_component.indata_reg_b = "CLOCK0",
-		altsyncram_component.init_file = "sqrMIF3/sqrMIF_doubleHarmonics8.mif",
+		altsyncram_component.init_file = "./sqrMIF3/sqrMIF_doubleHarmonics8.mif",
 		altsyncram_component.intended_device_family = "MAX 10",
 		altsyncram_component.lpm_type = "altsyncram",
 		altsyncram_component.numwords_a = 4096,
@@ -163,7 +163,7 @@ endmodule
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
 // Retrieval info: PRIVATE: MEMSIZE NUMERIC "65536"
 // Retrieval info: PRIVATE: MEM_IN_BITS NUMERIC "0"
-// Retrieval info: PRIVATE: MIFfilename STRING "sqrMIF_4096Oct4.mif"
+// Retrieval info: PRIVATE: MIFfilename STRING "./sqrMIF3/sqrMIF_doubleHarmonics8.mif"
 // Retrieval info: PRIVATE: OPERATION_MODE NUMERIC "3"
 // Retrieval info: PRIVATE: OUTDATA_ACLR_B NUMERIC "0"
 // Retrieval info: PRIVATE: OUTDATA_REG_B NUMERIC "1"
@@ -195,7 +195,7 @@ endmodule
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_A STRING "BYPASS"
 // Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_B STRING "BYPASS"
 // Retrieval info: CONSTANT: INDATA_REG_B STRING "CLOCK0"
-// Retrieval info: CONSTANT: INIT_FILE STRING "sqrMIF_4096Oct4.mif"
+// Retrieval info: CONSTANT: INIT_FILE STRING "./sqrMIF3/sqrMIF_doubleHarmonics8.mif"
 // Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "MAX 10"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
 // Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "4096"
@@ -237,5 +237,5 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL sqrRom4096_4.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sqrRom4096_4.bsf FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL sqrRom4096_4_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL sqrRom4096_4_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL sqrRom4096_4_bb.v FALSE
 // Retrieval info: LIB_FILE: altera_mf
