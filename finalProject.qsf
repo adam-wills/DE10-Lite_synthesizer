@@ -455,3 +455,5 @@ set_global_assignment -name SYSTEMVERILOG_FILE waveformROMbank.sv
 set_global_assignment -name SYSTEMVERILOG_FILE octaveParser.sv
 set_global_assignment -name SYSTEMVERILOG_FILE wavetableIdxROM.sv
 set_global_assignment -name SYSTEMVERILOG_FILE i2s_core.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ddfs.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ddfs_core.sv

@@ -1,4 +1,7 @@
 module bilinearInterpolator
+// TODO: parameterize with your own (parameterized) IP multiplier;
+// ^algorithm is fairly simple (find 8x8 partial products, bitshift
+// left by the relative magnitude of each term, add shifted partial products)
 (
 		input  logic        Clk, En,
 		input  logic [15:0] interpSamples[2],
