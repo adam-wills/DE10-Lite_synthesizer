@@ -49,7 +49,7 @@ module finalProject_sysid_qsys_0 (
 
   wire    [ 31: 0] readdata;
   //control_slave, which is an e_avalon_slave
-  assign readdata = address ? 1625674815 : 0;
+  assign readdata = address ? 1626029187 : 0;
 
 endmodule
 

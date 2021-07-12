@@ -391,31 +391,55 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -entity DE10_LITE_Default -section_id Top
 set_global_assignment -name EXTERNAL_FLASH_FALLBACK_ADDRESS 00000000
 set_global_assignment -name INTERNAL_FLASH_UPDATE_MODE "SINGLE IMAGE WITH ERAM"
-set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
 set_global_assignment -name ALLOW_ANY_RAM_SIZE_FOR_RECOGNITION ON
 set_global_assignment -name ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION ON
 set_global_assignment -name ALLOW_ANY_SHIFT_REGISTER_SIZE_FOR_RECOGNITION ON
-set_global_assignment -name SYNTH_MESSAGE_LEVEL HIGH
-set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT NORMAL
-set_global_assignment -name ALLOW_REGISTER_MERGING OFF
-set_global_assignment -name DSP_BLOCK_BALANCING "DSP BLOCKS"
-set_global_assignment -name REMOVE_DUPLICATE_REGISTERS OFF
-set_global_assignment -name AUTO_RESOURCE_SHARING OFF
-set_global_assignment -name HDL_MESSAGE_LEVEL LEVEL3
-set_global_assignment -name DISABLE_REGISTER_MERGING_ACROSS_HIERARCHIES OFF
-set_global_assignment -name MUX_RESTRUCTURE OFF
-set_global_assignment -name PRE_MAPPING_RESYNTHESIS ON
-set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name OPTIMIZATION_MODE "AGGRESSIVE PERFORMANCE"
+set_global_assignment -name ALLOW_REGISTER_RETIMING ON
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name USE_SIGNALTAP_FILE stp3.stp
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name QIP_FILE IP_files/triRom4096_5.qip
+set_global_assignment -name QIP_FILE IP_files/triRom4096_4.qip
+set_global_assignment -name QIP_FILE IP_files/triRom4096_3.qip
+set_global_assignment -name QIP_FILE IP_files/triRom4096_2.qip
+set_global_assignment -name QIP_FILE IP_files/triRom4096_1.qip
+set_global_assignment -name QIP_FILE IP_files/triRom4096_0.qip
+set_global_assignment -name QIP_FILE IP_files/tableInterpROM.qip
+set_global_assignment -name QIP_FILE IP_files/tableIndexROM.qip
+set_global_assignment -name QIP_FILE IP_files/sqrRom4096_6.qip
+set_global_assignment -name QIP_FILE IP_files/sqrRom4096_5.qip
+set_global_assignment -name QIP_FILE IP_files/sqrRom4096_4.qip
+set_global_assignment -name QIP_FILE IP_files/sqrRom4096_3.qip
+set_global_assignment -name QIP_FILE IP_files/sqrRom4096_2.qip
+set_global_assignment -name QIP_FILE IP_files/sqrRom4096_1.qip
+set_global_assignment -name QIP_FILE IP_files/sineRom4096.qip
+set_global_assignment -name QIP_FILE IP_files/sawRom4096_6.qip
+set_global_assignment -name QIP_FILE IP_files/sawRom4096_5.qip
+set_global_assignment -name QIP_FILE IP_files/sawRom4096_4.qip
+set_global_assignment -name QIP_FILE IP_files/sawRom4096_3.qip
+set_global_assignment -name QIP_FILE IP_files/sawRom4096_2.qip
+set_global_assignment -name QIP_FILE IP_files/sawRom4096_1.qip
+set_global_assignment -name QIP_FILE IP_files/parllelAdd64x4.qip
+set_global_assignment -name QIP_FILE IP_files/parallelAdder.qip
+set_global_assignment -name QIP_FILE IP_files/onChipFIFO.qip
+set_global_assignment -name QIP_FILE IP_files/mult32x32Add2_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult16x64Add4_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult16x64Add4.qip
+set_global_assignment -name QIP_FILE IP_files/mult16x64.qip
+set_global_assignment -name QIP_FILE IP_files/mult16x32Add2.qip
+set_global_assignment -name QIP_FILE IP_files/mult16x20Add2_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult16Add2_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult16Add_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult16_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult8x24_ip.qip
+set_global_assignment -name QIP_FILE IP_files/mult8x16_ip.qip
 set_global_assignment -name QIP_FILE finalProject/synthesis/finalProject.qip
-set_global_assignment -name VERILOG_FILE parallelAdder.v
-set_global_assignment -name QIP_FILE parallelAdder.qip
 set_global_assignment -name SYSTEMVERILOG_FILE fpgaSynth.sv
 set_global_assignment -name SDC_FILE fpgaSynthSDC.sdc
-set_global_assignment -name QIP_FILE mult16_ip.qip
-set_global_assignment -name QIP_FILE mult8x16_ip.qip
 set_global_assignment -name SYSTEMVERILOG_FILE mux_oneHot.sv
 set_global_assignment -name SOURCE_FILE finalProject.qsf
 set_global_assignment -name SYSTEMVERILOG_FILE shiftreg_N.sv
@@ -423,15 +447,6 @@ set_global_assignment -name SYSTEMVERILOG_FILE phasor.sv
 set_global_assignment -name SYSTEMVERILOG_FILE HexDriver.sv
 set_global_assignment -name SYSTEMVERILOG_FILE FMSM.sv
 set_global_assignment -name SYSTEMVERILOG_FILE cntr_modulus.sv
-set_global_assignment -name QIP_FILE onChipFIFO.qip
-set_global_assignment -name QIP_FILE mult16Add2_ip.qip
-set_global_assignment -name QIP_FILE mult16x32Add2.qip
-set_global_assignment -name QIP_FILE mult16x20Add2_ip.qip
-set_global_assignment -name QIP_FILE mult32x32Add2_ip.qip
-set_global_assignment -name QIP_FILE mult16x64Add4.qip
-set_global_assignment -name QIP_FILE parllelAdd64x4.qip
-set_global_assignment -name QIP_FILE mult16x64.qip
-set_global_assignment -name QIP_FILE mult16x64Add4_ip.qip
 set_global_assignment -name SYSTEMVERILOG_FILE bilinearInterpolator.sv
 set_global_assignment -name SYSTEMVERILOG_FILE amplitudeParser.sv
 set_global_assignment -name SYSTEMVERILOG_FILE noteParser.sv
@@ -439,21 +454,4 @@ set_global_assignment -name SYSTEMVERILOG_FILE ADSRenv.sv
 set_global_assignment -name SYSTEMVERILOG_FILE waveformROMbank.sv
 set_global_assignment -name SYSTEMVERILOG_FILE octaveParser.sv
 set_global_assignment -name SYSTEMVERILOG_FILE wavetableIdxROM.sv
-set_global_assignment -name QIP_FILE sineRom4096.qip
-set_global_assignment -name QIP_FILE sawRom4096_1.qip
-set_global_assignment -name QIP_FILE sawRom4096_2.qip
-set_global_assignment -name QIP_FILE sawRom4096_3.qip
-set_global_assignment -name QIP_FILE sawRom4096_4.qip
-set_global_assignment -name QIP_FILE sawRom4096_5.qip
-set_global_assignment -name QIP_FILE sqrRom4096_1.qip
-set_global_assignment -name QIP_FILE sqrRom4096_2.qip
-set_global_assignment -name QIP_FILE sqrRom4096_3.qip
-set_global_assignment -name QIP_FILE sqrRom4096_4.qip
-set_global_assignment -name QIP_FILE sqrRom4096_5.qip
-set_global_assignment -name QIP_FILE triRom4096_1.qip
-set_global_assignment -name QIP_FILE triRom4096_2.qip
-set_global_assignment -name QIP_FILE triRom4096_3.qip
-set_global_assignment -name QIP_FILE triRom4096_4.qip
-set_global_assignment -name QIP_FILE triRom4096_5.qip
-set_global_assignment -name QIP_FILE mult8x24_ip.qip
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SYSTEMVERILOG_FILE i2s_core.sv

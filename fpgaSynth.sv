@@ -3,7 +3,7 @@ module fpgaSynth (
 	
       ///////// Clocks /////////
       input     MAX10_CLK1_50, 
-		input		 MAX10_CLK2_50,
+      input     MAX10_CLK2_50,
 
       ///////// KEY /////////
       input    [ 1: 0]   KEY,
@@ -55,16 +55,8 @@ assign {Reset_h} =~ (KEY[0]);
 //   Instantiate onChip-Memory Wavetables
 //=======================================================
 	
-logic readEn;
+//logic readEn;
 reg   [12:0] sampAddrA;
-/*
-logic [31:0] tableInterpCoefs[30] = 
-'{32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C, 
-  32'h84F68D17, 32'h6FA137C1, 32'h5A4BE26C, 32'h44F68D17, 32'h2FA137C2, 32'h1A4BE26C, 
-  32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C, 
-  32'h84F68D17, 32'h6FA137C1, 32'h5A4BE26C, 32'h44F68D17, 32'h2FA137C2, 32'h1A4BE26C, 
-  32'h04F68D17, 32'hEFA137C1, 32'hDA4BE26C, 32'hC4F68D16, 32'hAFA137C1, 32'h9A4BE26C};
-*/
 
 waveformROMbank ROMbank
 (
@@ -72,7 +64,6 @@ waveformROMbank ROMbank
 	.En(readEn),
 	.wave(waveforms[voiceIdx]),
 	.tableIdx_oneHot(tableIdx),
-	//.octave(octave),
 	.addr(sampAddrA),
 	.dOutInterp(sampBankInterp),
 	.dOutAnti(sampBankAnti)
@@ -103,25 +94,10 @@ reg   [7:0] fmWeights[4][4] =
   '{8'h0,8'h0,8'h0,8'h0},
   '{8'h0,8'h0,8'h0,8'h0}};
   
-/* 
-reg   [7:0] fmWeights0[4] = '{8'h0,8'h0,8'h0,8'h0};
-reg   [7:0] fmWeights1[4] = '{8'h0,8'h0,8'h0,8'h0};
-reg   [7:0] fmWeights2[4] = '{8'h0,8'h0,8'h0,8'h0};
-reg   [7:0] fmWeights3[4] = '{8'h0,8'h0,8'h0,8'h0};
 
-reg   [0:3] fmEnable0 = 4'h0;
-reg   [0:3] fmEnable1 = 4'h0;
-reg   [0:3] fmEnable2 = 4'h0;
-reg   [0:3] fmEnable3 = 4'h0;
-*/
 reg   [0:3] fmEnable[4] = '{4'h0, 4'h0, 4'h0, 4'h0};
 logic [31:0] fmInputs[0:3] = '{32'b0,32'b0,32'b0,32'b0};
-/*
-logic [31:0] mult0Out[4] = '{32'b0,32'b0,32'b0,32'b0};
-logic [31:0] mult1Out[4] = '{32'b0,32'b0,32'b0,32'b0};
-logic [31:0] mult2Out[4] = '{32'b0,32'b0,32'b0,32'b0};
-logic [31:0] mult3Out[4] = '{32'b0,32'b0,32'b0,32'b0};
-*/
+
 logic [33:0] fmAddOut[4] = '{34'b0, 34'b0, 34'b0, 34'b0};	
 
 logic [31:0] multOut[4][4] = 
@@ -133,7 +109,7 @@ logic [31:0] multOut[4][4] =
 
 mult8x24_ip	fmMult0[0:3] (
 		.aclr(Reset_h),
-		.clken(En),
+		.clken(sampGenEn),
 		.clock(MAX10_CLK2_50),
 		.dataa(fmWeights[0]),
 		.datab(sigs24bit[0]),
@@ -141,7 +117,7 @@ mult8x24_ip	fmMult0[0:3] (
 								 
 mult8x24_ip	fmMult1[0:3] (
 		.aclr(Reset_h),
-		.clken(En),
+		.clken(sampGenEn),
 		.clock(MAX10_CLK2_50),
 		.dataa(fmWeights[1]),
 		.datab(sigs24bit[1]),
@@ -149,7 +125,7 @@ mult8x24_ip	fmMult1[0:3] (
 								 
 mult8x24_ip	fmMult2[0:3] (
 		.aclr(Reset_h),
-		.clken(En),
+		.clken(sampGenEn),
 		.clock(MAX10_CLK2_50),
 		.dataa(fmWeights[2]),
 		.datab(sigs24bit[2]),
@@ -157,32 +133,12 @@ mult8x24_ip	fmMult2[0:3] (
 								 
 mult8x24_ip	fmMult3[0:3] (
 		.aclr(Reset_h),
-		.clken(En),
+		.clken(sampGenEn),
 		.clock(MAX10_CLK2_50),
 		.dataa(fmWeights[3]),
 		.datab(sigs24bit[3]),
 		.result(multOut[3]));
 
-/*
-mult8x24_ip fmMult [0:3][0:3]
-(
-		.aclear(Reset_h),
-		.clken(En),
-		.clock(MAX10_CLK2_50),
-		.dataa(fmWeights),
-		.datab(sigs24bit),
-		.result(multOut)
-);
-*/
-/*					 
-// add FM signals to produce final FM signal								 
-parallelAdder fmAdd[0:3] (
-		.data0x(mult0Out),
-		.data1x(mult1Out),
-		.data2x(mult2Out),
-		.data3x(mult3Out),
-		.result(fmAddOut));
-*/
 parallelAdder fmAdd[0:3] (
 		.data0x(multOut[0]),
 		.data1x(multOut[1]),
@@ -279,13 +235,13 @@ reg   [1:0]  waveforms[4] = '{2'b00, 2'b00, 2'b00, 2'b00};
 logic [31:0] sigs[4] = '{32'b0,32'b0,32'b0,32'b0}; 
 reg   newNote[4] = '{1'b1,1'b1,1'b1,1'b1};
 
-//===================================================
+
+
 // voiceCounter
 // Cycles through the voices: voiceIdx <-currentVoice
 reg   [1:0] voiceIdx;
-logic En, voiceCycleEn;
-assign En = (sampHalfFull|sampEmpty|i2sEmpty|i2sHalfEmpty)&(~i2sFull)&(sampReq);
-assign voiceCycleEn = En;
+logic voiceCycleEn;
+assign voiceCycleEn = sampGenEn & sampReq;
 
 cntr_modulus voiceCntr
 (
@@ -295,11 +251,8 @@ cntr_modulus voiceCntr
 		.sClear(),
 		.q(voiceIdx) 
 );
-//====================================================
 
 
-
-//====================================================
 // Keycode Parsers
 // Determines if a given keycode represents a note being played or
 // an amplitude being changed; changes the corresponding signals on the basis of the
@@ -307,8 +260,12 @@ cntr_modulus voiceCntr
 logic noteOff[4] = '{1'b0,1'b0,1'b0,1'b0};
 logic noteTrig[4] = '{1'b1,1'b0,1'b0,1'b0};
 int   noteIdx[4] = '{0,0,0,0};
-reg   [7:0] keycodes_new[4] = '{8'h00, 8'h00, 8'h00, 8'h00};
-reg   [7:0] keycodes_old[4] = '{8'h00, 8'h00, 8'h00, 8'h00};
+int   noteIdxBase[4] = '{0,0,0,0};
+reg   [7:0]  keycodes_new[4] = '{8'h00, 8'h00, 8'h00, 8'h00};
+reg   [7:0]  keycodes_old[4] = '{8'h00, 8'h00, 8'h00, 8'h00};
+reg   [15:0] amplitude = 16'h2000;
+reg   [7:0]  octaveBase = 8'h80;
+
 noteParser noteParsers [0:3]
 (
 		.Clk(MAX10_CLK2_50),
@@ -318,10 +275,11 @@ noteParser noteParsers [0:3]
 		.octaveBase(octaveBase),
 		.noteOff(noteOff),
 		.noteTrig(noteTrig),
-		.noteIdx(noteIdx)
+		.noteIdx(noteIdx),
+		.noteIdxBase(noteIdxBase)
 );
 
-reg   [15:0] amplitude = 16'h2000;
+
 amplitudeParser amplitudeParser_inst
 (
 		.Clk(MAX10_CLK2_50),
@@ -331,13 +289,6 @@ amplitudeParser amplitudeParser_inst
 );
 
 
-logic [7:0]  noteOctaves[4];
-reg    [7:0] octaveBase = 8'h80;
-//=====================================================
-
-
-
-//=====================================================
 // Phasors
 // Cycle from 32'h0 to 32'hffff_ffff and wrap back around to zero at a rate determined
 // by the phase increment (phIncrs), which is itself set based on the desired note frequency
@@ -348,30 +299,27 @@ phasor phaseRegs[0:3]
 (
 		.Clk(MAX10_CLK2_50),
 		.Reset(Reset_h),
-		.Enable(En),
+		.Enable(sampGenEn),
 		.phaseIncrement(phIncrs),
 		.fmInput(fmInputs),
 		.interp(interp),
 		.wavetableAddr(tblAddrs)
 );
-//=====================================================
 
 		
-//=====================================================
-
-
-
-
-
-//=====================================================
-
-
-		
-//=====================================================
 // Bilinear Interpolation
 // Interpolate between adjacent samples in a given frequency table using lowest 20 bits of
 // phasor value (top 12 are used to index into table), do the same for adjacent samples in
 // the adjacent frequency table then interpolate the two results
+
+always_ff @ (negedge MAX10_CLK2_50) begin
+	interpSamples[voiceIdx][0:1] <= sampBankInterp;
+	antiInterpSamples[voiceIdx][0:1] <=sampBankAnti;
+	
+	//fifoDin <= {finalSig[81:66],16'b0};
+	i2sDin <= {finalSig[81:66],16'b0};
+end
+
 logic [19:0] interp[4] = '{20'h0, 20'h0, 20'h0, 20'h0};
 logic [15:0] interpSamples[4][2];
 logic [15:0] antiInterpSamples[4][2];
@@ -387,7 +335,9 @@ bilinearInterpolator interpolators[0:3]
 		.tableInterp(tableInterp),
 		.interpedOut(tableInterpedSigs)
 );
-//====================================================
+
+// ADSR
+// Not yet fully debugged/integrated with software; values hardcoded
 logic [31:0] aStep[4] = '{32'h0000_8000,32'h0000_8000,32'h0000_8000,32'h0000_8000};
 logic [31:0] dStep[4] = '{32'h0000_8000,32'h0000_8000,32'h0000_8000,32'h0000_8000};
 logic [31:0] sLevel[4] = '{32'h7fff_ffff,32'h7fff_ffff,32'h7fff_ffff,32'h7fff_ffff};
@@ -425,49 +375,18 @@ mult16x64Add4_ip ADSRMultAdd
 		.ena0(voiceCycleEn),
 		.result(finalSig)
 );
-/*
-mult16x64Add4_ip ADSRMultAdd 
-(
-		.dataa_0(tableInterpedSigs[0]),
-		.datab_0(envs[0]),
-		.dataa_1(tableInterpedSigs[1]),
-		.datab_1(envs[1]),
-		.dataa_2(tableInterpedSigs[2]),
-		.datab_2(envs[2]),
-		.dataa_3(tableInterpedSigs[3]),
-		.datab_3(envs[3]),
-		.clock0(MAX10_CLK2_50),
-		.ena0(voiceCycleEn),
-		.result(finalSig)
-);
 
-mult16x64 finalAmplitude
-(
-		.clken(voiceCycleEn),
-		.clock(MAX10_CLK2_50),
-		.dataa(amplitude),
-		.datab(finalSig[81:17]),
-		.result(finalOutput)
-);
-*/
 // send sample from appropriate table of selected waveform to interpolator
-always_ff @ (negedge MAX10_CLK2_50) begin
-	interpSamples[voiceIdx][0:1] <= sampBankInterp;
-	antiInterpSamples[voiceIdx][0:1] <=sampBankAnti;
-	//fifoDin <= {finalOutput[77:62],16'b0};
-	fifoDin <= {finalSig[81:66],16'b0};
-end
-//======================================================
-
 
 logic [31:0] phaseIncrements[4];
+
 // determine appropriate sample on positive clock edge
 // (Should probably have a module for this)
 always_ff @ (posedge MAX10_CLK2_50) begin
 	if (Reset_h) 
 		sampReq <= 1'b0;
 	else begin
-		if ((sampHalfFull | sampEmpty | i2sEmpty | i2sHalfEmpty) & (~i2sFull)) begin
+		if (sampGenEn) begin
 			if (sampReq == 1'b1) begin
 				sampReq <= 1'b0;
 				readEn <= 1'b0;
@@ -477,91 +396,18 @@ always_ff @ (posedge MAX10_CLK2_50) begin
 			end
 			else begin
 				sampReq <= 1'b1;
-				phIncrs[voiceIdx] <= freq32bit[noteIdx[voiceIdx]];
-				//phIncrs[voiceIdx] <= phaseIncrements[voiceIdx];
-				//tableInterpCoef[voiceIdx] <= tableInterpCoefs[noteIdx[voiceIdx]];
-				/*
-				if (noteIdx[voiceIdx] < 12)
-					octave <= octaveBase;
-				else begin
-					if (noteIdx[voiceIdx] >= 12) begin
-						if (noteIdx[voiceIdx] < 24)
-							octave <= (octaveBase >> 1);
-						else
-							octave <= (octaveBase >> 2);
-					end
-				end
-				*/
+				phIncrs[voiceIdx] <= freq32bit[noteIdxBase[voiceIdx]];
+				//phIncrs[voiceIdx] <= phaseIncrements[voiceIdx];				
 				readEn <= 1'b1;
 				sampAddrA <= tblAddrs[voiceIdx];
-				
 			end
 		end
-	
 		else if (sampFull) begin
 			sampReq <= 1'b0;
 			readEn <= 1'b0;
 		end
 	end
 end
-
-
-logic [31:0] sampleInR, sampleInL;
-always @ (posedge LRCLK) begin
-	if (i2sEmpty == 1'b0)  begin
-		if (i2sReq == 1'b0)  begin
-			i2sReq <= 1'b1;
-			sampleInR <= fifoDout;
-			sampleInL <= fifoDout;
-		end
-		else
-			i2sReq <= 1'b0;
-	end
-end
-
-
-
-//=======================================================
-//   Instantiate On-Chip Memory FIFO
-//=======================================================
-
-// On-chip memory FIFO is dual-clocked such that samples can be fed in and fed out at
-// different rates, allowing for samples to be generated using the 50 MHz Clock while they
-// are read out at the sample rate for the audio codec (44.1 kHz)
-
-logic [31:0]	fifoDout = 32'b0; 
-logic [31:0]	fifoDin = 32'b0;
-logic 			i2sReq = 1'b0;
-logic				sampReq = 1'b0;
-logic 			i2sEmpty = 1'b1;
-logic				i2sFull = 1'b0;
-logic				sampEmpty = 1'b1;
-logic				sampFull = 1'b0;
-logic [7:0] 	i2sUsedw = 8'b0;
-logic [7:0]		sampUsedw = 8'b0; // depth of FIFO is 256;
-logic 			i2sHalfEmpty, sampHalfFull;
-
-assign sampHalfFull = ~sampUsedw[7];
-assign i2sHalfEmpty = ~i2sUsedw[7];
-
-
-onChipFIFO onChipFIFO_inst
-(
-		.aclr(Reset_h),
-		.data(fifoDin),
-		.rdclk(LRCLK),
-		.rdreq(i2sReq),
-		.wrclk(MAX10_CLK2_50),
-		.wrreq(sampReq),
-		.q(fifoDout),
-		.rdempty(i2sEmpty),
-		.rdfull(i2sFull),
-		.rdusedw(i2sUsedw),
-		.wrempty(sampEmpty),
-		.wrfull(sampFull),
-		.wrusedw(sampUsedw) 
-);
-
 
 
 //=======================================================
@@ -578,133 +424,55 @@ assign ARDUINO_IO[14] = I2C_SDA_OE ? 1'b0 : 1'bZ;  // I2C SDA tristate
 assign I2C_SCL_IN = ARDUINO_IO[15];
 assign ARDUINO_IO[15] = I2C_SCL_OE ? 1'b0 : 1'bZ;	// I2C SCL tristate
 
-//=======================================================
-//   I2S assignments
-//=======================================================
-
-// Divide master clock by 4 to derive 12.5MHz SGTL5000 master clock
-logic [1:0] aud_mclk_ctr;
-always_ff @ (posedge MAX10_CLK2_50) begin
-	if (Reset_h) begin
-		aud_mclk_ctr = 2'b00;
-	end
-	else begin
-		aud_mclk_ctr <= aud_mclk_ctr+1;
-	end
-end
-
-
-assign ARDUINO_IO[3] = aud_mclk_ctr[1]; //12.5 MHz master clock to SGTL5000
-
-logic SCLK, LRCLK;
-assign SCLK = ARDUINO_IO[5];
-assign LRCLK = ARDUINO_IO[4];
-
 
 //=======================================================
-//   Final Bitwise Shiftout
-//=======================================================
-logic prevLRCLK = 1'b0;
-logic shiftLChannel, loadR, loadL, shiftRChannel;
-logic shiftOutL, shiftOutR;
-logic [1:0] actionState; 
+//   I2S processing
+//=======================================================		
+logic        readEn = 1'b0;
+logic        streamoutR, streamOutL;
+logic [31:0] i2sDin;
 
-assign ARDUINO_IO[1] = 1'bZ;
-//assign ARDUINO_IO[2] = ARDUINO_IO[1]; //Loopback from I2S_DIN to I2S_DOUT for testing
-assign ARDUINO_IO[2] = LRCLK? shiftOutR : shiftOutL;
 
-// Shift registers to shift out individual bits of each sample at the rate of SCLK = 32*LRCLK
-shiftreg_N  shiftregL(
-		.Clk(SCLK),
+i2s_core i2s_core_inst
+(
+		.FCLK(MAX10_CLK2_50),
+		.SCLK(SCLK),
+		.LRCLK(LRCLK),
 		.Reset(Reset_h),
-		.Enable(~i2sEmpty),
-		.Shift_In(1'b0),
-		.Load(loadL),
-		.Shift_En(shiftLChannel),
-		.D(sampleInL),
-		.Shift_Out(shiftOutL),
-		.Data_Out());
-												  
-shiftreg_N  shiftregR(
-		.Clk(SCLK),
-		.Reset(Reset_h),
-		.Enable(~i2sEmpty),
-		.Shift_In(1'b0),
-		.Load(loadR),
-		.Shift_En(shiftRChannel),
-		.D(sampleInR),
-		.Shift_Out(shiftOutR),
-		.Data_Out());
-												  
-
-// State machine to determine shift-register behavior
-always_ff @ (posedge SCLK) 
-begin
-	actionState <= {prevLRCLK,LRCLK};
-	prevLRCLK <= LRCLK;
-end
-
-always_comb 
-begin
-	case (actionState)
-		2'b00 :
-		begin
-			shiftLChannel = 1'b1;
-			loadL = 1'b0;
-			loadR = 1'b0;
-			shiftRChannel = 1'b0;
-		end
-		2'b01 :
-		begin
-			shiftLChannel = 1'b0;
-			loadL = 1'b0;
-			loadR = 1'b1;
-			shiftRChannel = 1'b0;
-		end
-		2'b10 :
-		begin
-			shiftLChannel = 1'b0;
-			loadL = 1'b1;
-			loadR = 1'b0;
-			shiftRChannel = 1'b0;
-		end
-		2'b11 :
-		begin
-			shiftLChannel = 1'b0;
-			loadL = 1'b0;
-			loadR = 1'b0;
-			shiftRChannel = 1'b1;
-		end
-		default :
-			begin
-			shiftLChannel = 1'b0;
-			loadL = 1'b0;
-			loadR = 1'b0;
-			shiftRChannel = 1'b0;
-			end
-	endcase
-end
+		.i2sDin(i2sDin),
+		.sampReq(sampReq),
+		.MCLK(MCLK),
+		.sampGenEn(sampGenEn),
+		.sampFull(sampFull),
+		.streamOutR(streamOutR),
+		.streamOutL(streamOutL)
+);
 
 
 //=======================================================
 //  Structural coding
 //=======================================================
-logic SPI0_CS_N, SPI0_SCLK, SPI0_MISO, SPI0_MOSI, USB_GPX, USB_IRQ, USB_RST;
-logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
-logic [9:0] LEDDummy;
-logic [1:0] signs;
-logic [1:0] hundreds;
 
+// I2S
+logic MCLK, SCLK, LRCLK;
+logic [1:0] aud_mclk_ctr;
+assign ARDUINO_IO[2] = LRCLK ? streamOutR : streamOutL;
+assign ARDUINO_IO[3] = MCLK;
+assign LRCLK = ARDUINO_IO[4];
+assign SCLK = ARDUINO_IO[5];
+
+// SPI
+logic SPI0_CS_N, SPI0_SCLK, SPI0_MISO, SPI0_MOSI;
 assign ARDUINO_IO[10] = SPI0_CS_N;
 assign ARDUINO_IO[13] = SPI0_SCLK;
 assign ARDUINO_IO[11] = SPI0_MOSI;
 assign ARDUINO_IO[12] = 1'bZ;
 assign SPI0_MISO = ARDUINO_IO[12];
 
+// USB
+logic USB_GPX, USB_IRQ, USB_RST;
 assign ARDUINO_IO[9] = 1'bZ; 
 assign USB_IRQ = ARDUINO_IO[9];
-	
-//Assignments specific to Circuits At Home UHS_20
 assign ARDUINO_RESET_N = USB_RST;
 assign ARDUINO_IO[7] = USB_RST;//USB reset 
 assign ARDUINO_IO[8] = USB_GPX;
@@ -714,6 +482,11 @@ assign USB_GPX = 1'b0;//GPX is not needed for standard USB host - set to 0 to pr
 assign ARDUINO_IO[6] = 1'b1;
 
 //HEX drivers to convert numbers to HEX output
+logic [3:0] hex_num_4, hex_num_3, hex_num_1, hex_num_0; //4 bit input hex digits
+logic [9:0] LEDDummy;
+logic [1:0] signs;
+logic [1:0] hundreds;
+
 HexDriver hex_driver4 (hex_num_4, HEX3[6:0]);
 assign HEX3[7] = 1'b1;
 
@@ -764,7 +537,7 @@ finalProject u0 (
 	.usb_rst_export(USB_RST),
 	.usb_irq_export(USB_IRQ),
 	.usb_gpx_export(USB_GPX),
-	
+
 	//PHASE INCREMENTS
 	
 	.phase_incr0_external_connection_export(freq32bit[0][31:0]),

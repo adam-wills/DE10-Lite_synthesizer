@@ -5,33 +5,37 @@ module noteParser(
 		input  logic [7:0]  keycode_new, keycode_old, 
 		input  logic [7:0]  octaveBase,
 		output logic        noteOff, noteTrig,
-		output int          noteIdx
+		output int          noteIdx, noteIdxBase
 );
 	int noteNum, noteBase;
 	assign noteIdx = noteBase + noteNum;
+	assign noteIdxBase = noteNum;
 	
-	
-	always_comb begin
-		case (octaveBase)
-			8'h80 :
-				noteBase = 6;
-			8'h40 :
-				noteBase = 18;
-			8'h20 :
-				noteBase = 30;
-			8'h10 :
-				noteBase = 42;
-			8'h08 :
-				noteBase = 54;
-			8'h04 :
-				noteBase = 66;
-			8'h02 :
-				noteBase = 78;
-			8'h01 :
-				noteBase = 90;
-			default :
-				noteBase = 90;
-		endcase
+	always_ff @(posedge Clk) begin
+		if (Reset)
+			noteBase <= 6;
+		else begin
+			case (octaveBase)
+				8'h80 :
+					noteBase <= 6;
+				8'h40 :
+					noteBase <= 18;
+				8'h20 :
+					noteBase <= 30;
+				8'h10 :
+					noteBase <= 42;
+				8'h08 :
+					noteBase <= 54;
+				8'h04 :
+					noteBase <= 66;
+				8'h02 :
+					noteBase <= 78;
+				8'h01 :
+					noteBase <= 90;
+				default :
+					noteBase <= 90;
+			endcase
+		end
 	end
 	
 	always_ff @ (posedge Clk) begin

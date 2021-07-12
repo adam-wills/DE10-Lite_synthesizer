@@ -46,14 +46,14 @@ BYTE OCTQ = 0x80;
 BYTE MONO_POLY = 0x01;
 
 uint32_t prevIndices[4] = {0,0,0,0};
-
+/*
 void getNoteIndices(uint32_t* indexArray) {
 	*(indexArray) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX0_BASE);
 	*(indexArray+1) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX1_BASE);
 	*(indexArray+2) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX2_BASE);
 	*(indexArray+3) = IORD_ALTERA_AVALON_PIO_DATA(NOTEIDX3_BASE);
 }
-
+*/
 void setFrequencyFromIndex(uint32_t* noteIndices) {
 	DWORD PHASEQ[4];
 	DWORD MASK;
@@ -98,7 +98,7 @@ void initPhaseIncrements(){
 			MASK <<= 1;
 		}
 		phaseIncs[i] = PHASEQ;
-		printf('%x \n',phaseIncs[i]);
+		//printf('%x \n',phaseIncs[i]);
 		//tableCoefs[i] = TCOEFQ;
 	}
 	BYTE OCTQ = 0x80;
@@ -123,7 +123,7 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR16_BASE, phaseIncs[16]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR17_BASE, phaseIncs[17]);
 	// glitch: BASE ADDRESSES OF NEWLY ADDED PERIPHERALS ARENT RECOGNIZED
-	/*
+
 	// but they still work for whatever reason
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR18_BASE, phaseIncs[18]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR19_BASE, phaseIncs[19]);
@@ -138,8 +138,8 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR28_BASE, phaseIncs[28]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR29_BASE, phaseIncs[29]);
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR30_BASE, phaseIncs[30]);
-	*/
 
+	/*
 	IOWR_ALTERA_AVALON_PIO_DATA(0x1d0, phaseIncs[18]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x1c0, phaseIncs[19]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x1b0, phaseIncs[20]);
@@ -153,7 +153,7 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(0x130, phaseIncs[28]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x120, phaseIncs[29]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x110, phaseIncs[30]);
-
+	*/
 	IOWR_ALTERA_AVALON_PIO_DATA(OCT_BASE, OCTQ);
 
 	return;
@@ -189,7 +189,7 @@ int searchForOct(WORD keycode) {
 void setOctUpDn(WORD keycode) {
 	switch(keycode) {
 		case 45 :
-			currentOctave = (currentOctave == 1)? 1 : currentOctave-1;
+			currentOctave = (currentOctave == 0)? 0 : currentOctave-1;
 			break;
 		case 46 :
 			currentOctave = (currentOctave == 7)? 7 : currentOctave+1;
@@ -329,8 +329,10 @@ int main() {
 
 	//configure PLL, input frequency is 12.5 MHz, output frequency is 180.6336 MHz if 44.1kHz is desired
 	//or 196.608 MHz else
-	BYTE int_divisor = 180633600/12500000;
-	WORD frac_divisor = (WORD)(((180633600.0f/12500000.0f) - (float)int_divisor) * 2048.0f);
+	BYTE int_divisor = 196608000/12500000;
+	WORD frac_divisor = (WORD)(((196608000.0f/12500000.0f) - (float)int_divisor) * 2048.0f);
+	//BYTE int_divisor = 180633600/12500000;
+	//WORD frac_divisor = (WORD)(((180633600.0f/12500000.0f) - (float)int_divisor) * 2048.0f);
 	printf( "Programming PLL with integer divisor: %d, fractional divisor %d\n", int_divisor, frac_divisor);
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_PLL_CTRL, \
 				int_divisor << SGTL5000_PLL_INT_DIV_SHIFT|
@@ -360,7 +362,7 @@ int main() {
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_DIG_POWER,\
 			SGTL5000_ADC_EN|
 			SGTL5000_DAC_EN|
-			SGTL5000_DAP_POWERUP| //disable digital audio processor in CODEC
+			//SGTL5000_DAP_POWERUP| //disable digital audio processor in CODEC
 			SGTL5000_I2S_OUT_POWERUP|
 			SGTL5000_I2S_IN_POWERUP);
 	printf( "CHIP_DIG_POWER register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_DIG_POWER));
@@ -383,13 +385,11 @@ int main() {
 
 	//ADC -> I2S out, I2S in -> DAC
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_SSS_CTRL, \
-			SGTL5000_DAC_SEL_DAP << SGTL5000_DAC_SEL_SHIFT |
-			SGTL5000_I2S_OUT_SEL_ADC << SGTL5000_I2S_OUT_SEL_SHIFT|
-			SGTL5000_DAP_SEL_I2S_IN << SGTL5000_DAP_SEL_SHIFT);
+			SGTL5000_DAC_SEL_I2S_IN << SGTL5000_DAC_SEL_SHIFT |
+			SGTL5000_I2S_OUT_SEL_ADC << SGTL5000_I2S_OUT_SEL_SHIFT);
 	printf( "CHIP_SSS_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_SSS_CTRL));
 	printf( "CHIP_ANA_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_ANA_CTRL));
 
-	//ADC -> I2S out, I2S in -> DAP -> DAC
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ADCDAC_CTRL, 0x0000);
 	printf( "CHIP_ADCDAC_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_ADCDAC_CTRL));
 	printf( "CHIP_PAD_STRENGTH register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_PAD_STRENGTH));
@@ -401,8 +401,8 @@ int main() {
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ANA_HP_CTRL, 0x0505);
 	printf( "CHIP_ANA_HP_CTRL register: $x\n", SGTL5000_Reg_Rd (i2c_dev,SGTL5000_CHIP_ANA_HP_CTRL));
 
-	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_DAP_CTRL, SGTL5000_DAP_EN);
-	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_DAP_BASS_ENHANCE_CTRL, 0x0511);
+	//SGTL5000_Reg_Wr(i2c_dev, SGTL5000_DAP_CTRL, SGTL5000_DAP_EN);
+	//SGTL5000_Reg_Wr(i2c_dev, SGTL5000_DAP_BASS_ENHANCE_CTRL, 0x0511);
 
 	BYTE rcode;
 	BOOT_MOUSE_REPORT buf;		//USB mouse report

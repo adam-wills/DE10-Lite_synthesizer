@@ -1,121 +1,126 @@
 # # File gsaved with Nlview version 6.3.8  2013-12-19 bk=1.2992 VDI=34 GEI=35
 # 
-preplace inst finalProject.phase_incr5 -pg 1 -lvl 3 -y 2230
-preplace inst finalProject.phase_incr20 -pg 1 -lvl 3 -y 730
-preplace inst finalProject.phase_incr14 -pg 1 -lvl 3 -y 3750
-preplace inst finalProject.keycode1 -pg 1 -lvl 3 -y 1830
-preplace inst finalProject.keycode -pg 1 -lvl 3 -y 4650
-preplace inst finalProject.jtag_uart -pg 1 -lvl 3 -y 4150
-preplace inst finalProject.usb_irq -pg 1 -lvl 3 -y 5030
-preplace inst finalProject.phase_incr6 -pg 1 -lvl 3 -y 2530
-preplace inst finalProject.phase_incr21 -pg 1 -lvl 3 -y 830
-preplace inst finalProject.phase_incr15 -pg 1 -lvl 3 -y 3850
-preplace inst finalProject.keycode2 -pg 1 -lvl 3 -y 2030
-preplace inst finalProject.phase_incr7 -pg 1 -lvl 3 -y 2630
-preplace inst finalProject.phase_incr22 -pg 1 -lvl 3 -y 930
-preplace inst finalProject.phase_incr16 -pg 1 -lvl 3 -y 3950
-preplace inst finalProject.keycode3 -pg 1 -lvl 3 -y 2330
-preplace inst finalProject.sysid_qsys_0 -pg 1 -lvl 3 -y 4470
-preplace inst finalProject.phase_incr8 -pg 1 -lvl 3 -y 2930
-preplace inst finalProject.phase_incr23 -pg 1 -lvl 3 -y 1030
-preplace inst finalProject.phase_incr17 -pg 1 -lvl 3 -y 4050
-preplace inst finalProject.i2c_0 -pg 1 -lvl 3 -y 2810
-preplace inst finalProject.phase_incr9 -pg 1 -lvl 3 -y 3130
-preplace inst finalProject.phase_incr24 -pg 1 -lvl 3 -y 1130
-preplace inst finalProject.phase_incr18 -pg 1 -lvl 3 -y 530
-preplace inst finalProject.noteIdx0 -pg 1 -lvl 3 -y 130
+preplace inst finalProject.phase_incr5 -pg 1 -lvl 5 -y 2450
+preplace inst finalProject.phase_incr20 -pg 1 -lvl 5 -y 870
+preplace inst finalProject.phase_incr14 -pg 1 -lvl 5 -y 3950
+preplace inst finalProject.keycode1 -pg 1 -lvl 5 -y 2050
+preplace inst finalProject.keycode -pg 1 -lvl 5 -y 4850
+preplace inst finalProject.jtag_uart -pg 1 -lvl 5 -y 4350
+preplace inst finalProject.clk_1 -pg 1 -lvl 2 -y 1790
+preplace inst finalProject.usb_irq -pg 1 -lvl 5 -y 5230
+preplace inst finalProject.phase_incr6 -pg 1 -lvl 5 -y 2750
+preplace inst finalProject.phase_incr21 -pg 1 -lvl 5 -y 970
+preplace inst finalProject.phase_incr15 -pg 1 -lvl 5 -y 4050
+preplace inst finalProject.keycode2 -pg 1 -lvl 5 -y 2250
+preplace inst finalProject.phase_incr7 -pg 1 -lvl 5 -y 2850
+preplace inst finalProject.phase_incr22 -pg 1 -lvl 5 -y 1070
+preplace inst finalProject.phase_incr16 -pg 1 -lvl 5 -y 4150
+preplace inst finalProject.keycode3 -pg 1 -lvl 5 -y 2550
+preplace inst finalProject.voiceIdx -pg 1 -lvl 5 -y 130
+preplace inst finalProject.sysid_qsys_0 -pg 1 -lvl 5 -y 4670
+preplace inst finalProject.phase_incr8 -pg 1 -lvl 5 -y 3150
+preplace inst finalProject.phase_incr23 -pg 1 -lvl 5 -y 1170
+preplace inst finalProject.phase_incr17 -pg 1 -lvl 5 -y 4250
+preplace inst finalProject.i2c_0 -pg 1 -lvl 5 -y 3030
+preplace inst finalProject.phase_incr9 -pg 1 -lvl 5 -y 3350
+preplace inst finalProject.phase_incr24 -pg 1 -lvl 5 -y 1270
+preplace inst finalProject.phase_incr18 -pg 1 -lvl 5 -y 670
+preplace inst finalProject.noteIdx0 -pg 1 -lvl 5 -y 270
 preplace inst finalProject.nios2_gen2_0.reset_bridge -pg 1
-preplace inst finalProject.usb_rst -pg 1 -lvl 3 -y 5130
-preplace inst finalProject.sdram -pg 1 -lvl 3 -y 3250
-preplace inst finalProject.phase_incr30 -pg 1 -lvl 3 -y 1730
-preplace inst finalProject.phase_incr25 -pg 1 -lvl 3 -y 1230
-preplace inst finalProject.phase_incr19 -pg 1 -lvl 3 -y 630
-preplace inst finalProject.oct -pg 1 -lvl 3 -y 30
-preplace inst finalProject.noteIdx1 -pg 1 -lvl 3 -y 230
+preplace inst finalProject.usb_rst -pg 1 -lvl 5 -y 5330
+preplace inst finalProject.sdram -pg 1 -lvl 5 -y 3450
+preplace inst finalProject.phase_incr30 -pg 1 -lvl 5 -y 1950
+preplace inst finalProject.phase_incr25 -pg 1 -lvl 5 -y 1370
+preplace inst finalProject.phase_incr19 -pg 1 -lvl 5 -y 770
+preplace inst finalProject.oct -pg 1 -lvl 5 -y 30
+preplace inst finalProject.noteIdx1 -pg 1 -lvl 5 -y 370
 preplace inst finalProject.nios2_gen2_0.clock_bridge -pg 1
-preplace inst finalProject -pg 1 -lvl 1 -y 40 -regy -20
-preplace inst finalProject.phase_incr26 -pg 1 -lvl 3 -y 1330
-preplace inst finalProject.noteIdx2 -pg 1 -lvl 3 -y 330
-preplace inst finalProject.phase_incr27 -pg 1 -lvl 3 -y 1430
-preplace inst finalProject.noteIdx3 -pg 1 -lvl 3 -y 430
-preplace inst finalProject.phase_incr28 -pg 1 -lvl 3 -y 1530
-preplace inst finalProject.phase_incr0 -pg 1 -lvl 3 -y 2130
-preplace inst finalProject.timer -pg 1 -lvl 3 -y 4370
-preplace inst finalProject.spi_0 -pg 1 -lvl 3 -y 4250
-preplace inst finalProject.phase_incr29 -pg 1 -lvl 3 -y 1630
-preplace inst finalProject.phase_incr10 -pg 1 -lvl 3 -y 3350
-preplace inst finalProject.phase_incr1 -pg 1 -lvl 3 -y 2430
+preplace inst finalProject -pg 1 -lvl 1 -y 40 -regml 7 -regy -20
+preplace inst finalProject.phase_incr26 -pg 1 -lvl 5 -y 1470
+preplace inst finalProject.noteIdx2 -pg 1 -lvl 5 -y 470
+preplace inst finalProject.phase_incr27 -pg 1 -lvl 5 -y 1570
+preplace inst finalProject.noteIdx3 -pg 1 -lvl 5 -y 570
+preplace inst finalProject.phase_incr28 -pg 1 -lvl 5 -y 1750
+preplace inst finalProject.phase_incr0 -pg 1 -lvl 5 -y 2350
+preplace inst finalProject.timer -pg 1 -lvl 5 -y 4570
+preplace inst finalProject.spi_0 -pg 1 -lvl 5 -y 4450
+preplace inst finalProject.phase_incr29 -pg 1 -lvl 5 -y 1850
+preplace inst finalProject.phase_incr10 -pg 1 -lvl 5 -y 3550
+preplace inst finalProject.phase_incr1 -pg 1 -lvl 5 -y 2650
 preplace inst finalProject.nios2_gen2_0.cpu -pg 1
-preplace inst finalProject.leds_pio -pg 1 -lvl 3 -y 4830
-preplace inst finalProject.hex_digits_pio -pg 1 -lvl 3 -y 5230
-preplace inst finalProject.usb_gpx -pg 1 -lvl 3 -y 4930
-preplace inst finalProject.phase_incr2 -pg 1 -lvl 3 -y 3030
-preplace inst finalProject.phase_incr11 -pg 1 -lvl 3 -y 3450
-preplace inst finalProject.sdram_pll -pg 1 -lvl 3 -y 2730
-preplace inst finalProject.phase_incr3 -pg 1 -lvl 3 -y 5330
-preplace inst finalProject.phase_incr12 -pg 1 -lvl 3 -y 3550
-preplace inst finalProject.onchip_memory2_0 -pg 1 -lvl 3 -y 4750
-preplace inst finalProject.nios2_gen2_0 -pg 1 -lvl 2 -y 1900
-preplace inst finalProject.phase_incr4 -pg 1 -lvl 3 -y 1930
-preplace inst finalProject.phase_incr13 -pg 1 -lvl 3 -y 3650
-preplace inst finalProject.key -pg 1 -lvl 3 -y 4550
-preplace inst finalProject.clk_0 -pg 1 -lvl 1 -y 1830
+preplace inst finalProject.leds_pio -pg 1 -lvl 5 -y 5030
+preplace inst finalProject.hex_digits_pio -pg 1 -lvl 5 -y 5430
+preplace inst finalProject.usb_gpx -pg 1 -lvl 5 -y 5130
+preplace inst finalProject.phase_incr2 -pg 1 -lvl 5 -y 3250
+preplace inst finalProject.phase_incr11 -pg 1 -lvl 5 -y 3650
+preplace inst finalProject.sdram_pll -pg 1 -lvl 5 -y 2950
+preplace inst finalProject.phase_incr3 -pg 1 -lvl 5 -y 5550
+preplace inst finalProject.phase_incr12 -pg 1 -lvl 5 -y 3750
+preplace inst finalProject.onchip_memory2_0 -pg 1 -lvl 5 -y 4950
+preplace inst finalProject.nios2_gen2_0 -pg 1 -lvl 4 -y 1920
+preplace inst finalProject.phase_incr4 -pg 1 -lvl 5 -y 2150
+preplace inst finalProject.phase_incr13 -pg 1 -lvl 5 -y 3850
+preplace inst finalProject.key -pg 1 -lvl 5 -y 4750
+preplace inst finalProject.clk_0 -pg 1 -lvl 1 -y 1900
+preplace netloc FAN_OUT<net_container>finalProject</net_container>(MASTER)nios2_gen2_0.irq,(SLAVE)jtag_uart.irq,(SLAVE)i2c_0.interrupt_sender,(SLAVE)spi_0.irq,(SLAVE)timer.irq) 1 4 1 1830
 preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)clk_0.clk_in_reset,(SLAVE)finalProject.reset) 1 0 1 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)keycode1.external_connection,(SLAVE)finalProject.keycode1) 1 0 3 NJ 1780 NJ 1780 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr9.external_connection,(SLAVE)finalProject.phase_incr9_external_connection) 1 0 3 NJ 3080 NJ 3080 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr4_external_connection,(SLAVE)phase_incr4.external_connection) 1 0 3 NJ 1800 NJ 1800 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)keycode2.external_connection,(SLAVE)finalProject.keycode2) 1 0 3 NJ 2060 NJ 2060 NJ
-preplace netloc FAN_OUT<net_container>finalProject</net_container>(SLAVE)onchip_memory2_0.clk1,(SLAVE)phase_incr2.clk,(SLAVE)i2c_0.clock,(SLAVE)phase_incr14.clk,(SLAVE)phase_incr17.clk,(SLAVE)phase_incr8.clk,(SLAVE)key.clk,(SLAVE)phase_incr29.clk,(SLAVE)phase_incr30.clk,(SLAVE)jtag_uart.clk,(SLAVE)phase_incr11.clk,(SLAVE)keycode2.clk,(SLAVE)spi_0.clk,(SLAVE)phase_incr15.clk,(SLAVE)phase_incr16.clk,(SLAVE)phase_incr21.clk,(SLAVE)noteIdx2.clk,(SLAVE)keycode.clk,(SLAVE)keycode3.clk,(SLAVE)phase_incr13.clk,(SLAVE)hex_digits_pio.clk,(SLAVE)phase_incr0.clk,(SLAVE)keycode1.clk,(SLAVE)phase_incr19.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)usb_gpx.clk,(SLAVE)phase_incr18.clk,(SLAVE)noteIdx0.clk,(SLAVE)phase_incr6.clk,(SLAVE)phase_incr7.clk,(SLAVE)phase_incr20.clk,(SLAVE)usb_irq.clk,(SLAVE)leds_pio.clk,(SLAVE)phase_incr9.clk,(SLAVE)phase_incr28.clk,(SLAVE)phase_incr10.clk,(SLAVE)phase_incr5.clk,(SLAVE)phase_incr12.clk,(SLAVE)phase_incr25.clk,(SLAVE)phase_incr3.clk,(SLAVE)phase_incr27.clk,(SLAVE)phase_incr22.clk,(SLAVE)noteIdx1.clk,(SLAVE)phase_incr26.clk,(SLAVE)phase_incr23.clk,(SLAVE)sdram_pll.inclk_interface,(SLAVE)phase_incr1.clk,(MASTER)clk_0.clk,(SLAVE)oct.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)noteIdx3.clk,(SLAVE)timer.clk,(SLAVE)phase_incr24.clk,(SLAVE)usb_rst.clk,(SLAVE)phase_incr4.clk) 1 1 2 410 1820 1010
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)noteIdx1.external_connection,(SLAVE)finalProject.noteidx1) 1 0 3 NJ 260 NJ 260 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr22_external_connection,(SLAVE)phase_incr22.external_connection) 1 0 3 NJ 960 NJ 960 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr30.external_connection,(SLAVE)finalProject.phase_incr30_external_connection) 1 0 3 NJ 1760 NJ 1760 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.sdram_wire,(SLAVE)sdram.wire) 1 0 3 NJ 3100 NJ 3100 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr28.external_connection,(SLAVE)finalProject.phase_incr28_external_connection) 1 0 3 NJ 1560 NJ 1560 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr25.external_connection,(SLAVE)finalProject.phase_incr25_external_connection) 1 0 3 NJ 1260 NJ 1260 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.oct_external_connection,(SLAVE)oct.external_connection) 1 0 3 NJ 60 NJ 60 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr24.external_connection,(SLAVE)finalProject.phase_incr24_external_connection) 1 0 3 NJ 1160 NJ 1160 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(MASTER)finalProject.sdram_clk,(MASTER)sdram_pll.c1) 1 3 1 N
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr13.external_connection,(SLAVE)finalProject.phase_incr13_external_connection) 1 0 3 NJ 3680 NJ 3680 NJ
-preplace netloc POINT_TO_POINT<net_container>finalProject</net_container>(MASTER)sdram_pll.c0,(SLAVE)sdram.clk) 1 2 2 1030 5440 1350
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr20.external_connection,(SLAVE)finalProject.phase_incr20_external_connection) 1 0 3 NJ 760 NJ 760 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)noteIdx3.external_connection,(SLAVE)finalProject.noteidx3) 1 0 3 NJ 460 NJ 460 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.usb_rst,(SLAVE)usb_rst.external_connection) 1 0 3 NJ 5160 NJ 5160 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr26_external_connection,(SLAVE)phase_incr26.external_connection) 1 0 3 NJ 1360 NJ 1360 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.keycode3,(SLAVE)keycode3.external_connection) 1 0 3 NJ 2360 NJ 2360 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr21.external_connection,(SLAVE)finalProject.phase_incr21_external_connection) 1 0 3 NJ 860 NJ 860 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr19_external_connection,(SLAVE)phase_incr19.external_connection) 1 0 3 NJ 660 NJ 660 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.noteidx0,(SLAVE)noteIdx0.external_connection) 1 0 3 NJ 160 NJ 160 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr10.external_connection,(SLAVE)finalProject.phase_incr10_external_connection) 1 0 3 NJ 3120 NJ 3120 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr27_external_connection,(SLAVE)phase_incr27.external_connection) 1 0 3 NJ 1460 NJ 1460 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr14_external_connection,(SLAVE)phase_incr14.external_connection) 1 0 3 NJ 3780 NJ 3780 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr2_external_connection,(SLAVE)phase_incr2.external_connection) 1 0 3 NJ 3060 NJ 3060 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)leds_pio.external_connection,(SLAVE)finalProject.leds) 1 0 3 NJ 4860 NJ 4860 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr15_external_connection,(SLAVE)phase_incr15.external_connection) 1 0 3 NJ 3880 NJ 3880 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr7_external_connection,(SLAVE)phase_incr7.external_connection) 1 0 3 NJ 2660 NJ 2660 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr12_external_connection,(SLAVE)phase_incr12.external_connection) 1 0 3 NJ 3580 NJ 3580 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.noteidx2,(SLAVE)noteIdx2.external_connection) 1 0 3 NJ 360 NJ 360 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr0.external_connection,(SLAVE)finalProject.phase_incr0_external_connection) 1 0 3 NJ 2160 NJ 2160 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr3_external_connection,(SLAVE)phase_incr3.external_connection) 1 0 3 NJ 5360 NJ 5360 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr23_external_connection,(SLAVE)phase_incr23.external_connection) 1 0 3 NJ 1060 NJ 1060 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr5.external_connection,(SLAVE)finalProject.phase_incr5_external_connection) 1 0 3 NJ 2260 NJ 2260 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.usb_gpx,(SLAVE)usb_gpx.external_connection) 1 0 3 NJ 4960 NJ 4960 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr1_external_connection,(SLAVE)phase_incr1.external_connection) 1 0 3 NJ 2460 NJ 2460 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr18.external_connection,(SLAVE)finalProject.phase_incr18_external_connection) 1 0 3 NJ 560 NJ 560 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.spi0,(SLAVE)spi_0.external) 1 0 3 NJ 4280 NJ 4280 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr8.external_connection,(SLAVE)finalProject.phase_incr8_external_connection) 1 0 3 NJ 2960 NJ 2960 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr29.external_connection,(SLAVE)finalProject.phase_incr29_external_connection) 1 0 3 NJ 1660 NJ 1660 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)key.external_connection,(SLAVE)finalProject.key_external_connection) 1 0 3 NJ 4580 NJ 4580 NJ
-preplace netloc FAN_OUT<net_container>finalProject</net_container>(SLAVE)timer.irq,(SLAVE)i2c_0.interrupt_sender,(SLAVE)jtag_uart.irq,(MASTER)nios2_gen2_0.irq,(SLAVE)spi_0.irq) 1 2 1 930
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)clk_0.clk_in,(SLAVE)finalProject.clk) 1 0 1 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr6_external_connection,(SLAVE)phase_incr6.external_connection) 1 0 3 NJ 2560 NJ 2560 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr17.external_connection,(SLAVE)finalProject.phase_incr17_external_connection) 1 0 3 NJ 4080 NJ 4080 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.usb_irq,(SLAVE)usb_irq.external_connection) 1 0 3 NJ 5060 NJ 5060 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr16_external_connection,(SLAVE)phase_incr16.external_connection) 1 0 3 NJ 3980 NJ 3980 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.hex_digits,(SLAVE)hex_digits_pio.external_connection) 1 0 3 NJ 5260 NJ 5260 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr11.external_connection,(SLAVE)finalProject.phase_incr11_external_connection) 1 0 3 NJ 3480 NJ 3480 NJ
-preplace netloc FAN_OUT<net_container>finalProject</net_container>(SLAVE)phase_incr16.reset,(SLAVE)i2c_0.reset_sink,(SLAVE)phase_incr26.reset,(SLAVE)usb_irq.reset,(SLAVE)phase_incr22.reset,(SLAVE)phase_incr27.reset,(SLAVE)keycode1.reset,(SLAVE)phase_incr4.reset,(SLAVE)keycode.reset,(SLAVE)key.reset,(SLAVE)phase_incr0.reset,(SLAVE)phase_incr2.reset,(SLAVE)phase_incr25.reset,(SLAVE)noteIdx2.reset,(SLAVE)phase_incr9.reset,(SLAVE)phase_incr8.reset,(SLAVE)phase_incr24.reset,(SLAVE)phase_incr3.reset,(SLAVE)phase_incr17.reset,(SLAVE)phase_incr14.reset,(SLAVE)leds_pio.reset,(SLAVE)oct.reset,(SLAVE)jtag_uart.reset,(SLAVE)phase_incr29.reset,(SLAVE)keycode3.reset,(SLAVE)phase_incr18.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)sysid_qsys_0.reset,(SLAVE)phase_incr11.reset,(SLAVE)phase_incr20.reset,(SLAVE)sdram_pll.inclk_interface_reset,(SLAVE)usb_gpx.reset,(SLAVE)phase_incr19.reset,(SLAVE)phase_incr30.reset,(SLAVE)phase_incr23.reset,(SLAVE)phase_incr28.reset,(SLAVE)phase_incr13.reset,(SLAVE)phase_incr10.reset,(SLAVE)noteIdx1.reset,(SLAVE)keycode2.reset,(SLAVE)spi_0.reset,(SLAVE)phase_incr7.reset,(SLAVE)phase_incr15.reset,(SLAVE)phase_incr21.reset,(SLAVE)phase_incr6.reset,(SLAVE)phase_incr1.reset,(SLAVE)noteIdx0.reset,(SLAVE)sdram.reset,(SLAVE)hex_digits_pio.reset,(SLAVE)noteIdx3.reset,(MASTER)clk_0.clk_reset,(SLAVE)timer.reset,(SLAVE)phase_incr5.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)usb_rst.reset,(SLAVE)phase_incr12.reset) 1 1 2 430 1840 990
-preplace netloc INTERCONNECT<net_container>finalProject</net_container>(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)spi_0.spi_control_port,(SLAVE)phase_incr14.s1,(MASTER)nios2_gen2_0.data_master,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)phase_incr22.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)phase_incr26.s1,(SLAVE)sdram.s1,(SLAVE)phase_incr25.s1,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)phase_incr18.s1,(SLAVE)keycode1.s1,(SLAVE)phase_incr27.s1,(SLAVE)usb_irq.s1,(SLAVE)usb_rst.s1,(SLAVE)phase_incr0.s1,(SLAVE)phase_incr24.s1,(SLAVE)phase_incr2.s1,(SLAVE)phase_incr1.s1,(SLAVE)phase_incr8.s1,(SLAVE)keycode2.s1,(SLAVE)noteIdx2.s1,(SLAVE)noteIdx0.s1,(SLAVE)phase_incr29.s1,(SLAVE)phase_incr9.s1,(SLAVE)sdram_pll.pll_slave,(SLAVE)phase_incr30.s1,(SLAVE)phase_incr23.s1,(SLAVE)phase_incr7.s1,(SLAVE)phase_incr20.s1,(SLAVE)noteIdx3.s1,(SLAVE)phase_incr19.s1,(SLAVE)phase_incr13.s1,(SLAVE)oct.s1,(SLAVE)keycode.s1,(SLAVE)phase_incr15.s1,(SLAVE)keycode3.s1,(SLAVE)phase_incr6.s1,(SLAVE)phase_incr17.s1,(SLAVE)phase_incr10.s1,(SLAVE)noteIdx1.s1,(SLAVE)phase_incr21.s1,(SLAVE)i2c_0.csr,(SLAVE)phase_incr28.s1,(SLAVE)hex_digits_pio.s1,(SLAVE)leds_pio.s1,(SLAVE)phase_incr11.s1,(SLAVE)phase_incr16.s1,(SLAVE)phase_incr4.s1,(SLAVE)key.s1,(SLAVE)phase_incr12.s1,(SLAVE)timer.s1,(SLAVE)usb_gpx.s1,(SLAVE)onchip_memory2_0.s1,(SLAVE)phase_incr5.s1,(SLAVE)phase_incr3.s1) 1 1 2 450 1860 950
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)i2c_0.i2c_serial,(SLAVE)finalProject.i2c_serial) 1 0 3 NJ 2880 NJ 2880 NJ
-preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)keycode.external_connection,(SLAVE)finalProject.keycode) 1 0 3 NJ 4680 NJ 4680 NJ
-levelinfo -pg 1 0 200 1460
-levelinfo -hier finalProject 210 240 650 1160 1370
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)keycode1.external_connection,(SLAVE)finalProject.keycode1) 1 0 5 NJ 2100 NJ 2100 NJ 2100 NJ 2100 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr4.external_connection,(SLAVE)finalProject.phase_incr4_external_connection) 1 0 5 NJ 2180 NJ 2180 NJ 2180 NJ 2180 NJ
+preplace netloc FAN_OUT<net_container>finalProject</net_container>(SLAVE)timer.reset,(SLAVE)phase_incr23.reset,(SLAVE)usb_gpx.reset,(SLAVE)phase_incr15.reset,(SLAVE)usb_irq.reset,(SLAVE)phase_incr7.reset,(SLAVE)hex_digits_pio.reset,(SLAVE)sdram_pll.inclk_interface_reset,(SLAVE)keycode1.reset,(SLAVE)phase_incr14.reset,(SLAVE)noteIdx2.reset,(SLAVE)jtag_uart.reset,(SLAVE)nios2_gen2_0.reset,(SLAVE)keycode3.reset,(SLAVE)phase_incr24.reset,(SLAVE)voiceIdx.reset,(SLAVE)phase_incr18.reset,(SLAVE)phase_incr17.reset,(SLAVE)leds_pio.reset,(SLAVE)phase_incr3.reset,(MASTER)clk_0.clk_reset,(SLAVE)phase_incr29.reset,(SLAVE)phase_incr12.reset,(SLAVE)phase_incr22.reset,(SLAVE)phase_incr27.reset,(SLAVE)sdram.reset,(SLAVE)phase_incr19.reset,(SLAVE)noteIdx1.reset,(SLAVE)noteIdx0.reset,(SLAVE)phase_incr10.reset,(SLAVE)onchip_memory2_0.reset1,(SLAVE)phase_incr8.reset,(SLAVE)phase_incr1.reset,(SLAVE)phase_incr26.reset,(SLAVE)oct.reset,(SLAVE)noteIdx3.reset,(SLAVE)usb_rst.reset,(SLAVE)phase_incr25.reset,(SLAVE)phase_incr9.reset,(SLAVE)phase_incr21.reset,(SLAVE)sysid_qsys_0.reset,(SLAVE)phase_incr6.reset,(SLAVE)phase_incr0.reset,(SLAVE)i2c_0.reset_sink,(SLAVE)phase_incr11.reset,(SLAVE)phase_incr30.reset,(SLAVE)phase_incr4.reset,(SLAVE)phase_incr20.reset,(SLAVE)phase_incr28.reset,(SLAVE)phase_incr16.reset,(SLAVE)key.reset,(SLAVE)spi_0.reset,(SLAVE)phase_incr13.reset,(SLAVE)keycode.reset,(SLAVE)phase_incr2.reset,(SLAVE)keycode2.reset,(SLAVE)phase_incr5.reset) 1 1 4 NJ 1930 NJ 1930 1180 2080 1910
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.keycode,(SLAVE)keycode.external_connection) 1 0 5 NJ 4880 NJ 4880 NJ 4880 NJ 4880 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)keycode2.external_connection,(SLAVE)finalProject.keycode2) 1 0 5 NJ 2280 NJ 2280 NJ 2280 NJ 2280 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr13_external_connection,(SLAVE)phase_incr13.external_connection) 1 0 5 NJ 3880 NJ 3880 NJ 3880 NJ 3880 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)noteIdx1.external_connection,(SLAVE)finalProject.noteidx1) 1 0 5 NJ 400 NJ 400 NJ 400 NJ 400 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr22_external_connection,(SLAVE)phase_incr22.external_connection) 1 0 5 NJ 1100 NJ 1100 NJ 1100 NJ 1100 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr30.external_connection,(SLAVE)finalProject.phase_incr30_external_connection) 1 0 5 NJ 1780 NJ 1780 NJ 1860 NJ 1860 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)usb_gpx.external_connection,(SLAVE)finalProject.usb_gpx) 1 0 5 NJ 5160 NJ 5160 NJ 5160 NJ 5160 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr23.external_connection,(SLAVE)finalProject.phase_incr23_external_connection) 1 0 5 NJ 1200 NJ 1200 NJ 1200 NJ 1200 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr25.external_connection,(SLAVE)finalProject.phase_incr25_external_connection) 1 0 5 NJ 1400 NJ 1400 NJ 1400 NJ 1400 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.oct_external_connection,(SLAVE)oct.external_connection) 1 0 5 NJ 60 NJ 60 NJ 60 NJ 60 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr24.external_connection,(SLAVE)finalProject.phase_incr24_external_connection) 1 0 5 NJ 1300 NJ 1300 NJ 1300 NJ 1300 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr14.external_connection,(SLAVE)finalProject.phase_incr14_external_connection) 1 0 5 NJ 3980 NJ 3980 NJ 3980 NJ 3980 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(MASTER)finalProject.sdram_clk,(MASTER)sdram_pll.c1) 1 5 2 NJ 2980 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.voiceidx,(SLAVE)voiceIdx.external_connection) 1 0 5 NJ 160 NJ 160 NJ 160 NJ 160 NJ
+preplace netloc POINT_TO_POINT<net_container>finalProject</net_container>(MASTER)sdram_pll.c0,(SLAVE)sdram.clk) 1 4 2 1930 5540 2190
+preplace netloc FAN_OUT<net_container>finalProject</net_container>(SLAVE)key.clk,(SLAVE)spi_0.clk,(SLAVE)phase_incr18.clk,(SLAVE)phase_incr9.clk,(SLAVE)keycode3.clk,(SLAVE)phase_incr21.clk,(SLAVE)phase_incr16.clk,(SLAVE)phase_incr6.clk,(SLAVE)usb_irq.clk,(SLAVE)noteIdx2.clk,(SLAVE)voiceIdx.clk,(SLAVE)phase_incr5.clk,(SLAVE)phase_incr7.clk,(SLAVE)phase_incr10.clk,(SLAVE)phase_incr25.clk,(MASTER)clk_0.clk,(SLAVE)phase_incr2.clk,(SLAVE)phase_incr23.clk,(SLAVE)usb_rst.clk,(SLAVE)phase_incr13.clk,(SLAVE)phase_incr26.clk,(SLAVE)phase_incr19.clk,(SLAVE)phase_incr27.clk,(SLAVE)keycode2.clk,(SLAVE)noteIdx1.clk,(SLAVE)i2c_0.clock,(SLAVE)jtag_uart.clk,(SLAVE)phase_incr3.clk,(SLAVE)nios2_gen2_0.clk,(SLAVE)usb_gpx.clk,(SLAVE)phase_incr12.clk,(SLAVE)phase_incr15.clk,(SLAVE)phase_incr17.clk,(SLAVE)keycode.clk,(SLAVE)phase_incr29.clk,(SLAVE)sysid_qsys_0.clk,(SLAVE)onchip_memory2_0.clk1,(SLAVE)phase_incr11.clk,(SLAVE)noteIdx3.clk,(SLAVE)leds_pio.clk,(SLAVE)keycode1.clk,(SLAVE)phase_incr8.clk,(SLAVE)phase_incr14.clk,(SLAVE)timer.clk,(SLAVE)phase_incr0.clk,(SLAVE)phase_incr30.clk,(SLAVE)oct.clk,(SLAVE)phase_incr4.clk,(SLAVE)phase_incr28.clk,(SLAVE)phase_incr20.clk,(SLAVE)sdram_pll.inclk_interface,(SLAVE)phase_incr22.clk,(SLAVE)phase_incr1.clk,(SLAVE)phase_incr24.clk,(SLAVE)noteIdx0.clk,(SLAVE)hex_digits_pio.clk) 1 1 4 NJ 1910 NJ 1910 1200 2060 1890
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr20_external_connection,(SLAVE)phase_incr20.external_connection) 1 0 5 NJ 900 NJ 900 NJ 900 NJ 900 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)noteIdx3.external_connection,(SLAVE)finalProject.noteidx3) 1 0 5 NJ 600 NJ 600 NJ 600 NJ 600 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.usb_rst,(SLAVE)usb_rst.external_connection) 1 0 5 NJ 5360 NJ 5360 NJ 5360 NJ 5360 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr26_external_connection,(SLAVE)phase_incr26.external_connection) 1 0 5 NJ 1500 NJ 1500 NJ 1500 NJ 1500 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.keycode3,(SLAVE)keycode3.external_connection) 1 0 5 NJ 2580 NJ 2580 NJ 2580 NJ 2580 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr21.external_connection,(SLAVE)finalProject.phase_incr21_external_connection) 1 0 5 NJ 1000 NJ 1000 NJ 1000 NJ 1000 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr19_external_connection,(SLAVE)phase_incr19.external_connection) 1 0 5 NJ 800 NJ 800 NJ 800 NJ 800 NJ
+preplace netloc INTERCONNECT<net_container>finalProject</net_container>(SLAVE)i2c_0.csr,(SLAVE)spi_0.spi_control_port,(SLAVE)hex_digits_pio.s1,(SLAVE)phase_incr0.s1,(SLAVE)phase_incr14.s1,(SLAVE)keycode1.s1,(SLAVE)phase_incr20.s1,(SLAVE)phase_incr4.s1,(SLAVE)phase_incr16.s1,(SLAVE)phase_incr18.s1,(SLAVE)keycode3.s1,(SLAVE)phase_incr29.s1,(SLAVE)sdram.s1,(SLAVE)phase_incr1.s1,(SLAVE)phase_incr10.s1,(SLAVE)phase_incr15.s1,(MASTER)nios2_gen2_0.instruction_master,(SLAVE)key.s1,(SLAVE)leds_pio.s1,(SLAVE)phase_incr13.s1,(SLAVE)phase_incr2.s1,(SLAVE)keycode2.s1,(SLAVE)phase_incr22.s1,(SLAVE)phase_incr24.s1,(SLAVE)phase_incr27.s1,(SLAVE)phase_incr23.s1,(SLAVE)onchip_memory2_0.s1,(SLAVE)voiceIdx.s1,(SLAVE)phase_incr21.s1,(SLAVE)noteIdx2.s1,(SLAVE)phase_incr28.s1,(SLAVE)noteIdx1.s1,(MASTER)nios2_gen2_0.data_master,(SLAVE)sdram_pll.pll_slave,(SLAVE)phase_incr5.s1,(SLAVE)noteIdx0.s1,(SLAVE)phase_incr8.s1,(SLAVE)phase_incr26.s1,(SLAVE)oct.s1,(SLAVE)usb_rst.s1,(SLAVE)phase_incr3.s1,(SLAVE)phase_incr6.s1,(SLAVE)nios2_gen2_0.debug_mem_slave,(SLAVE)keycode.s1,(SLAVE)usb_irq.s1,(SLAVE)sysid_qsys_0.control_slave,(SLAVE)usb_gpx.s1,(SLAVE)phase_incr25.s1,(SLAVE)timer.s1,(SLAVE)jtag_uart.avalon_jtag_slave,(SLAVE)phase_incr7.s1,(SLAVE)noteIdx3.s1,(SLAVE)phase_incr9.s1,(SLAVE)phase_incr19.s1,(SLAVE)phase_incr12.s1,(SLAVE)phase_incr17.s1,(SLAVE)phase_incr30.s1,(SLAVE)phase_incr11.s1) 1 3 2 1220 2120 1850
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.noteidx0,(SLAVE)noteIdx0.external_connection) 1 0 5 NJ 300 NJ 300 NJ 300 NJ 300 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr10.external_connection,(SLAVE)finalProject.phase_incr10_external_connection) 1 0 5 NJ 3580 NJ 3580 NJ 3580 NJ 3580 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)noteIdx2.external_connection,(SLAVE)finalProject.noteidx2) 1 0 5 NJ 500 NJ 500 NJ 500 NJ 500 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr27_external_connection,(SLAVE)phase_incr27.external_connection) 1 0 5 NJ 1600 NJ 1600 NJ 1600 NJ 1600 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.reset_2,(SLAVE)clk_1.clk_in_reset) 1 0 2 NJ 1820 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr3.external_connection,(SLAVE)finalProject.phase_incr3_external_connection) 1 0 5 NJ 5580 NJ 5580 NJ 5580 NJ 5580 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)sdram.wire,(SLAVE)finalProject.sdram_wire) 1 0 5 NJ 3520 NJ 3520 NJ 3520 NJ 3520 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr2_external_connection,(SLAVE)phase_incr2.external_connection) 1 0 5 NJ 3280 NJ 3280 NJ 3280 NJ 3280 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr12.external_connection,(SLAVE)finalProject.phase_incr12_external_connection) 1 0 5 NJ 3780 NJ 3780 NJ 3780 NJ 3780 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr15_external_connection,(SLAVE)phase_incr15.external_connection) 1 0 5 NJ 4080 NJ 4080 NJ 4080 NJ 4080 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr7_external_connection,(SLAVE)phase_incr7.external_connection) 1 0 5 NJ 2880 NJ 2880 NJ 2880 NJ 2880 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr0.external_connection,(SLAVE)finalProject.phase_incr0_external_connection) 1 0 5 NJ 2380 NJ 2380 NJ 2380 NJ 2380 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)hex_digits_pio.external_connection,(SLAVE)finalProject.hex_digits) 1 0 5 NJ 5460 NJ 5460 NJ 5460 NJ 5460 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr1_external_connection,(SLAVE)phase_incr1.external_connection) 1 0 5 NJ 2680 NJ 2680 NJ 2680 NJ 2680 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr18.external_connection,(SLAVE)finalProject.phase_incr18_external_connection) 1 0 5 NJ 700 NJ 700 NJ 700 NJ 700 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.spi0,(SLAVE)spi_0.external) 1 0 5 NJ 4480 NJ 4480 NJ 4480 NJ 4480 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr8.external_connection,(SLAVE)finalProject.phase_incr8_external_connection) 1 0 5 NJ 3180 NJ 3180 NJ 3180 NJ 3180 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr11_external_connection,(SLAVE)phase_incr11.external_connection) 1 0 5 NJ 3680 NJ 3680 NJ 3680 NJ 3680 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)clk_1.clk_in,(SLAVE)finalProject.clk_2) 1 0 2 NJ 1800 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.clk,(SLAVE)clk_0.clk_in) 1 0 1 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.leds,(SLAVE)leds_pio.external_connection) 1 0 5 NJ 5060 NJ 5060 NJ 5060 NJ 5060 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr6_external_connection,(SLAVE)phase_incr6.external_connection) 1 0 5 NJ 2780 NJ 2780 NJ 2780 NJ 2780 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)phase_incr17.external_connection,(SLAVE)finalProject.phase_incr17_external_connection) 1 0 5 NJ 4280 NJ 4280 NJ 4280 NJ 4280 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.usb_irq,(SLAVE)usb_irq.external_connection) 1 0 5 NJ 5260 NJ 5260 NJ 5260 NJ 5260 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.key_external_connection,(SLAVE)key.external_connection) 1 0 5 NJ 4780 NJ 4780 NJ 4780 NJ 4780 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr16_external_connection,(SLAVE)phase_incr16.external_connection) 1 0 5 NJ 4180 NJ 4180 NJ 4180 NJ 4180 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr9_external_connection,(SLAVE)phase_incr9.external_connection) 1 0 5 NJ 3380 NJ 3380 NJ 3380 NJ 3380 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr29_external_connection,(SLAVE)phase_incr29.external_connection) 1 0 5 NJ 1870 NJ 1880 NJ 1880 NJ 1880 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)i2c_0.i2c_serial,(SLAVE)finalProject.i2c_serial) 1 0 5 NJ 3100 NJ 3100 NJ 3100 NJ 3100 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr5_external_connection,(SLAVE)phase_incr5.external_connection) 1 0 5 NJ 2480 NJ 2480 NJ 2480 NJ 2480 NJ
+preplace netloc EXPORT<net_container>finalProject</net_container>(SLAVE)finalProject.phase_incr28_external_connection,(SLAVE)phase_incr28.external_connection) 1 0 5 NJ 1760 NJ 1760 NJ 1780 NJ 1780 NJ
+levelinfo -pg 1 0 200 2340
+levelinfo -hier finalProject 210 240 650 1160 1590 2000 2230 2250

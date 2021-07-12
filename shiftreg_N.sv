@@ -1,31 +1,40 @@
-module shiftreg_N (input  logic 						 Clk, Reset, Enable, Shift_In, Load, Shift_En,
-						 input  logic [DATAWIDTH-1:0]  D,
-						 output logic 						 Shift_Out,
-						 output logic [DATAWIDTH-1:0]  Data_Out);
+module shiftreg_N 
+#(
+		parameter D_WIDTH = 32
+)
+(
+		input  logic                Clk, Reset, Enable, Shift_In, Load, Shift_En,
+		input  logic [D_WIDTH-1:0]  D,
+		output logic                Shift_Out,
+		output logic [D_WIDTH-1:0]  Data_Out
+);
 				  
-	 parameter DATAWIDTH = 32;
-
+	 //logic [D_WIDTH-1:0] data_reg;
+	 
     always_ff @ (posedge Clk)
     begin
 	 	 if (Reset) //notice, this is a sycnrhonous reset, which is recommended on the FPGA
-			  Data_Out <= {DATAWIDTH{1'b0}};
-		 else if (Load)
-		 begin
+			  //data_reg <= {D_WIDTH{1'b0}};
+			  Data_Out <= {D_WIDTH{1'b0}};
+		 else if (Load) begin
 			  if (Enable)
-				   Data_Out <= D;
+				   //data_reg <= D;
+					Data_Out <= D;
 			  else
-				   Data_Out <= Data_Out;
+				   //data_reg <= Data_Out;
+					Data_Out <= Data_Out;
 		 end
-		 else if (Shift_En)
-		 begin
+		 else if (Shift_En) begin
 			  if (Enable)
-				   Data_Out <= { Data_Out[DATAWIDTH-2:0], Shift_In };
+				   //data_reg <= { data_reg[D_WIDTH-2:0], Shift_In };
+					Data_Out <= {Data_Out[D_WIDTH-1:0], Shift_In};
 			  else
 				   Data_Out <= Data_Out;
 	    end
     end
 	 // when shiftregs are disabled, continuously reading Shift_Out will stream 0's;
 	 // ensures I2S always receives information
-    assign Shift_Out = Enable? Data_Out[DATAWIDTH-1] : 1'b0;
+    assign Shift_Out = Enable? Data_Out[D_WIDTH-1] : 1'b0;
+	 //assign Data_Out = data_reg;
 
 endmodule
