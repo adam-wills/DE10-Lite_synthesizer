@@ -1,6 +1,8 @@
 # DE10-Lite_synthesizer
 ## FM Synthesizer in SystemVerilog and C using fixed-point arithmetic
 
+Latest updates in the partial_keyboard branch, which is now largely fixed.
+
 Source code for an FM synthesizer with hardware written in SystemVerilog and software running
 on the NIOS-II embedded processor. The synthesizer uses a traditional alphanumeric USB-keyboard
 arranged according to the Wicki-Hayden isomorphic keyboard layout (which seemed to lend itself
@@ -11,7 +13,7 @@ This is a work in progress and as such certain features one might reasonably exp
 in the process of being implemented. However, existing features include:  
 <ul>
   <li> 8 playable octaves </li>
-  <li> 3 waveforms: sine, sawtooth, triangle and square  </li>
+  <li> 4 waveforms: sine, sawtooth, triangle and square  </li>
   <li> 4 simultaneously playable oscillators </li>
   <li> Frequency modulation inputs for each oscillator with :
     <ul>
