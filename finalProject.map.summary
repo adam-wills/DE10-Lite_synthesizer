@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Sun Jul 11 18:16:33 2021
+Analysis & Synthesis Status : Successful - Wed Jul 21 15:02:04 2021
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 Patches 0.08std SJ Lite Edition
 Revision Name : finalProject
 Top-level Entity Name : fpgaSynth
 Family : MAX 10
-Total logic elements : 14,515
-    Total combinational functions : 11,351
-    Dedicated logic registers : 8,275
-Total registers : 8275
+Total logic elements : 14,465
+    Total combinational functions : 11,302
+    Dedicated logic registers : 8,252
+Total registers : 8252
 Total pins : 128
 Total virtual pins : 0
 Total memory bits : 1,072,682

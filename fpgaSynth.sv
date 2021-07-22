@@ -95,7 +95,7 @@ reg   [7:0] fmWeights[4][4] =
   '{8'h0,8'h0,8'h0,8'h0}};
   
 
-reg   [0:3] fmEnable[4] = '{4'h0, 4'h0, 4'h0, 4'h0};
+reg   [0:3]  fmEnable[4] = '{4'h0, 4'h0, 4'h0, 4'h0};
 logic [31:0] fmInputs[0:3] = '{32'b0,32'b0,32'b0,32'b0};
 
 logic [33:0] fmAddOut[4] = '{34'b0, 34'b0, 34'b0, 34'b0};	
@@ -433,15 +433,20 @@ logic        streamoutR, streamOutL;
 logic [31:0] i2sDin;
 
 
+clockDivider_AW clockDivider_2
+(
+		.Clk0(MAX10_CLK2_50),
+		.Reset(Reset_h),
+		.Clk1(MCLK)
+);
+
 i2s_core i2s_core_inst
 (
-		.FCLK(MAX10_CLK2_50),
 		.SCLK(SCLK),
 		.LRCLK(LRCLK),
 		.Reset(Reset_h),
 		.i2sDin(i2sDin),
 		.sampReq(sampReq),
-		.MCLK(MCLK),
 		.sampGenEn(sampGenEn),
 		.sampFull(sampFull),
 		.streamOutR(streamOutR),
@@ -454,12 +459,17 @@ i2s_core i2s_core_inst
 //=======================================================
 
 // I2S
-logic MCLK, SCLK, LRCLK;
-logic [1:0] aud_mclk_ctr;
-assign ARDUINO_IO[2] = LRCLK ? streamOutR : streamOutL;
+logic MCLK;
+reg   SCLK, LRCLK;
+logic i2s_tristate_en = 1'b1;
+assign ARDUINO_IO[2] = (LRCLK) ? streamOutR : streamOutL;
 assign ARDUINO_IO[3] = MCLK;
+//assign ARDUINO_IO[4] = 1'bZ;
+//assign ARDUINO_IO[5] = 1'bZ;
 assign LRCLK = ARDUINO_IO[4];
-assign SCLK = ARDUINO_IO[5];
+assign SCLK =  ARDUINO_IO[5];
+//assign LRCLK = ARDUINO_IO[4];
+//assign SCLK = ARDUINO_IO[5];
 
 // SPI
 logic SPI0_CS_N, SPI0_SCLK, SPI0_MISO, SPI0_MOSI;
@@ -526,6 +536,13 @@ finalProject u0 (
 	.i2c_serial_sda_oe(I2C_SDA_OE),
 	.i2c_serial_scl_in(I2C_SCL_IN),
 	.i2c_serial_scl_oe(I2C_SCL_OE),
+	
+	//I2S
+	//.codec_pll_inclk_clk(MAX10_CLK2_50),
+	//.codec_pll_mclk_clk(MCLK),
+	//.codec_pll_sclk_clk(SCLK),
+	//.codec_pll_lrclk_clk(LRCLK),
+	//.i2s_mclk_clk(ARDUINO_IO[3]),
 
 	//USB SPI	
 	.spi0_SS_n(SPI0_CS_N),

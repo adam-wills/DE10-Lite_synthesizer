@@ -38,7 +38,7 @@ static const WORD octUpDnKeys[] = {45,46};
 DWORD phaseIncs[31];
 //WORD tableCoefs[31];
 
-static const double sampleRate = 48000.0;
+static const double sampleRate = 48000.0000;
 static const int32_t phasePrecision = 32;
 int8_t currentOctave = 0;
 int8_t currentVoiceNum = 0;
@@ -374,10 +374,28 @@ int main() {
 			SGTL5000_MCLK_FREQ_PLL << SGTL5000_MCLK_FREQ_SHIFT);
 	printf( "CHIP_CLK_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_CLK_CTRL));
 
+	/*
+	//MCLK is 24.576 MHz (=256*96000), synchronous with input
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_CLK_CTRL, \
+			SGTL5000_SYS_FS_96k << SGTL5000_SYS_FS_SHIFT |
+			SGTL5000_MCLK_FREQ_256FS << SGTL5000_MCLK_FREQ_SHIFT);
+	printf( "CHIP_CLK_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_CLK_CTRL));
+	*/
 	//Set as I2S master
-	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_I2S_CTRL, SGTL5000_I2S_MASTER);
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_I2S_CTRL, \
+			SGTL5000_I2S_MASTER|
+			SGTL5000_I2S_DLEN_32 << SGTL5000_I2S_DLEN_SHIFT|
+			SGTL5000_I2S_MODE_I2S_LJ << SGTL5000_I2S_MODE_SHIFT);
 	printf( "CHIP_I2S_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_I2S_CTRL));
 
+	/*
+	//Set as I2S slave, SCLK = 64*LRCLK, DLEN = 32
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_I2S_CTRL, \
+			SGTL5000_I2S_SCLKFREQ_64FS << SGTL5000_I2S_SCLKFREQ_SHIFT |
+		  SGTL5000_I2S_DLEN_32 << SGTL5000_I2S_DLEN_SHIFT |
+		  SGTL5000_I2S_MODE_I2S_LJ << SGTL5000_I2S_MODE_SHIFT);
+	printf( "CHIP_I2S_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_I2S_CTRL));
+	*/
 	//ADC input from Line
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ANA_CTRL, \
 			SGTL5000_ADC_SEL_LINE_IN << SGTL5000_ADC_SEL_SHIFT);

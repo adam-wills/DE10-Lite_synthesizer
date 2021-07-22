@@ -4,12 +4,14 @@ Progress: Loading finalProject_multiWaveform/finalProject.qsys
 Progress: Reading input file
 Progress: Adding clk_0 [clock_source 20.1]
 Progress: Parameterizing module clk_0
-Progress: Adding clk_1 [clock_source 20.1]
-Progress: Parameterizing module clk_1
 Progress: Adding hex_digits_pio [altera_avalon_pio 20.1]
 Progress: Parameterizing module hex_digits_pio
 Progress: Adding i2c_0 [altera_avalon_i2c 20.1]
 Progress: Parameterizing module i2c_0
+Progress: Adding i2s_mclk [altpll 20.1]
+Progress: Parameterizing module i2s_mclk
+Progress: Adding i2s_mclk_reconfig [altpll_reconfig 20.1]
+Progress: Parameterizing module i2s_mclk_reconfig
 Progress: Adding jtag_uart [altera_avalon_jtag_uart 20.1]
 Progress: Parameterizing module jtag_uart
 Progress: Adding key [altera_avalon_pio 20.1]
@@ -100,23 +102,12 @@ Progress: Adding phase_incr8 [altera_avalon_pio 20.1]
 Progress: Parameterizing module phase_incr8
 Progress: Adding phase_incr9 [altera_avalon_pio 20.1]
 Progress: Parameterizing module phase_incr9
-Progress: Adding samplerate_pll0 [altpll 20.1]
-Progress: Parameterizing module samplerate_pll0
-Progress: Adding samplerate_pll1 [altpll 20.1]
-Progress: Parameterizing module samplerate_pll1
 Progress: Adding sdram [altera_avalon_new_sdram_controller 20.1]
 Progress: Parameterizing module sdram
 Progress: Adding sdram_pll [altpll 20.1]
 Progress: Parameterizing module sdram_pll
 Progress: Adding spi_0 [altera_avalon_spi 20.1]
 Progress: Parameterizing module spi_0
-Progress: Adding subsystemA_0 [subsystemA 1.0]
-Progress: Reading input file
-Progress: Building connections
-Progress: Parameterizing connections
-Progress: Validating
-Progress: Done reading input file
-Progress: Parameterizing module subsystemA_0
 Progress: Adding sysid_qsys_0 [altera_avalon_sysid_qsys 20.1]
 Progress: Parameterizing module sysid_qsys_0
 Progress: Adding timer [altera_avalon_timer 20.1]
@@ -154,12 +145,14 @@ Progress: Loading finalProject_multiWaveform/finalProject.qsys
 Progress: Reading input file
 Progress: Adding clk_0 [clock_source 20.1]
 Progress: Parameterizing module clk_0
-Progress: Adding clk_1 [clock_source 20.1]
-Progress: Parameterizing module clk_1
 Progress: Adding hex_digits_pio [altera_avalon_pio 20.1]
 Progress: Parameterizing module hex_digits_pio
 Progress: Adding i2c_0 [altera_avalon_i2c 20.1]
 Progress: Parameterizing module i2c_0
+Progress: Adding i2s_mclk [altpll 20.1]
+Progress: Parameterizing module i2s_mclk
+Progress: Adding i2s_mclk_reconfig [altpll_reconfig 20.1]
+Progress: Parameterizing module i2s_mclk_reconfig
 Progress: Adding jtag_uart [altera_avalon_jtag_uart 20.1]
 Progress: Parameterizing module jtag_uart
 Progress: Adding key [altera_avalon_pio 20.1]
@@ -250,18 +243,12 @@ Progress: Adding phase_incr8 [altera_avalon_pio 20.1]
 Progress: Parameterizing module phase_incr8
 Progress: Adding phase_incr9 [altera_avalon_pio 20.1]
 Progress: Parameterizing module phase_incr9
-Progress: Adding samplerate_pll0 [altpll 20.1]
-Progress: Parameterizing module samplerate_pll0
-Progress: Adding samplerate_pll1 [altpll 20.1]
-Progress: Parameterizing module samplerate_pll1
 Progress: Adding sdram [altera_avalon_new_sdram_controller 20.1]
 Progress: Parameterizing module sdram
 Progress: Adding sdram_pll [altpll 20.1]
 Progress: Parameterizing module sdram_pll
 Progress: Adding spi_0 [altera_avalon_spi 20.1]
 Progress: Parameterizing module spi_0
-Progress: Adding subsystemA_0 [subsystemA 1.0]
-Progress: Parameterizing module subsystemA_0
 Progress: Adding sysid_qsys_0 [altera_avalon_sysid_qsys 20.1]
 Progress: Parameterizing module sysid_qsys_0
 Progress: Adding timer [altera_avalon_timer 20.1]
@@ -291,79 +278,70 @@ Info: finalProject.usb_gpx: PIO inputs are not hardwired in test bench. Undefine
 Info: finalProject.usb_irq: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
 Info: finalProject.voiceIdx: PIO inputs are not hardwired in test bench. Undefined values will be read from PIO inputs during simulation.
 Info: finalProject: Generating finalProject "finalProject" for QUARTUS_SYNTH
-Info: Inserting clock-crossing logic between cmd_demux.src5 and cmd_mux_005.sink0
-Info: Inserting clock-crossing logic between cmd_demux.src6 and cmd_mux_006.sink0
-Info: Inserting clock-crossing logic between cmd_demux.src8 and cmd_mux_008.sink0
-Info: Inserting clock-crossing logic between cmd_demux_001.src3 and cmd_mux_005.sink1
-Info: Inserting clock-crossing logic between cmd_demux_001.src4 and cmd_mux_006.sink1
-Info: Inserting clock-crossing logic between cmd_demux_001.src6 and cmd_mux_008.sink1
-Info: Inserting clock-crossing logic between rsp_demux_005.src0 and rsp_mux.sink5
-Info: Inserting clock-crossing logic between rsp_demux_005.src1 and rsp_mux_001.sink3
-Info: Inserting clock-crossing logic between rsp_demux_006.src0 and rsp_mux.sink6
-Info: Inserting clock-crossing logic between rsp_demux_006.src1 and rsp_mux_001.sink4
-Info: Inserting clock-crossing logic between rsp_demux_008.src0 and rsp_mux.sink8
-Info: Inserting clock-crossing logic between rsp_demux_008.src1 and rsp_mux_001.sink6
+Info: Inserting clock-crossing logic between cmd_demux.src7 and cmd_mux_007.sink0
+Info: Inserting clock-crossing logic between cmd_demux_001.src5 and cmd_mux_007.sink1
+Info: Inserting clock-crossing logic between rsp_demux_007.src0 and rsp_mux.sink7
+Info: Inserting clock-crossing logic between rsp_demux_007.src1 and rsp_mux_001.sink5
 Info: hex_digits_pio: Starting RTL generation for module 'finalProject_hex_digits_pio'
-Info: hex_digits_pio:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_hex_digits_pio --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0002_hex_digits_pio_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0002_hex_digits_pio_gen//finalProject_hex_digits_pio_component_configuration.pl  --do_build_sim=0  ]
+Info: hex_digits_pio:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_hex_digits_pio --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0002_hex_digits_pio_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0002_hex_digits_pio_gen//finalProject_hex_digits_pio_component_configuration.pl  --do_build_sim=0  ]
 Info: hex_digits_pio: Done RTL generation for module 'finalProject_hex_digits_pio'
 Info: hex_digits_pio: "finalProject" instantiated altera_avalon_pio "hex_digits_pio"
 Info: i2c_0: "finalProject" instantiated altera_avalon_i2c "i2c_0"
+Info: i2s_mclk: "finalProject" instantiated altpll "i2s_mclk"
+Info: i2s_mclk_reconfig: "finalProject" instantiated altpll_reconfig "i2s_mclk_reconfig"
 Info: jtag_uart: Starting RTL generation for module 'finalProject_jtag_uart'
-Info: jtag_uart:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=finalProject_jtag_uart --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0004_jtag_uart_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0004_jtag_uart_gen//finalProject_jtag_uart_component_configuration.pl  --do_build_sim=0  ]
+Info: jtag_uart:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_jtag_uart/generate_rtl.pl --name=finalProject_jtag_uart --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0008_jtag_uart_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0008_jtag_uart_gen//finalProject_jtag_uart_component_configuration.pl  --do_build_sim=0  ]
 Info: jtag_uart: Done RTL generation for module 'finalProject_jtag_uart'
 Info: jtag_uart: "finalProject" instantiated altera_avalon_jtag_uart "jtag_uart"
 Info: key: Starting RTL generation for module 'finalProject_key'
-Info: key:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_key --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0005_key_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0005_key_gen//finalProject_key_component_configuration.pl  --do_build_sim=0  ]
+Info: key:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_key --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0009_key_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0009_key_gen//finalProject_key_component_configuration.pl  --do_build_sim=0  ]
 Info: key: Done RTL generation for module 'finalProject_key'
 Info: key: "finalProject" instantiated altera_avalon_pio "key"
 Info: keycode: Starting RTL generation for module 'finalProject_keycode'
-Info: keycode:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_keycode --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0006_keycode_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0006_keycode_gen//finalProject_keycode_component_configuration.pl  --do_build_sim=0  ]
+Info: keycode:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_keycode --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0010_keycode_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0010_keycode_gen//finalProject_keycode_component_configuration.pl  --do_build_sim=0  ]
 Info: keycode: Done RTL generation for module 'finalProject_keycode'
 Info: keycode: "finalProject" instantiated altera_avalon_pio "keycode"
 Info: leds_pio: Starting RTL generation for module 'finalProject_leds_pio'
-Info: leds_pio:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_leds_pio --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0007_leds_pio_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0007_leds_pio_gen//finalProject_leds_pio_component_configuration.pl  --do_build_sim=0  ]
+Info: leds_pio:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_leds_pio --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0011_leds_pio_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0011_leds_pio_gen//finalProject_leds_pio_component_configuration.pl  --do_build_sim=0  ]
 Info: leds_pio: Done RTL generation for module 'finalProject_leds_pio'
 Info: leds_pio: "finalProject" instantiated altera_avalon_pio "leds_pio"
 Info: nios2_gen2_0: "finalProject" instantiated altera_nios2_gen2 "nios2_gen2_0"
 Info: noteIdx0: Starting RTL generation for module 'finalProject_noteIdx0'
-Info: noteIdx0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_noteIdx0 --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0008_noteIdx0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0008_noteIdx0_gen//finalProject_noteIdx0_component_configuration.pl  --do_build_sim=0  ]
+Info: noteIdx0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_noteIdx0 --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0012_noteIdx0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0012_noteIdx0_gen//finalProject_noteIdx0_component_configuration.pl  --do_build_sim=0  ]
 Info: noteIdx0: Done RTL generation for module 'finalProject_noteIdx0'
 Info: noteIdx0: "finalProject" instantiated altera_avalon_pio "noteIdx0"
 Info: onchip_memory2_0: Starting RTL generation for module 'finalProject_onchip_memory2_0'
-Info: onchip_memory2_0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=finalProject_onchip_memory2_0 --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0009_onchip_memory2_0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0009_onchip_memory2_0_gen//finalProject_onchip_memory2_0_component_configuration.pl  --do_build_sim=0  ]
+Info: onchip_memory2_0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2 -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_onchip_memory2/generate_rtl.pl --name=finalProject_onchip_memory2_0 --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0013_onchip_memory2_0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0013_onchip_memory2_0_gen//finalProject_onchip_memory2_0_component_configuration.pl  --do_build_sim=0  ]
 Info: onchip_memory2_0: Done RTL generation for module 'finalProject_onchip_memory2_0'
 Info: onchip_memory2_0: "finalProject" instantiated altera_avalon_onchip_memory2 "onchip_memory2_0"
 Info: phase_incr0: Starting RTL generation for module 'finalProject_phase_incr0'
-Info: phase_incr0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_phase_incr0 --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0010_phase_incr0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0010_phase_incr0_gen//finalProject_phase_incr0_component_configuration.pl  --do_build_sim=0  ]
+Info: phase_incr0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_phase_incr0 --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0014_phase_incr0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0014_phase_incr0_gen//finalProject_phase_incr0_component_configuration.pl  --do_build_sim=0  ]
 Info: phase_incr0: Done RTL generation for module 'finalProject_phase_incr0'
 Info: phase_incr0: "finalProject" instantiated altera_avalon_pio "phase_incr0"
-Info: samplerate_pll0: "finalProject" instantiated altpll "samplerate_pll0"
-Info: samplerate_pll1: "finalProject" instantiated altpll "samplerate_pll1"
 Info: sdram: Starting RTL generation for module 'finalProject_sdram'
-Info: sdram:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_new_sdram_controller -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_new_sdram_controller/generate_rtl.pl --name=finalProject_sdram --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0015_sdram_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0015_sdram_gen//finalProject_sdram_component_configuration.pl  --do_build_sim=0  ]
+Info: sdram:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_new_sdram_controller -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_new_sdram_controller/generate_rtl.pl --name=finalProject_sdram --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0015_sdram_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0015_sdram_gen//finalProject_sdram_component_configuration.pl  --do_build_sim=0  ]
 Info: sdram: Done RTL generation for module 'finalProject_sdram'
 Info: sdram: "finalProject" instantiated altera_avalon_new_sdram_controller "sdram"
 Info: sdram_pll: "finalProject" instantiated altpll "sdram_pll"
 Info: spi_0: Starting RTL generation for module 'finalProject_spi_0'
-Info: spi_0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_spi -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_spi/generate_rtl.pl --name=finalProject_spi_0 --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0018_spi_0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0018_spi_0_gen//finalProject_spi_0_component_configuration.pl  --do_build_sim=0  ]
+Info: spi_0:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_spi -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_spi/generate_rtl.pl --name=finalProject_spi_0 --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0018_spi_0_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0018_spi_0_gen//finalProject_spi_0_component_configuration.pl  --do_build_sim=0  ]
 Info: spi_0: Done RTL generation for module 'finalProject_spi_0'
 Info: spi_0: "finalProject" instantiated altera_avalon_spi "spi_0"
-Info: subsystemA_0: "finalProject" instantiated subsystemA "subsystemA_0"
 Info: sysid_qsys_0: "finalProject" instantiated altera_avalon_sysid_qsys "sysid_qsys_0"
 Info: timer: Starting RTL generation for module 'finalProject_timer'
-Info: timer:   Generation command is [exec C:/intelFPGA_lite/20.1/quartus/bin64//perl/bin/perl.exe -I C:/intelFPGA_lite/20.1/quartus/bin64//perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_timer -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_timer/generate_rtl.pl --name=finalProject_timer --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0020_timer_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0020_timer_gen//finalProject_timer_component_configuration.pl  --do_build_sim=0  ]
+Info: timer:   Generation command is [exec C:/intelFPGA_lite/20.1/quartus/bin64//perl/bin/perl.exe -I C:/intelFPGA_lite/20.1/quartus/bin64//perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_timer -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_timer/generate_rtl.pl --name=finalProject_timer --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0020_timer_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0020_timer_gen//finalProject_timer_component_configuration.pl  --do_build_sim=0  ]
 Info: timer: Done RTL generation for module 'finalProject_timer'
 Info: timer: "finalProject" instantiated altera_avalon_timer "timer"
 Info: usb_gpx: Starting RTL generation for module 'finalProject_usb_gpx'
-Info: usb_gpx:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_usb_gpx --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0021_usb_gpx_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0021_usb_gpx_gen//finalProject_usb_gpx_component_configuration.pl  --do_build_sim=0  ]
+Info: usb_gpx:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_usb_gpx --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0021_usb_gpx_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0021_usb_gpx_gen//finalProject_usb_gpx_component_configuration.pl  --do_build_sim=0  ]
 Info: usb_gpx: Done RTL generation for module 'finalProject_usb_gpx'
 Info: usb_gpx: "finalProject" instantiated altera_avalon_pio "usb_gpx"
 Info: usb_rst: Starting RTL generation for module 'finalProject_usb_rst'
-Info: usb_rst:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_usb_rst --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0022_usb_rst_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0022_usb_rst_gen//finalProject_usb_rst_component_configuration.pl  --do_build_sim=0  ]
+Info: usb_rst:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_usb_rst --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0022_usb_rst_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0022_usb_rst_gen//finalProject_usb_rst_component_configuration.pl  --do_build_sim=0  ]
 Info: usb_rst: Done RTL generation for module 'finalProject_usb_rst'
 Info: usb_rst: "finalProject" instantiated altera_avalon_pio "usb_rst"
 Info: voiceIdx: Starting RTL generation for module 'finalProject_voiceIdx'
-Info: voiceIdx:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_voiceIdx --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0023_voiceIdx_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0023_voiceIdx_gen//finalProject_voiceIdx_component_configuration.pl  --do_build_sim=0  ]
+Info: voiceIdx:   Generation command is [exec C:/intelfpga_lite/20.1/quartus/bin64/perl/bin/perl.exe -I C:/intelfpga_lite/20.1/quartus/bin64/perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/common -I C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio -- C:/intelfpga_lite/20.1/quartus/../ip/altera/sopc_builder_ip/altera_avalon_pio/generate_rtl.pl --name=finalProject_voiceIdx --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0023_voiceIdx_gen/ --quartus_dir=C:/intelfpga_lite/20.1/quartus --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0023_voiceIdx_gen//finalProject_voiceIdx_component_configuration.pl  --do_build_sim=0  ]
 Info: voiceIdx: Done RTL generation for module 'finalProject_voiceIdx'
 Info: voiceIdx: "finalProject" instantiated altera_avalon_pio "voiceIdx"
 Info: avalon_st_adapter: Inserting error_adapter: error_adapter_0
@@ -423,18 +401,17 @@ Info: avalon_st_adapter_053: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_054: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_055: Inserting error_adapter: error_adapter_0
 Info: avalon_st_adapter_056: Inserting error_adapter: error_adapter_0
-Info: avalon_st_adapter_057: Inserting error_adapter: error_adapter_0
 Info: mm_interconnect_0: "finalProject" instantiated altera_mm_interconnect "mm_interconnect_0"
 Info: irq_mapper: "finalProject" instantiated altera_irq_mapper "irq_mapper"
 Info: rst_controller: "finalProject" instantiated altera_reset_controller "rst_controller"
 Info: cpu: Starting RTL generation for module 'finalProject_nios2_gen2_0_cpu'
-Info: cpu:   Generation command is [exec C:/intelFPGA_lite/20.1/quartus/bin64//perl/bin/perl.exe -I C:/intelFPGA_lite/20.1/quartus/bin64//perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/cpu_lib -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/nios_lib -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -- C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/generate_rtl.pl --name=finalProject_nios2_gen2_0_cpu --dir=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0026_cpu_gen/ --quartus_bindir=C:/intelFPGA_lite/20.1/quartus/bin64/ --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8819_7883568664777084130.dir/0026_cpu_gen//finalProject_nios2_gen2_0_cpu_processor_configuration.pl  --do_build_sim=0  ]
-Info: cpu: # 2021.07.10 18:50:31 (*) Starting Nios II generation
-Info: cpu: # 2021.07.10 18:50:31 (*)   Elaborating CPU configuration settings
-Info: cpu: # 2021.07.10 18:50:31 (*)   Creating all objects for CPU
-Info: cpu: # 2021.07.10 18:50:31 (*)   Generating RTL from CPU objects
-Info: cpu: # 2021.07.10 18:50:31 (*)   Creating plain-text RTL
-Info: cpu: # 2021.07.10 18:50:32 (*) Done Nios II generation
+Info: cpu:   Generation command is [exec C:/intelFPGA_lite/20.1/quartus/bin64//perl/bin/perl.exe -I C:/intelFPGA_lite/20.1/quartus/bin64//perl/lib -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin/europa -I C:/intelfpga_lite/20.1/quartus/sopc_builder/bin -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/cpu_lib -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/nios_lib -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -I C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2 -- C:/intelfpga_lite/20.1/quartus/../ip/altera/nios2_ip/altera_nios2_gen2/generate_rtl.pl --name=finalProject_nios2_gen2_0_cpu --dir=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0026_cpu_gen/ --quartus_bindir=C:/intelFPGA_lite/20.1/quartus/bin64/ --verilog --config=C:/Users/augh/AppData/Local/Temp/alt8829_6915827162420800383.dir/0026_cpu_gen//finalProject_nios2_gen2_0_cpu_processor_configuration.pl  --do_build_sim=0  ]
+Info: cpu: # 2021.07.21 08:42:09 (*) Starting Nios II generation
+Info: cpu: # 2021.07.21 08:42:09 (*)   Elaborating CPU configuration settings
+Info: cpu: # 2021.07.21 08:42:09 (*)   Creating all objects for CPU
+Info: cpu: # 2021.07.21 08:42:10 (*)   Generating RTL from CPU objects
+Info: cpu: # 2021.07.21 08:42:10 (*)   Creating plain-text RTL
+Info: cpu: # 2021.07.21 08:42:11 (*) Done Nios II generation
 Info: cpu: Done RTL generation for module 'finalProject_nios2_gen2_0_cpu'
 Info: cpu: "nios2_gen2_0" instantiated altera_nios2_gen2_unit "cpu"
 Info: nios2_gen2_0_data_master_translator: "mm_interconnect_0" instantiated altera_merlin_master_translator "nios2_gen2_0_data_master_translator"
@@ -446,7 +423,7 @@ Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
 Info: router_001: "mm_interconnect_0" instantiated altera_merlin_router "router_001"
 Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
 Info: router_003: "mm_interconnect_0" instantiated altera_merlin_router "router_003"
-Info: router_010: "mm_interconnect_0" instantiated altera_merlin_router "router_010"
+Info: router_009: "mm_interconnect_0" instantiated altera_merlin_router "router_009"
 Info: sdram_s1_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "sdram_s1_burst_adapter"
 Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux_001"
@@ -455,7 +432,6 @@ Info: cmd_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "c
 Info: Reusing file C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/finalProject/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_demux_001: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_001"
-Info: rsp_demux_005: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux_005"
 Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
 Info: Reusing file C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/finalProject/synthesis/submodules/altera_merlin_arbitrator.sv
 Info: rsp_mux_001: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux_001"
@@ -466,9 +442,9 @@ Info: Reusing file C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fin
 Info: crosser: "mm_interconnect_0" instantiated altera_avalon_st_handshake_clock_crosser "crosser"
 Info: Reusing file C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/finalProject/synthesis/submodules/altera_avalon_st_pipeline_base.v
 Info: avalon_st_adapter: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter"
-Info: avalon_st_adapter_008: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_008"
+Info: avalon_st_adapter_007: "mm_interconnect_0" instantiated altera_avalon_st_adapter "avalon_st_adapter_007"
 Info: error_adapter_0: "avalon_st_adapter" instantiated error_adapter "error_adapter_0"
-Info: error_adapter_0: "avalon_st_adapter_008" instantiated error_adapter "error_adapter_0"
-Info: finalProject: Done "finalProject" with 52 modules, 87 files
+Info: error_adapter_0: "avalon_st_adapter_007" instantiated error_adapter "error_adapter_0"
+Info: finalProject: Done "finalProject" with 50 modules, 85 files
 Info: qsys-generate succeeded.
 Info: Finished: Create HDL design files for synthesis

@@ -41,15 +41,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  11 .debug_abbrev 00012db8  00000000  00000000  00077db4  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_line   0001f911  00000000  00000000  0008ab6c  2**0
+ 12 .debug_line   0001f915  00000000  00000000  0008ab6c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_frame  000035c0  00000000  00000000  000aa480  2**2
+ 13 .debug_frame  000035c0  00000000  00000000  000aa484  2**2
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    00005e9e  00000000  00000000  000ada40  2**0
+ 14 .debug_str    00005e9e  00000000  00000000  000ada44  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_loc    0002170d  00000000  00000000  000b38de  2**0
+ 15 .debug_loc    0002170d  00000000  00000000  000b38e2  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_alt_sim_info 00000040  00000000  00000000  000d4fec  2**2
+ 16 .debug_alt_sim_info 00000040  00000000  00000000  000d4ff0  2**2
                   CONTENTS, READONLY, DEBUGGING
  17 .debug_ranges 000022e0  00000000  00000000  000d5030  2**3
                   CONTENTS, READONLY, DEBUGGING
@@ -1268,16 +1268,16 @@ void setFrequencyFromIndex(uint32_t* noteIndices) {
 	}
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR0_BASE,PHASEQ[0]);
  800047c:	e0bff217 	ldw	r2,-56(fp)
- 8000480:	0080d835 	stwio	r2,864(zero)
+ 8000480:	0080d035 	stwio	r2,832(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE,PHASEQ[1]);
  8000484:	e0bff317 	ldw	r2,-52(fp)
- 8000488:	0080d435 	stwio	r2,848(zero)
+ 8000488:	0080cc35 	stwio	r2,816(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE,PHASEQ[2]);
  800048c:	e0bff417 	ldw	r2,-48(fp)
- 8000490:	0080d435 	stwio	r2,848(zero)
+ 8000490:	0080cc35 	stwio	r2,816(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE,PHASEQ[3]);
  8000494:	e0bff517 	ldw	r2,-44(fp)
- 8000498:	0080d435 	stwio	r2,848(zero)
+ 8000498:	0080cc35 	stwio	r2,816(zero)
 
 }
  800049c:	0001883a 	nop
@@ -1456,130 +1456,130 @@ void initPhaseIncrements(){
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR0_BASE, phaseIncs[0]);
  80006d8:	008200b4 	movhi	r2,2050
  80006dc:	10afa517 	ldw	r2,-16748(r2)
- 80006e0:	0080d835 	stwio	r2,864(zero)
+ 80006e0:	0080d035 	stwio	r2,832(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR1_BASE, phaseIncs[1]);
  80006e4:	008200b4 	movhi	r2,2050
  80006e8:	10afa617 	ldw	r2,-16744(r2)
- 80006ec:	0080d435 	stwio	r2,848(zero)
+ 80006ec:	0080cc35 	stwio	r2,816(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR2_BASE, phaseIncs[2]);
  80006f0:	008200b4 	movhi	r2,2050
  80006f4:	10afa717 	ldw	r2,-16740(r2)
- 80006f8:	0080d035 	stwio	r2,832(zero)
+ 80006f8:	0080c835 	stwio	r2,800(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR3_BASE, phaseIncs[3]);
  80006fc:	008200b4 	movhi	r2,2050
  8000700:	10afa817 	ldw	r2,-16736(r2)
- 8000704:	0080cc35 	stwio	r2,816(zero)
+ 8000704:	0080c435 	stwio	r2,784(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR4_BASE, phaseIncs[4]);
  8000708:	008200b4 	movhi	r2,2050
  800070c:	10afa917 	ldw	r2,-16732(r2)
- 8000710:	0080c835 	stwio	r2,800(zero)
+ 8000710:	0080c035 	stwio	r2,768(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR5_BASE, phaseIncs[5]);
  8000714:	008200b4 	movhi	r2,2050
  8000718:	10afaa17 	ldw	r2,-16728(r2)
- 800071c:	0080c435 	stwio	r2,784(zero)
+ 800071c:	0080bc35 	stwio	r2,752(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR6_BASE, phaseIncs[6]);
  8000720:	008200b4 	movhi	r2,2050
  8000724:	10afab17 	ldw	r2,-16724(r2)
- 8000728:	0080c035 	stwio	r2,768(zero)
+ 8000728:	0080b835 	stwio	r2,736(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR7_BASE, phaseIncs[7]);
  800072c:	008200b4 	movhi	r2,2050
  8000730:	10afac17 	ldw	r2,-16720(r2)
- 8000734:	0080bc35 	stwio	r2,752(zero)
+ 8000734:	0080b435 	stwio	r2,720(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR8_BASE, phaseIncs[8]);
  8000738:	008200b4 	movhi	r2,2050
  800073c:	10afad17 	ldw	r2,-16716(r2)
- 8000740:	0080b835 	stwio	r2,736(zero)
+ 8000740:	0080b035 	stwio	r2,704(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR9_BASE, phaseIncs[9]);
  8000744:	008200b4 	movhi	r2,2050
  8000748:	10afae17 	ldw	r2,-16712(r2)
- 800074c:	0080b435 	stwio	r2,720(zero)
+ 800074c:	0080ac35 	stwio	r2,688(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR10_BASE, phaseIncs[10]);
  8000750:	008200b4 	movhi	r2,2050
  8000754:	10afaf17 	ldw	r2,-16708(r2)
- 8000758:	0080b035 	stwio	r2,704(zero)
+ 8000758:	0080a835 	stwio	r2,672(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR11_BASE, phaseIncs[11]);
  800075c:	008200b4 	movhi	r2,2050
  8000760:	10afb017 	ldw	r2,-16704(r2)
- 8000764:	0080ac35 	stwio	r2,688(zero)
+ 8000764:	0080a435 	stwio	r2,656(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR12_BASE, phaseIncs[12]);
  8000768:	008200b4 	movhi	r2,2050
  800076c:	10afb117 	ldw	r2,-16700(r2)
- 8000770:	0080a835 	stwio	r2,672(zero)
+ 8000770:	0080a035 	stwio	r2,640(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR13_BASE, phaseIncs[13]);
  8000774:	008200b4 	movhi	r2,2050
  8000778:	10afb217 	ldw	r2,-16696(r2)
- 800077c:	0080a435 	stwio	r2,656(zero)
+ 800077c:	00809c35 	stwio	r2,624(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR14_BASE, phaseIncs[14]);
  8000780:	008200b4 	movhi	r2,2050
  8000784:	10afb317 	ldw	r2,-16692(r2)
- 8000788:	0080a035 	stwio	r2,640(zero)
+ 8000788:	00809835 	stwio	r2,608(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR15_BASE, phaseIncs[15]);
  800078c:	008200b4 	movhi	r2,2050
  8000790:	10afb417 	ldw	r2,-16688(r2)
- 8000794:	00809c35 	stwio	r2,624(zero)
+ 8000794:	00809435 	stwio	r2,592(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR16_BASE, phaseIncs[16]);
  8000798:	008200b4 	movhi	r2,2050
  800079c:	10afb517 	ldw	r2,-16684(r2)
- 80007a0:	00809835 	stwio	r2,608(zero)
+ 80007a0:	00809035 	stwio	r2,576(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR17_BASE, phaseIncs[17]);
  80007a4:	008200b4 	movhi	r2,2050
  80007a8:	10afb617 	ldw	r2,-16680(r2)
- 80007ac:	00809435 	stwio	r2,592(zero)
+ 80007ac:	00808c35 	stwio	r2,560(zero)
 	// glitch: BASE ADDRESSES OF NEWLY ADDED PERIPHERALS ARENT RECOGNIZED
 
 	// but they still work for whatever reason
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR18_BASE, phaseIncs[18]);
  80007b0:	008200b4 	movhi	r2,2050
  80007b4:	10afb717 	ldw	r2,-16676(r2)
- 80007b8:	00808035 	stwio	r2,512(zero)
+ 80007b8:	00807835 	stwio	r2,480(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR19_BASE, phaseIncs[19]);
  80007bc:	008200b4 	movhi	r2,2050
  80007c0:	10afb817 	ldw	r2,-16672(r2)
- 80007c4:	00807c35 	stwio	r2,496(zero)
+ 80007c4:	00807435 	stwio	r2,464(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR20_BASE, phaseIncs[20]);
  80007c8:	008200b4 	movhi	r2,2050
  80007cc:	10afb917 	ldw	r2,-16668(r2)
- 80007d0:	00807835 	stwio	r2,480(zero)
+ 80007d0:	00807035 	stwio	r2,448(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR21_BASE, phaseIncs[21]);
  80007d4:	008200b4 	movhi	r2,2050
  80007d8:	10afba17 	ldw	r2,-16664(r2)
- 80007dc:	00807435 	stwio	r2,464(zero)
+ 80007dc:	00806c35 	stwio	r2,432(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR22_BASE, phaseIncs[22]);
  80007e0:	008200b4 	movhi	r2,2050
  80007e4:	10afbb17 	ldw	r2,-16660(r2)
- 80007e8:	00807035 	stwio	r2,448(zero)
+ 80007e8:	00806835 	stwio	r2,416(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR23_BASE, phaseIncs[23]);
  80007ec:	008200b4 	movhi	r2,2050
  80007f0:	10afbc17 	ldw	r2,-16656(r2)
- 80007f4:	00806c35 	stwio	r2,432(zero)
+ 80007f4:	00806435 	stwio	r2,400(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR24_BASE, phaseIncs[24]);
  80007f8:	008200b4 	movhi	r2,2050
  80007fc:	10afbd17 	ldw	r2,-16652(r2)
- 8000800:	00806835 	stwio	r2,416(zero)
+ 8000800:	00806035 	stwio	r2,384(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR25_BASE, phaseIncs[25]);
  8000804:	008200b4 	movhi	r2,2050
  8000808:	10afbe17 	ldw	r2,-16648(r2)
- 800080c:	00806435 	stwio	r2,400(zero)
+ 800080c:	00805c35 	stwio	r2,368(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR26_BASE, phaseIncs[26]);
  8000810:	008200b4 	movhi	r2,2050
  8000814:	10afbf17 	ldw	r2,-16644(r2)
- 8000818:	00806035 	stwio	r2,384(zero)
+ 8000818:	00805835 	stwio	r2,352(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR27_BASE, phaseIncs[27]);
  800081c:	008200b4 	movhi	r2,2050
  8000820:	10afc017 	ldw	r2,-16640(r2)
- 8000824:	00805c35 	stwio	r2,368(zero)
+ 8000824:	00805435 	stwio	r2,336(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR28_BASE, phaseIncs[28]);
  8000828:	008200b4 	movhi	r2,2050
  800082c:	10afc117 	ldw	r2,-16636(r2)
- 8000830:	00805835 	stwio	r2,352(zero)
+ 8000830:	00805035 	stwio	r2,320(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR29_BASE, phaseIncs[29]);
  8000834:	008200b4 	movhi	r2,2050
  8000838:	10afc217 	ldw	r2,-16632(r2)
- 800083c:	00805435 	stwio	r2,336(zero)
+ 800083c:	00804c35 	stwio	r2,304(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(PHASE_INCR30_BASE, phaseIncs[30]);
  8000840:	008200b4 	movhi	r2,2050
  8000844:	10afc317 	ldw	r2,-16628(r2)
- 8000848:	00805035 	stwio	r2,320(zero)
+ 8000848:	00804835 	stwio	r2,288(zero)
 	IOWR_ALTERA_AVALON_PIO_DATA(0x140, phaseIncs[27]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x130, phaseIncs[28]);
 	IOWR_ALTERA_AVALON_PIO_DATA(0x120, phaseIncs[29]);
@@ -1587,7 +1587,7 @@ void initPhaseIncrements(){
 	*/
 	IOWR_ALTERA_AVALON_PIO_DATA(OCT_BASE, OCTQ);
  800084c:	e0bff9c3 	ldbu	r2,-25(fp)
- 8000850:	00808435 	stwio	r2,528(zero)
+ 8000850:	00807c35 	stwio	r2,496(zero)
 
 	return;
  8000854:	0001883a 	nop
@@ -1637,22 +1637,22 @@ void setKeycodeVoice(WORD keycode, int voiceNum) {
  80008d0:	00000d06 	br	8000908 <setKeycodeVoice+0x94>
 			IOWR_ALTERA_AVALON_PIO_DATA(KEYCODE_BASE,keycode);
  80008d4:	e0bfff0b 	ldhu	r2,-4(fp)
- 80008d8:	0080f435 	stwio	r2,976(zero)
+ 80008d8:	0080ec35 	stwio	r2,944(zero)
 			break;
  80008dc:	00000906 	br	8000904 <setKeycodeVoice+0x90>
 			IOWR_ALTERA_AVALON_PIO_DATA(KEYCODE1_BASE, keycode);
  80008e0:	e0bfff0b 	ldhu	r2,-4(fp)
- 80008e4:	00809035 	stwio	r2,576(zero)
+ 80008e4:	00808835 	stwio	r2,544(zero)
 			break;
  80008e8:	00000606 	br	8000904 <setKeycodeVoice+0x90>
 			IOWR_ALTERA_AVALON_PIO_DATA(KEYCODE2_BASE, keycode);
  80008ec:	e0bfff0b 	ldhu	r2,-4(fp)
- 80008f0:	00808c35 	stwio	r2,560(zero)
+ 80008f0:	00808435 	stwio	r2,528(zero)
 			break;
  80008f4:	00000306 	br	8000904 <setKeycodeVoice+0x90>
 			IOWR_ALTERA_AVALON_PIO_DATA(KEYCODE3_BASE, keycode);
  80008f8:	e0bfff0b 	ldhu	r2,-4(fp)
- 80008fc:	00808835 	stwio	r2,544(zero)
+ 80008fc:	00808035 	stwio	r2,512(zero)
 			break;
  8000900:	0001883a 	nop
 	return;
@@ -1925,12 +1925,12 @@ void setLED(int LED) {
  8000c20:	df000104 	addi	fp,sp,4
  8000c24:	e13fff15 	stw	r4,-4(fp)
 	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE,
- 8000c28:	00c0e037 	ldwio	r3,896(zero)
+ 8000c28:	00c0d837 	ldwio	r3,864(zero)
  8000c2c:	01000044 	movi	r4,1
  8000c30:	e0bfff17 	ldw	r2,-4(fp)
  8000c34:	2084983a 	sll	r2,r4,r2
  8000c38:	1884b03a 	or	r2,r3,r2
- 8000c3c:	0080e035 	stwio	r2,896(zero)
+ 8000c3c:	0080d835 	stwio	r2,864(zero)
 			(IORD_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE) | (0x001 << LED)));
 }
  8000c40:	0001883a 	nop
@@ -1947,13 +1947,13 @@ void clearLED(int LED) {
  8000c5c:	df000104 	addi	fp,sp,4
  8000c60:	e13fff15 	stw	r4,-4(fp)
 	IOWR_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE,
- 8000c64:	00c0e037 	ldwio	r3,896(zero)
+ 8000c64:	00c0d837 	ldwio	r3,864(zero)
  8000c68:	01000044 	movi	r4,1
  8000c6c:	e0bfff17 	ldw	r2,-4(fp)
  8000c70:	2084983a 	sll	r2,r4,r2
  8000c74:	0084303a 	nor	r2,zero,r2
  8000c78:	1884703a 	and	r2,r3,r2
- 8000c7c:	0080e035 	stwio	r2,896(zero)
+ 8000c7c:	0080d835 	stwio	r2,864(zero)
 			(IORD_ALTERA_AVALON_PIO_DATA(LEDS_PIO_BASE) & ~(0x001 << LED)));
 
 }
@@ -1973,7 +1973,7 @@ void setKeycode(WORD keycode) {
  8000ca4:	e0bfff0d 	sth	r2,-4(fp)
 	IOWR_ALTERA_AVALON_PIO_DATA(KEYCODE_BASE, keycode);
  8000ca8:	e0bfff0b 	ldhu	r2,-4(fp)
- 8000cac:	0080f435 	stwio	r2,976(zero)
+ 8000cac:	0080ec35 	stwio	r2,944(zero)
 }
  8000cb0:	0001883a 	nop
  8000cb4:	e037883a 	mov	sp,fp
@@ -1995,7 +1995,7 @@ void printSignedHex0(signed char value) {
 	BYTE ones = 0;
  8000ce0:	e03fff85 	stb	zero,-2(fp)
 	WORD pio_val = IORD_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE);
- 8000ce4:	0080e437 	ldwio	r2,912(zero)
+ 8000ce4:	0080dc37 	ldwio	r2,880(zero)
  8000ce8:	e0bfff0d 	sth	r2,-4(fp)
 	if (value < 0) {
  8000cec:	e0bffe07 	ldb	r2,-8(fp)
@@ -2069,7 +2069,7 @@ void printSignedHex0(signed char value) {
 
 	IOWR_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE, pio_val);
  8000db4:	e0bfff0b 	ldhu	r2,-4(fp)
- 8000db8:	0080e435 	stwio	r2,912(zero)
+ 8000db8:	0080dc35 	stwio	r2,880(zero)
 }
  8000dbc:	0001883a 	nop
  8000dc0:	e037883a 	mov	sp,fp
@@ -2092,7 +2092,7 @@ void printSignedHex1(signed char value) {
 	BYTE ones = 0;
  8000df0:	e03fff85 	stb	zero,-2(fp)
 	DWORD pio_val = IORD_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE);
- 8000df4:	0080e437 	ldwio	r2,912(zero)
+ 8000df4:	0080dc37 	ldwio	r2,880(zero)
  8000df8:	e0bffe15 	stw	r2,-8(fp)
 	if (value < 0) {
  8000dfc:	e0bffd07 	ldb	r2,-12(fp)
@@ -2176,7 +2176,7 @@ void printSignedHex1(signed char value) {
 
 	IOWR_ALTERA_AVALON_PIO_DATA(HEX_DIGITS_PIO_BASE, pio_val);
  8000ee4:	e0bffe17 	ldw	r2,-8(fp)
- 8000ee8:	0080e435 	stwio	r2,912(zero)
+ 8000ee8:	0080dc35 	stwio	r2,880(zero)
 }
  8000eec:	0001883a 	nop
  8000ef0:	e037883a 	mov	sp,fp
@@ -2304,7 +2304,7 @@ int main() {
 
 	//configure power control, disable internal VDDD, VDDIO=3.3V, VDDA=VDDD=1.8V (ext)
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ANA_POWER, \
- 8001040:	01907f84 	movi	r6,16894
+ 8001040:	01917f84 	movi	r6,17918
  8001044:	01400c04 	movi	r5,48
  8001048:	e13ffc17 	ldw	r4,-16(fp)
  800104c:	80017100 	call	8001710 <SGTL5000_Reg_Wr>
@@ -2378,13 +2378,19 @@ int main() {
  80010f4:	01020074 	movhi	r4,2049
  80010f8:	211ea304 	addi	r4,r4,31372
  80010fc:	80088e00 	call	80088e0 <printf>
-
+			SGTL5000_SYS_FS_96k << SGTL5000_SYS_FS_SHIFT |
+			SGTL5000_MCLK_FREQ_256FS << SGTL5000_MCLK_FREQ_SHIFT);
+	printf( "CHIP_CLK_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_CLK_CTRL));
+	*/
 	//Set as I2S master
-	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_I2S_CTRL, SGTL5000_I2S_MASTER);
+	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_I2S_CTRL, \
  8001100:	01802004 	movi	r6,128
  8001104:	01400184 	movi	r5,6
  8001108:	e13ffc17 	ldw	r4,-16(fp)
  800110c:	80017100 	call	8001710 <SGTL5000_Reg_Wr>
+			SGTL5000_I2S_MASTER|
+			SGTL5000_I2S_DLEN_32 << SGTL5000_I2S_DLEN_SHIFT|
+			SGTL5000_I2S_MODE_I2S_LJ << SGTL5000_I2S_MODE_SHIFT);
 	printf( "CHIP_I2S_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_I2S_CTRL));
  8001110:	01400184 	movi	r5,6
  8001114:	e13ffc17 	ldw	r4,-16(fp)
@@ -2394,7 +2400,10 @@ int main() {
  8001124:	01020074 	movhi	r4,2049
  8001128:	211eaa04 	addi	r4,r4,31400
  800112c:	80088e00 	call	80088e0 <printf>
-
+		  SGTL5000_I2S_DLEN_32 << SGTL5000_I2S_DLEN_SHIFT |
+		  SGTL5000_I2S_MODE_I2S_LJ << SGTL5000_I2S_MODE_SHIFT);
+	printf( "CHIP_I2S_CTRL register: %x\n", SGTL5000_Reg_Rd (i2c_dev, SGTL5000_CHIP_I2S_CTRL));
+	*/
 	//ADC input from Line
 	SGTL5000_Reg_Wr(i2c_dev, SGTL5000_CHIP_ANA_CTRL, \
  8001130:	01800104 	movi	r6,4
@@ -4221,14 +4230,14 @@ void MAX3421E_reset(void) {
 	//hardware reset, then software reset
 	IOWR_ALTERA_AVALON_PIO_DATA(USB_RST_BASE, 0);
  80024bc:	0005883a 	mov	r2,zero
- 80024c0:	0080e835 	stwio	r2,928(zero)
+ 80024c0:	0080e035 	stwio	r2,896(zero)
 	usleep(1000000);
  80024c4:	010003f4 	movhi	r4,15
  80024c8:	21109004 	addi	r4,r4,16960
  80024cc:	80139f40 	call	80139f4 <usleep>
 	IOWR_ALTERA_AVALON_PIO_DATA(USB_RST_BASE, 1);
  80024d0:	00800044 	movi	r2,1
- 80024d4:	0080e835 	stwio	r2,928(zero)
+ 80024d4:	0080e035 	stwio	r2,896(zero)
 	BYTE tmp = 0;
  80024d8:	e03fffc5 	stb	zero,-1(fp)
 	MAXreg_wr( rUSBCTL, bmCHIPRES);      //Chip reset. This stops the oscillator
@@ -4531,7 +4540,7 @@ void MAX3421E_Task(void) {
  80027e8:	df000015 	stw	fp,0(sp)
  80027ec:	d839883a 	mov	fp,sp
 	if ( IORD_ALTERA_AVALON_PIO_DATA(USB_IRQ_BASE) == 0) {
- 80027f0:	0080f037 	ldwio	r2,960(zero)
+ 80027f0:	0080e837 	ldwio	r2,928(zero)
  80027f4:	1000041e 	bne	r2,zero,8002808 <MAX3421E_Task+0x28>
 		printf("MAX interrupt\n\r");
  80027f8:	01020074 	movhi	r4,2049
@@ -4541,7 +4550,7 @@ void MAX3421E_Task(void) {
  8002804:	800283c0 	call	800283c <MaxIntHandler>
 	}
 	if ( IORD_ALTERA_AVALON_PIO_DATA(USB_GPX_BASE) == 1) {
- 8002808:	0080ec37 	ldwio	r2,944(zero)
+ 8002808:	0080e437 	ldwio	r2,912(zero)
  800280c:	10800058 	cmpnei	r2,r2,1
  8002810:	1000041e 	bne	r2,zero,8002824 <MAX3421E_Task+0x44>
 		printf("GPX interrupt\n\r");

@@ -3,18 +3,14 @@ module i2s_core
 		parameter DW = 32
 )
 (
-		input  logic          FCLK,
 		input  logic          SCLK, LRCLK, Reset,
 		input  logic          sampReq,
 		//input  logic          i2sEmpty,
 		input  logic [DW-1:0] i2sDin,
-		output logic          MCLK,
 		output logic          sampFull, sampGenEn,
 		output logic          streamOutL, streamOutR
 );
 	
-	// MCLK division
-	logic [1:0] aud_mclk_ctr = 2'b00;
 	
 	// shiftreg & shiftreg fsm declarations
 	logic          prevLRCLK = 1'b0;
@@ -39,14 +35,6 @@ module i2s_core
 	assign i2sHalfEmpty = ~i2sUsedw[7];
 	assign sampGenEn = (sampHalfFull | sampEmpty | i2sEmpty | i2sHalfEmpty) & (~i2sFull);
 	assign fifoDin = i2sDin;
-	
-	always_ff @ (posedge FCLK) begin
-		if (Reset)  
-			aud_mclk_ctr = 2'b00;
-		else
-			aud_mclk_ctr <= aud_mclk_ctr+1;
-	end
-	assign MCLK = aud_mclk_ctr[1];
 	
 	
 	always_ff @ (posedge LRCLK) begin

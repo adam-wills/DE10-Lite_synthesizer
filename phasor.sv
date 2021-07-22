@@ -13,6 +13,7 @@ module phasor
 );
 				  
 	localparam IW = DW-AW; // interpolation width
+	
 	logic [DW-1:0] phase, phase_next, phase_addr;
 	logic [DW-1:0] freq_next;
 	logic [AW-1:0] addr_next;

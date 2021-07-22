@@ -9,17 +9,18 @@ module ddfs_core
 		input  logic reset,
 		input  logic clken,
 		// hardware interface
-		input  logic [DW-1:0] data_interp[2],
-		input  logic [DW-1:0] data_anti[2],
+		input  logic          hw_write
+		input  logic [DW-1:0] hw_write_data,
+		output logic          hw_read,
 		output logic [AW-1:0] hw_addr,
-		output logic          hw_rden,
+		output logic [PW-AW-1:0] hw_interp,
 		// software interface
 		input  logic cs,
 		input  logic sw_read,
 		input  logic sw_write,
 		input  logic [4:0]  sw_addr,
-		input  logic [31:0] wr_data,
-		output logic [31:0] rd_data,
+		input  logic [PW-1:0] sw_wr_data,
+		output logic [PW-1:0] sw_rd_data,
 		// external sigs
 		input  logic [PW-1:0] fOffset_ext, phOffset_ext,
 		input  logic [DW-1:0] env_ext,
@@ -34,22 +35,23 @@ module ddfs_core
 	logic [PW-1:0]     phaseOffset, fOffset;
 	logic [DW-1:0]     env_reg, env;
 	logic [3:0]        ctrl_reg;
-	logic wr_en, wr_fc, wr_fo, wr_ph, wr_env, wr_ti, wr_ctrl;
+	logic wr_en, wr_fc, wr_fo, wr_ph, wr_env, wr_ctrl;
 	
 	directDigitalOscillator #(.P_WIDTH(PW), .D_WIDTH(DW), .A_WIDTH(AW)) ddfs_osc
 	(
 		.Clk(clk),
 		.Reset(reset),
 		.En(clken),
+		.Load(hw_write),
 		.fCarrier(fCarrier_reg),
 		.fOffset(fOffset),
 		.phaseOffset(phaseOffset),
 		.env(env),
-		.tableInterp(tableInt),
-		.samplesInterp(data_interp),
-		.samplesAnti(data_anti),
+		.sampIn(hw_write_data),
 		.addrOut(hw_addr),
-		.sigOut(sigOut)
+		.readEn(hw_read),
+		.sigOut(sigOut),
+		.sampInterp(hw_interp)
 	);
 	
 	always_ff @(posedge clk)
@@ -57,22 +59,23 @@ module ddfs_core
 			fCarrier_reg <= 0;
 			fOffset_reg  <= 0;
 			phase_reg    <= 0;
-			env_reg      <= { 2'b01,{(D;W-2){1'b0}} };
+			env_reg      <= { 2'b01,{(DW-2){1'b0}} };
+			tableInt_reg <= 0;
 			ctrl_reg     <= 0;
 		end
 		else begin
 			if (wr_fc)
-				fCarrier_reg <= wr_data[PW-1:0];
+				fCarrier_reg <= sw_wr_data[PW-1:0];
 			if (wr_fo)
-				fOffset_reg  <= wr_data[PW-1:0];
+				fOffset_reg  <= sw_wr_data[PW-1:0];
 			if (wr_ph)
-				phase_reg    <= wr_data[PW-1:0];
+				phase_reg    <= sw_wr_data[PW-1:0];
 			if (wr_env)
-				env_reg      <= wr_data[DW-1:0]
+				env_reg      <= sw_wr_data[DW-1:0];
 			if (wr_ti)
-				tableInt_reg <= wr_data;
+				tableInt_reg <= sw_wr_data[DW-1:0];
 			if (wr_ctrl)
-				ctrl_reg     <= wr_data[3:0];
+				ctrl_reg     <= sw_wr_data[3:0];
 			if
 		end
 	end
@@ -90,6 +93,6 @@ module ddfs_core
 	assign phaseOffset = (ctrl_reg[2]) ? phOffset_ext : phase_reg;
 	assign tableInt    = (ctrl_reg[3]) ? tableInt_ext : tableInt_reg;
 	// assign output
-	assign rd_data = {16'h0, sigOut[(2*DW)-1:DW]};
+	assign sw_rd_data = {16'h0, sigOut[(2*DW)-1:DW]};
 		
 endmodule
