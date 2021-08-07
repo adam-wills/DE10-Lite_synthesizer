@@ -18,7 +18,7 @@ in the process of being implemented. However, existing features include:
   <li> 4 simultaneously playable oscillators </li>
   <li> Frequency modulation inputs for each oscillator with :
     <ul>
-      <li> frequency modulate of any of the 4 active voices with a linear combination\n
+      <li> frequency modulation of any of the 4 active voices with a linear combination
            of any of the active voices (including the original voice itself) </li>
       <li> Configurable weights where the strengths of the FM signals can be set </li>
     </ul></li>
