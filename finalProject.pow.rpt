@@ -1,5 +1,5 @@
 Power Analyzer report for finalProject
-Wed Jul 21 15:05:04 2021
+Fri Jul 30 14:14:37 2021
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 Patches 0.08std SJ Lite Edition
 
 
@@ -53,19 +53,19 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 2.06        ;
+; Average used               ; 2.00        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;  35.5%      ;
+;     Processors 2-4         ;  33.5%      ;
 +----------------------------+-------------+
 
 
 +------------------------------------------------------------------------------------------------------+
 ; Power Analyzer Summary                                                                               ;
 +----------------------------------------+-------------------------------------------------------------+
-; Power Analyzer Status                  ; Successful - Wed Jul 21 15:05:04 2021                       ;
+; Power Analyzer Status                  ; Successful - Fri Jul 30 14:14:37 2021                       ;
 ; Quartus Prime Version                  ; 20.1.0 Build 711 06/05/2020 Patches 0.08std SJ Lite Edition ;
 ; Revision Name                          ; finalProject                                                ;
 ; Top-level Entity Name                  ; fpgaSynth                                                   ;
@@ -1077,7 +1077,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Power Analyzer
     Info: Version 20.1.0 Build 711 06/05/2020 Patches 0.08std SJ Lite Edition
-    Info: Processing started: Wed Jul 21 15:04:47 2021
+    Info: Processing started: Fri Jul 30 14:14:18 2021
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off finalProject -c finalProject
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
@@ -1130,6 +1130,15 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {u0|sdram_pll|sd1|pll7|inclk[0]} -duty_cycle 50.00 -name {u0|sdram_pll|sd1|pll7|clk[0]} {u0|sdram_pll|sd1|pll7|clk[0]}
     Info (332110): create_generated_clock -source {u0|sdram_pll|sd1|pll7|inclk[0]} -phase -18.00 -duty_cycle 50.00 -name {u0|sdram_pll|sd1|pll7|clk[1]} {u0|sdram_pll|sd1|pll7|clk[1]}
 Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at fpgaSynthSDC.sdc(79): CLK2_virt could not be matched with a clock File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 79
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(79): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 79
+    Info (332050): set_input_delay -max -clock CLK2_virt      5.9 [get_ports ARDUINO_IO[14]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 79
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(80): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 80
+    Info (332050): set_input_delay -max -clock CLK2_virt      5.9 [get_ports ARDUINO_IO[15]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 80
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(101): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 101
+    Info (332050): set_input_delay -min -clock CLK2_virt     3.0 [get_ports ARDUINO_IO[14]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 101
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(102): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 102
+    Info (332050): set_input_delay -min -clock CLK2_virt     3.0 [get_ports ARDUINO_IO[15]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 102
 Info (332104): Reading SDC File: 'finalProject/synthesis/submodules/altera_reset_controller.sdc'
 Info (332104): Reading SDC File: 'finalProject/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.sdc'
 Info (332104): Reading SDC File: 'finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.sdc'
@@ -1148,10 +1157,10 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (215049): Average toggle rate for this design is 6.298 millions of transitions / sec
 Info (215031): Total thermal power estimate for the design is 335.22 mW
-Info: Quartus Prime Power Analyzer was successful. 0 errors, 9 warnings
-    Info: Peak virtual memory: 5014 megabytes
-    Info: Processing ended: Wed Jul 21 15:05:05 2021
-    Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:34
+Info: Quartus Prime Power Analyzer was successful. 0 errors, 14 warnings
+    Info: Peak virtual memory: 5015 megabytes
+    Info: Processing ended: Fri Jul 30 14:14:37 2021
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:37
 
 

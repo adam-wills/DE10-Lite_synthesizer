@@ -11,7 +11,8 @@
    <description preferredWidth="281" />
   </columns>
  </systemtable>
- <library expandedCategories="Project,Library" />
- <window width="2223" height="1659" x="246" y="68" />
+ <library
+   expandedCategories="Library/Interface Protocols,Library/DSP,Library/Basic Functions,Library/Processors and Peripherals,Library/Interface Protocols/JESD,Project,Library" />
+ <window width="2631" height="1659" x="246" y="68" />
  <generation simulation="NONE" block_symbol_file="1" />
 </preferences>

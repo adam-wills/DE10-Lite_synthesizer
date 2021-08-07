@@ -1,0 +1,29 @@
+module ddfs_core
+#(
+		parameter PW = 32,
+		          DW = 16,
+		          AW = 12
+)
+(
+		input  logic clk,
+		input  logic reset,
+		// software interface
+		input  logic cs,
+		input  logic read,
+		input  logic write,
+		input  logic [4:0]  addr,
+		input  logic [31:0] wr_data,
+		output logic [31:0] rd_data,
+		// external sigs
+		input  logic [PW-1:0] fOffset_ext, phOffset_ext,
+		input  logic [DW-1:0] env_ext,
+		output logic [31:0]   sig_out
+);
+
+	logic [PW-1:0] phase_reg, fCarrier_reg, fOffset_reg;
+	logic [PW-1:0] phase, fOffset;
+	logic [DW-1:0] env_reg, env, sig;
+	logic [2:0]    ctrl_reg;
+	logic wr_en, wr_fc, wr_fo, wr_ph, wr_env, wr_ti, wr_ctrl;
+	
+endmodule

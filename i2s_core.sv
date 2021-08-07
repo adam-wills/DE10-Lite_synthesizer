@@ -3,7 +3,7 @@ module i2s_core
 		parameter DW = 32
 )
 (
-		input  logic          SCLK, LRCLK, Reset,
+		input  logic          FCLK, SCLK, LRCLK, Reset,
 		input  logic          sampReq,
 		//input  logic          i2sEmpty,
 		input  logic [DW-1:0] i2sDin,
@@ -35,6 +35,7 @@ module i2s_core
 	assign i2sHalfEmpty = ~i2sUsedw[7];
 	assign sampGenEn = (sampHalfFull | sampEmpty | i2sEmpty | i2sHalfEmpty) & (~i2sFull);
 	assign fifoDin = i2sDin;
+	assign sampleRequest = sampReq;
 	
 	
 	always_ff @ (posedge LRCLK) begin

@@ -442,6 +442,7 @@ clockDivider_AW clockDivider_2
 
 i2s_core i2s_core_inst
 (
+		.FCLK(MAX10_CLK2_50),
 		.SCLK(SCLK),
 		.LRCLK(LRCLK),
 		.Reset(Reset_h),

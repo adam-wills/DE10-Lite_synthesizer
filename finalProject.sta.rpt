@@ -1,5 +1,5 @@
 Timing Analyzer report for finalProject
-Wed Jul 21 15:05:24 2021
+Fri Jul 30 14:14:56 2021
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 Patches 0.08std SJ Lite Edition
 
 
@@ -93,14 +93,14 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 2.25        ;
+; Average used               ; 2.45        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  48.7%      ;
-;     Processor 3            ;  38.7%      ;
-;     Processor 4            ;  37.4%      ;
+;     Processor 2            ;  53.5%      ;
+;     Processor 3            ;  46.2%      ;
+;     Processor 4            ;  45.6%      ;
 +----------------------------+-------------+
 
 
@@ -109,10 +109,10 @@ https://fpgasoftware.intel.com/eula.
 +--------------------------------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                                                  ; Status ; Read at                  ;
 +--------------------------------------------------------------------------------+--------+--------------------------+
-; fpgaSynthSDC.sdc                                                               ; OK     ; Wed Jul 21 15:05:09 2021 ;
-; finalProject/synthesis/submodules/altera_reset_controller.sdc                  ; OK     ; Wed Jul 21 15:05:09 2021 ;
-; finalProject/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.sdc ; OK     ; Wed Jul 21 15:05:09 2021 ;
-; finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.sdc            ; OK     ; Wed Jul 21 15:05:09 2021 ;
+; fpgaSynthSDC.sdc                                                               ; OK     ; Fri Jul 30 14:14:41 2021 ;
+; finalProject/synthesis/submodules/altera_reset_controller.sdc                  ; OK     ; Fri Jul 30 14:14:41 2021 ;
+; finalProject/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.sdc ; OK     ; Fri Jul 30 14:14:41 2021 ;
+; finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.sdc            ; OK     ; Fri Jul 30 14:14:41 2021 ;
 +--------------------------------------------------------------------------------+--------+--------------------------+
 
 
@@ -1120,7 +1120,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.0 Build 711 06/05/2020 Patches 0.08std SJ Lite Edition
-    Info: Processing started: Wed Jul 21 15:05:06 2021
+    Info: Processing started: Fri Jul 30 14:14:38 2021
 Info: Command: quartus_sta finalProject -c finalProject
 Info: qsta_default_script.tcl version: #1
 Warning (20013): Ignored 209 assignments for entity "DE10_LITE_Default" -- entity does not exist in design
@@ -1386,6 +1386,15 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {u0|sdram_pll|sd1|pll7|inclk[0]} -duty_cycle 50.00 -name {u0|sdram_pll|sd1|pll7|clk[0]} {u0|sdram_pll|sd1|pll7|clk[0]}
     Info (332110): create_generated_clock -source {u0|sdram_pll|sd1|pll7|inclk[0]} -phase -18.00 -duty_cycle 50.00 -name {u0|sdram_pll|sd1|pll7|clk[1]} {u0|sdram_pll|sd1|pll7|clk[1]}
 Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at fpgaSynthSDC.sdc(79): CLK2_virt could not be matched with a clock File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 79
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(79): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 79
+    Info (332050): set_input_delay -max -clock CLK2_virt      5.9 [get_ports ARDUINO_IO[14]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 79
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(80): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 80
+    Info (332050): set_input_delay -max -clock CLK2_virt      5.9 [get_ports ARDUINO_IO[15]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 80
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(101): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 101
+    Info (332050): set_input_delay -min -clock CLK2_virt     3.0 [get_ports ARDUINO_IO[14]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 101
+Warning (332049): Ignored set_input_delay at fpgaSynthSDC.sdc(102): Argument -clock is not an object ID File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 102
+    Info (332050): set_input_delay -min -clock CLK2_virt     3.0 [get_ports ARDUINO_IO[15]] File: C:/Users/augh/Documents/ECE385/finalProject_multiWaveform/fpgaSynthSDC.sdc Line: 102
 Info (332104): Reading SDC File: 'finalProject/synthesis/submodules/altera_reset_controller.sdc'
 Info (332104): Reading SDC File: 'finalProject/synthesis/submodules/altera_avalon_st_handshake_clock_crosser.sdc'
 Info (332104): Reading SDC File: 'finalProject/synthesis/submodules/finalProject_nios2_gen2_0_cpu.sdc'
@@ -3739,10 +3748,10 @@ Info (332115): Path #1: Removal slack is 2.947
     Info (332115): 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus Prime Timing Analyzer was successful. 0 errors, 222 warnings
-    Info: Peak virtual memory: 5034 megabytes
-    Info: Processing ended: Wed Jul 21 15:05:24 2021
+Info: Quartus Prime Timing Analyzer was successful. 0 errors, 227 warnings
+    Info: Peak virtual memory: 5037 megabytes
+    Info: Processing ended: Fri Jul 30 14:14:56 2021
     Info: Elapsed time: 00:00:18
-    Info: Total CPU time (on all processors): 00:00:36
+    Info: Total CPU time (on all processors): 00:00:38
 
 
