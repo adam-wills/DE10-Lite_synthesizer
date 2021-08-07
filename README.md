@@ -1,7 +1,8 @@
 # DE10-Lite_synthesizer
 ## FM Synthesizer in SystemVerilog and C using fixed-point arithmetic
 
-Latest updates in the partial_keyboard branch, which is now largely fixed.
+NOTE: Work on this repository has been largely suspended as I've decided to rework the architecture and 
+hardware/software partitioning. The reworked version can be found at http://github.com/adam-wills/fpgaFM_matrix
 
 Source code for an FM synthesizer with hardware written in SystemVerilog and software running
 on the NIOS-II embedded processor. The synthesizer uses a traditional alphanumeric USB-keyboard
